@@ -4,6 +4,168 @@
   
   
   <entry>
+    <title>排序算法总结</title>
+    <link href="/2020/06/11/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+    <url>/2020/06/11/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/</url>
+    
+    <content type="html"><![CDATA[<h1 id="排序算法总结"><a href="#排序算法总结" class="headerlink" title="排序算法总结"></a>排序算法总结</h1><p>各个算法的时间和空间复杂度如下图所示：</p><p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200611124222.png" srcset="/img/loading.gif" alt="image-20200611124218763"></p><p>选择排序：最稳定的排序算法，无论什么情况时间复杂度否是O(n^2)</p><p>插入排序：采用in-place内部排序，空间复杂度为O(1)</p><p>归并排序：稳定的排序算法，分治思想的典型应用，先使子序列有序，再将两个子序列合并成有序序列</p><p>快速排序：不稳定</p><p>堆排序：利用数据结构堆设计的排序算法</p><p>计数排序：稳定排序算法，不是基于比较的排序算法，将数组转换成键值对的形式存储在额外的数组空间</p><p>桶排序：稳定，桶的划分很重要</p><p>基数排序：稳定，按照数字位上的数排序。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+      <category>排序算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>基数排序</title>
+    <link href="/2020/06/11/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/"/>
+    <url>/2020/06/11/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/</url>
+    
+    <content type="html"><![CDATA[<h1 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h1><p>基数排序是桶排序的升级版把数组中每一个数字，都分成不同位，先比较数字不同位的大小，先按照个位大小排序，再按照十位大小排序….一直到最高位，最高位的排序结果就是最终的排序结果，具体见下图，图片来自@sky。</p><p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200611122731.png" srcset="/img/loading.gif" alt="image-20200611122725122"></p><p>Java代码如下：</p><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">buicketSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span></span><span class="hljs-function"></span>&#123;    <span class="hljs-keyword">int</span> maxExp=getExp(nums);    <span class="hljs-keyword">int</span> len=nums.length;    ArrayList&lt;ArrayList&lt;Integer&gt;&gt; lists=<span class="hljs-keyword">new</span> ArrayList&lt;&gt;();    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">10</span>;i++) lists.add(<span class="hljs-keyword">new</span> ArrayList&lt;&gt;());<span class="hljs-comment">//因为是十进制，所以有0~9，十个桶</span>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=maxExp;i++)    &#123;        <span class="hljs-comment">//1234,假如想得到百位的2，应该是1234%1000=234,234/100=2，所以应该先取模，再相除，最终就知道了值</span>        <span class="hljs-keyword">double</span> exp1=Math.pow(<span class="hljs-number">10</span>, i);        <span class="hljs-keyword">double</span> exp2=Math.pow(<span class="hljs-number">10</span>,i-<span class="hljs-number">1</span>);        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;len;j++)<span class="hljs-comment">//先按照位添加到指定数组中</span>        &#123;            <span class="hljs-keyword">int</span> index=(<span class="hljs-keyword">int</span>)(nums[j]%exp1/exp2);<span class="hljs-comment">//算出这数字nums[j]的某一位的值，来决定添加到哪一个桶上</span>            lists.get(index).add(nums[j]);<span class="hljs-comment">//添加到指定桶</span>        &#125;        <span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>;<span class="hljs-comment">//下标，按照位排好序的结果要写回原数组</span>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;<span class="hljs-number">10</span>;j++)<span class="hljs-comment">//遍历list中的每一个数组，将其写回到原数组中去</span>        &#123;            <span class="hljs-keyword">while</span> (lists.get(j).size()&gt;<span class="hljs-number">0</span>)            &#123;                ArrayList&lt;Integer&gt; temp=lists.get(j);                nums[k++]=temp.get(<span class="hljs-number">0</span>);<span class="hljs-comment">//把按照某一位排序的结果写回到数组</span>                temp.remove(<span class="hljs-number">0</span>);            &#125;        &#125;    &#125;&#125;</code></pre><p>用处：主要用于处理数字较多的情况，比如手机号排序。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+      <category>排序算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>桶排序</title>
+    <link href="/2020/06/11/%E6%A1%B6%E6%8E%92%E5%BA%8F/"/>
+    <url>/2020/06/11/%E6%A1%B6%E6%8E%92%E5%BA%8F/</url>
+    
+    <content type="html"><![CDATA[<h1 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h1><p>桶排序是一种计数排序的升级版，如果把每一个数都看成是一个桶的话，那么桶排序就是计数排序，简单来说就是生成若干个桶，每一个桶存放指定范围内的数据，如数组范围是0<del>100，有十个桶，每一个桶的范围分别是0</del>10,10~20，….等，通过把数据分到桶中，再对桶中数据进行排序，然后再依次从桶中取出数据，即为最终排好序的数据。桶排序需要尽量保证元素分散均匀，否则当所有数据集中在同一个桶中时，桶排序失效</p><p>注：桶之间也是有序的，即后一个桶的最小值是大于前一个桶的最大值的。</p><p>Java代码如下</p><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">buicketSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span></span><span class="hljs-function"></span>&#123;    <span class="hljs-keyword">int</span> min=nums[<span class="hljs-number">0</span>];    <span class="hljs-keyword">int</span> max=nums[<span class="hljs-number">0</span>];    <span class="hljs-keyword">int</span> len=nums.length;    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len;i++)    &#123;        <span class="hljs-keyword">if</span>(min&gt;nums[i]) min=nums[i];        <span class="hljs-keyword">if</span> (max&lt;nums[i]) max=nums[i];    &#125;    <span class="hljs-keyword">int</span> buicketNum=(max-min)/len+<span class="hljs-number">1</span>;<span class="hljs-comment">//确定桶的个数</span>    ArrayList&lt;ArrayList&lt;Integer&gt;&gt; buicket=<span class="hljs-keyword">new</span> ArrayList&lt;&gt;();    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;buicketNum;i++)    &#123;        buicket.add(<span class="hljs-keyword">new</span> ArrayList&lt;&gt;());    &#125;    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len;i++)        buicket.get((i-min)/len).add(nums[i]);<span class="hljs-comment">//按照元素的值来放到指定的桶内</span>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;buicketNum;i++)        Collections.sort(buicket.get(i));<span class="hljs-comment">//每一个桶内的排序方式任意</span>    <span class="hljs-keyword">int</span> index=<span class="hljs-number">0</span>;    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;buicketNum;i++)<span class="hljs-comment">//遍历桶，后一个桶内的最小值是大于前一个桶内的最大值的。</span>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;buicket.get(i).size();i++)            nums[index++]= buicket.get(i).get(j);&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+      <category>排序算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>计数排序</title>
+    <link href="/2020/06/11/%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F/"/>
+    <url>/2020/06/11/%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F/</url>
+    
+    <content type="html"><![CDATA[<h1 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h1><p>计数排序是通过数组中元素出现的次数来计数的，先找到数组中的最大值max，然后建立一个长度为max+1的数组count，对原数组nums中的数字出现的次数遍历，最后再遍历count数组，如果count[i]值不为空，说明nums中有这个值，输出回原数组nums，遍历完count数组，即得到了nums数组排序后的结果</p><p>代码如下</p><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">countSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span></span><span class="hljs-function"></span>&#123;    <span class="hljs-keyword">int</span> res=<span class="hljs-number">0</span>;<span class="hljs-comment">//记录数组最大值</span>    <span class="hljs-keyword">int</span> len=nums.length;    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len;i++)    &#123;        <span class="hljs-keyword">if</span>(res&lt;nums[i]) res=nums[i];<span class="hljs-comment">//找到数组最大值</span>    &#125;    <span class="hljs-keyword">int</span>[] count=<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[res+<span class="hljs-number">1</span>];<span class="hljs-comment">//建立长度为res+1的计数数组</span>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len;i++) count[nums[i]]++;<span class="hljs-comment">//计算nums[i]出现的次数</span>    <span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>;    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;res;i++)<span class="hljs-comment">//遍历count数组</span>    &#123;        <span class="hljs-keyword">while</span> (count[i]&gt;<span class="hljs-number">0</span>)<span class="hljs-comment">//如果数组大于0，说明nums数组中有i这个值</span>        &#123;            nums[k++]=i;<span class="hljs-comment">//将这个值写会到数组中</span>            count[i]--;<span class="hljs-comment">//i这个值出现次数-1</span>        &#125;    &#125;&#125;<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> i, <span class="hljs-keyword">int</span> j)</span></span><span class="hljs-function"></span>&#123;    <span class="hljs-keyword">if</span>(i&gt;=nums.length) <span class="hljs-keyword">return</span>;    <span class="hljs-keyword">int</span> temp=nums[i];    nums[i]=nums[j];    nums[j]=temp;&#125;</code></pre><p>优化：</p><p>容易发现count数组小于下标nums中最小值的空间都被浪费了，是不可能存在值的，所以可以建立一个长度为Max-min+1数组</p><p>代码如下：</p><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">countSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span></span><span class="hljs-function"></span>&#123;    <span class="hljs-keyword">int</span> max=nums[<span class="hljs-number">0</span>];    <span class="hljs-keyword">int</span> min=nums[<span class="hljs-number">0</span>];    <span class="hljs-keyword">int</span> len=nums.length;    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len;i++)    &#123;        <span class="hljs-keyword">if</span>(max&lt;nums[i]) max=nums[i];        <span class="hljs-keyword">if</span>(min&gt;nums[i]) min=nums[i];    &#125;    <span class="hljs-keyword">int</span>[] count=<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[max-min+<span class="hljs-number">1</span>];<span class="hljs-comment">//优化空间</span>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len;i++) count[nums[i]-min]++;<span class="hljs-comment">//优化代码</span>    <span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>;    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;max-min+<span class="hljs-number">1</span>;i++)    &#123;        <span class="hljs-keyword">while</span> (count[i]&gt;<span class="hljs-number">0</span>)        &#123;            nums[k++]=i+min;<span class="hljs-comment">//优化代码</span>            count[i]--;        &#125;    &#125;&#125;<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> i, <span class="hljs-keyword">int</span> j)</span></span><span class="hljs-function"></span>&#123;    <span class="hljs-keyword">if</span>(i&gt;=nums.length) <span class="hljs-keyword">return</span>;    <span class="hljs-keyword">int</span> temp=nums[i];    nums[i]=nums[j];    nums[j]=temp;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+      <category>排序算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>堆排序</title>
+    <link href="/2020/06/11/%E5%A0%86%E6%8E%92%E5%BA%8F/"/>
+    <url>/2020/06/11/%E5%A0%86%E6%8E%92%E5%BA%8F/</url>
+    
+    <content type="html"><![CDATA[<h1 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h1><p>堆是一颗完全二叉树，即除了最后一层，其余每一层的左右结点都被填满，且最后一层叶子节点从左到右依次填充</p><p>大根堆：根节点的值大于左右结点的值(不要求左右节点的相对大小，即左节点一定要大于右节点或者右节点一定要大于左节点)</p><p>小根堆：根节点的值小于左右结点的值</p><p>下面讲解大根堆的堆排序</p><p>堆排序是通过维护一个大根堆，来使得堆顶元素总是为最大值，交换堆顶元素和最后一个结点元素，这样最大值就跑到了数组最后，然后继续维护剩余元素为一个大根堆，再交换堆顶元素和倒数第二个元素，以此类推，这样不断交换最大值，最终实现了排序。</p><p>注意：数组下标在堆中的对应关系：因为堆是一颗完全二叉树，所以下标为i的根节点，左节点的下标为<code>i*2+1</code>，右节点下标为<code>i*2+2</code></p><p>代码如下：</p><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">heapify</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] heap, <span class="hljs-keyword">int</span> size, <span class="hljs-keyword">int</span> i)</span><span class="hljs-comment">//维护下标为i的结点，使得该节点值大于左右子节点的值</span></span><span class="hljs-function"></span>&#123;    <span class="hljs-keyword">int</span> max_index=i;<span class="hljs-comment">//下标为i的结点</span>    <span class="hljs-keyword">int</span> left=i*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>;<span class="hljs-comment">//i结点的左节点</span>    <span class="hljs-keyword">int</span> right=i*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>;<span class="hljs-comment">//i节点的右节点</span>    <span class="hljs-keyword">if</span>(left&lt;size &amp;&amp; heap[left]&gt;heap[max_index]) max_index=left;<span class="hljs-comment">//记录最大值的下标</span>    <span class="hljs-keyword">if</span>(right &lt;size &amp;&amp; heap[right]&gt;heap[max_index]) max_index=right;    <span class="hljs-keyword">if</span>(max_index!=i)<span class="hljs-comment">//如果下标i的值小于左右节点中的最大值</span>    &#123;        swap(heap,max_index,i);<span class="hljs-comment">//交换堆顶元素和左右节点中的最大值</span>        heapify(heap,size,max_index);<span class="hljs-comment">//下标为i的结点被交换下来，继续维护这个结点，使得这个结点为大根堆</span>    &#125;&#125;<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">heapSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] heap, <span class="hljs-keyword">int</span> size)</span></span><span class="hljs-function"></span>&#123;    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=size/<span class="hljs-number">2</span>-<span class="hljs-number">1</span>;i&gt;=<span class="hljs-number">0</span>;i--)    &#123;        heapify(heap,size,i);<span class="hljs-comment">//维护每一个非叶子节点</span>    &#125;    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=size-<span class="hljs-number">1</span>;i&gt;=<span class="hljs-number">0</span>;i--)    &#123;        swap(heap,<span class="hljs-number">0</span>,i);<span class="hljs-comment">//上面已经建好一个大根堆，所以堆顶元素为最大值，把最大值放到数组最后面</span>        heapify(heap,i,<span class="hljs-number">0</span>);<span class="hljs-comment">//继续维护，数组此时长度减一</span>    &#125;&#125;<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> i, <span class="hljs-keyword">int</span> j)</span></span><span class="hljs-function"></span>&#123;    <span class="hljs-keyword">if</span>(i&gt;=nums.length) <span class="hljs-keyword">return</span>;    <span class="hljs-keyword">int</span> temp=nums[i];    nums[i]=nums[j];    nums[j]=temp;&#125;</code></pre><p>小根堆代码如下：</p><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">heapify</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] heap, <span class="hljs-keyword">int</span> size, <span class="hljs-keyword">int</span> i)</span><span class="hljs-comment">//维护下标为i的结点，使得该节点值小于左右子节点的值</span></span><span class="hljs-function"></span>&#123;    <span class="hljs-keyword">int</span> min_index=i;    <span class="hljs-keyword">int</span> left=i*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>;    <span class="hljs-keyword">int</span> right=i*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>;    <span class="hljs-keyword">if</span>(left&lt;size &amp;&amp; heap[left]&lt;heap[min_index]) min_index=left;<span class="hljs-comment">//只需要heap[left]&gt;heap[min_index]改成heap[left]&lt;heap[min_index]即可</span>    <span class="hljs-keyword">if</span>(right &lt;size &amp;&amp; heap[right]&lt;heap[min_index]) min_index=right;<span class="hljs-comment">//同上</span>    <span class="hljs-keyword">if</span>(max_index!=i)    &#123;        swap(heap,min_index,i);        heapify(heap,size,min_index);    &#125;&#125;<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">heapSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] heap, <span class="hljs-keyword">int</span> size)</span></span><span class="hljs-function"></span>&#123;    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=size/<span class="hljs-number">2</span>-<span class="hljs-number">1</span>;i&gt;=<span class="hljs-number">0</span>;i--)    &#123;        heapify(heap,size,i);    &#125;    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=size-<span class="hljs-number">1</span>;i&gt;=<span class="hljs-number">0</span>;i--)    &#123;        swap(heap,<span class="hljs-number">0</span>,i);        heapify(heap,i,<span class="hljs-number">0</span>);    &#125;&#125;<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> i, <span class="hljs-keyword">int</span> j)</span></span><span class="hljs-function"></span>&#123;    <span class="hljs-keyword">if</span>(i&gt;=nums.length) <span class="hljs-keyword">return</span>;    <span class="hljs-keyword">int</span> temp=nums[i];    nums[i]=nums[j];    nums[j]=temp;&#125;</code></pre><p>参考资料：</p><p>图解排序算法：<a href="https://www.cnblogs.com/chengxiao/p/6129630.html" target="_blank" rel="noopener">https://www.cnblogs.com/chengxiao/p/6129630.html</a></p><p>排序算法总结：<a href="https://www.acwing.com/blog/content/2064/" target="_blank" rel="noopener">https://www.acwing.com/blog/content/2064/</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+      <category>排序算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>归并排序</title>
+    <link href="/2020/06/10/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/"/>
+    <url>/2020/06/10/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/</url>
+    
+    <content type="html"><![CDATA[<h1 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h1><p>归并排序先把数组分成两半，每一半再递归进行平分，当只有一个元素时，递归结束。然后两两比较值，合并数组，进行排序。</p><p>代码如下：</p><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">merge_sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> q[], <span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r)</span></span><span class="hljs-function"></span>&#123;    <span class="hljs-keyword">if</span>(l&gt;=r) <span class="hljs-keyword">return</span>;    <span class="hljs-keyword">int</span> mid=l+r&gt;&gt;<span class="hljs-number">1</span>;<span class="hljs-comment">//找到数组中点</span>    merge_sort(q,l,mid);<span class="hljs-comment">//递归左半部分</span>    merge_sort(q,mid+<span class="hljs-number">1</span>,r);<span class="hljs-comment">//递归右半部分</span>    <span class="hljs-keyword">int</span> i=l,j=mid+<span class="hljs-number">1</span>;    <span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>;    <span class="hljs-keyword">while</span>(i &lt;=mid &amp;&amp; j&lt;=r)<span class="hljs-comment">//递归结束后，开始左右两部分的值，进行排序</span>    &#123;        <span class="hljs-keyword">if</span>(q[i]&lt;q[j]) temp[k++]=q[i++];<span class="hljs-comment">//temp数组用来继续排序结果</span>        <span class="hljs-keyword">else</span> temp[k++]=q[j++];    &#125;    <span class="hljs-keyword">while</span>(i&lt;=mid) temp[k++]=q[i++];<span class="hljs-comment">//如果左半部分还有值</span>    <span class="hljs-keyword">while</span>(j&lt;=r) temp[k++]=q[j++];<span class="hljs-comment">//如果右半部分还有值</span>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> w=l,k=<span class="hljs-number">0</span>;w&lt;=r;w++,k++) q[w]=temp[k];<span class="hljs-comment">//将temp记录的排好序后的元素写回到原数组</span>&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+      <category>排序算法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>快速排序</title>
     <link href="/2020/06/10/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/"/>
     <url>/2020/06/10/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/</url>
