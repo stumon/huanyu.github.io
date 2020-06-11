@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>排序算法总结 - 郭寰宇</title>
+  <title>单例模式 - 郭寰宇</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-06-11 12:38">
-      2020年6月11日 下午
+    <time datetime="2020-06-11 19:45">
+      2020年6月11日 晚上
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      208 字
+      1k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      12
        分钟
     </span>
   
@@ -204,16 +204,96 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="排序算法总结"><a href="#排序算法总结" class="headerlink" title="排序算法总结"></a>排序算法总结</h1><p>各个算法的时间和空间复杂度如下图所示：</p>
-<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200611124222.png" srcset="/img/loading.gif" alt="image-20200611124218763"></p>
-<p>选择排序：最稳定的排序算法，无论什么情况时间复杂度否是O(n^2)</p>
-<p>插入排序：采用in-place内部排序，空间复杂度为O(1)</p>
-<p>归并排序：稳定的排序算法，分治思想的典型应用，先使子序列有序，再将两个子序列合并成有序序列</p>
-<p>快速排序：不稳定</p>
-<p>堆排序：利用数据结构堆设计的排序算法</p>
-<p>计数排序：稳定排序算法，不是基于比较的排序算法，将数组转换成键值对的形式存储在额外的数组空间</p>
-<p>桶排序：稳定，桶的划分很重要</p>
-<p>基数排序：稳定，按照数字位上的数排序。</p>
+              <h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><p>单例模式指的是一个类只有一个实例，单例分为饿汉式单例和懒汉式单例</p>
+<p>懒汉式单例：只有再用实例的时候，才去创建这个类的实例</p>
+<p>饿汉式单例：初始化的时候就创建好实例，不管你用不用</p>
+<h2 id="饿汉式单例"><a href="#饿汉式单例" class="headerlink" title="饿汉式单例"></a>饿汉式单例</h2><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Singleton</span><span class="hljs-params">()</span></span>&#123;&#125;<span class="hljs-comment">//私有构造函数</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Singleton singleton=<span class="hljs-keyword">new</span> Singleton();
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Singleton <span class="hljs-title">getInstance</span><span class="hljs-params">()</span></span>&#123;
+        <span class="hljs-keyword">return</span> singleton;
+    &#125;
+&#125;</code></pre>
+
+<h2 id="懒汉式单例"><a href="#懒汉式单例" class="headerlink" title="懒汉式单例"></a>懒汉式单例</h2><p>懒汉式单例时面试高频考点，因为多线程下下面这种代码不是线程安全的，面试官会让你不断优化</p>
+<pre><code class="hljs java">
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Singleton</span><span class="hljs-params">()</span></span>&#123;&#125;<span class="hljs-comment">//私有构造函数，这样外界就无法通过构造函数来初始化单例</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Singleton singleton;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Singleton <span class="hljs-title">getInstance</span><span class="hljs-params">()</span></span>&#123;
+        <span class="hljs-keyword">if</span>(singleton==<span class="hljs-keyword">null</span>) singleton=<span class="hljs-keyword">new</span> Singleton();<span class="hljs-comment">//当使用这个单例时，发现没有初始化才开始初始化，所以是懒汉式</span>
+        <span class="hljs-keyword">return</span> singleton;
+    &#125;
+&#125;</code></pre>
+
+<p>上面代码<code>if(singleton==null) singleton=new Singleton();</code>,当有两个线程A和B同时进入到<code>if</code>判断，那么<code>new Singleton()</code>，就会执行两次，所以需要双重检测锁模式的懒汉式单例</p>
+<h3 id="DCL懒汉式单例"><a href="#DCL懒汉式单例" class="headerlink" title="DCL懒汉式单例"></a>DCL懒汉式单例</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Singleton</span><span class="hljs-params">()</span></span>&#123;&#125;<span class="hljs-comment">//私有构造函数，这样外界就无法通过构造函数来初始化单例</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Singleton singleton;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Singleton <span class="hljs-title">getInstance</span><span class="hljs-params">()</span></span>&#123;
+        <span class="hljs-keyword">if</span>(singleton==<span class="hljs-keyword">null</span>) &#123;<span class="hljs-comment">//第一次检测</span>
+            <span class="hljs-keyword">synchronized</span> (Singleton<span class="hljs-class">.<span class="hljs-keyword">class</span>)//加一把锁</span>
+<span class="hljs-class">            </span>&#123;
+                <span class="hljs-keyword">if</span>(singleton==<span class="hljs-keyword">null</span>)<span class="hljs-comment">//第二次检测，目的是防止当两个线程同时进入到第一次if判断时，singleton此时为空，当第一个线程执行完代码释放锁后</span>
+                &#123;<span class="hljs-comment">//第二个线程进入，此时singleton因为已经被第一个线程实例化了，就进不来第二个if判断</span>
+                    singleton=<span class="hljs-keyword">new</span> Singleton();
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> singleton;
+    &#125;
+&#125;</code></pre>
+
+<p>但是上面代码还存在一个问题：<code>singleton=new Singleton();</code>不是原子性操作，它可以分成三步，第一步分配空间，第二步执行构造器方法，初始化对象，第三步将引用指向内存空间，但是JVM编译器会进行<strong>指令重排</strong>，执行顺序可能是132。假如线程A执行到了<code>singleton=new Singleton();</code>，当这一行代码执行顺序是132，先分配空间，再将引用指向内存空间，刚执行完这一步，线程B进来了，因为此时已经把引用指向了内存空间，所以<code>if(singleton==null)</code>判断为false，直接返回<code>singleton</code>，但实际上此时singleton所指向的内存空间还没有初始化，实际还未空，所以线程B返回的<code>singleton</code>实际为<code>null</code></p>
+<h3 id="加Volatile的DCL"><a href="#加Volatile的DCL" class="headerlink" title="加Volatile的DCL"></a>加Volatile的DCL</h3><p>优化：加一个<code>volatile</code>关键字，<code>volatile</code>关键字有两个作用：一个是禁止指令重排、一个是保持变量的内存可见性。所以加了volatile关键字，禁止了JVM的指令重排，也就维护了线程安全</p>
+<pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Singleton</span><span class="hljs-params">()</span></span>&#123;&#125;<span class="hljs-comment">//私有构造函数，这样外界就无法通过构造函数来初始化单例</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">volatile</span> Singleton singleton;<span class="hljs-comment">//volatile禁止指令重排</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Singleton <span class="hljs-title">getInstance</span><span class="hljs-params">()</span></span>&#123;
+        <span class="hljs-keyword">if</span>(singleton==<span class="hljs-keyword">null</span>) &#123;<span class="hljs-comment">//第一次检测</span>
+            <span class="hljs-keyword">synchronized</span> (Singleton<span class="hljs-class">.<span class="hljs-keyword">class</span>)//加一把锁</span>
+<span class="hljs-class">            </span>&#123;
+                <span class="hljs-keyword">if</span>(singleton==<span class="hljs-keyword">null</span>)<span class="hljs-comment">//第二次检测，目的是防止当两个线程同时进入到第一次if判断时，singleton此时为空，当第一个线程执行完代码释放锁后</span>
+                &#123;<span class="hljs-comment">//第二个线程进入，此时singleton因为已经被第一个线程实例化了，就进不来第二个if判断</span>
+                    singleton=<span class="hljs-keyword">new</span> Singleton();
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> singleton;
+    &#125;
+&#125;</code></pre>
+
+<p>但是上面代码还是有问题，我们可以通过反射获取构造器，修改构造器访问权限，然后再使用构造器的<code>newInstance()</code>方法来创建实例，代码如下：</p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
+        Constructor&lt;Singleton&gt; constructor = Singleton<span class="hljs-class">.<span class="hljs-keyword">class</span>.<span class="hljs-title">getDeclaredConstructor</span>(<span class="hljs-title">null</span>)</span>;
+        constructor.setAccessible(<span class="hljs-keyword">true</span>);
+        Singleton singleton = constructor.newInstance();
+        Singleton singleton1=constructor.newInstance();
+        System.out.println(singleton.hashCode());<span class="hljs-comment">//打印出来hashcode，发现两个对象的hashcode不同，所以不是一个对象</span>
+        System.out.println(singleton1.hashCode());
+    &#125;</code></pre>
+
+<p>解决方法：枚举，关键字<code>enum</code>可以使得JVM阻止反射获取枚举类的私有构造方法</p>
+<h3 id="使用枚举的单例"><a href="#使用枚举的单例" class="headerlink" title="使用枚举的单例"></a>使用枚举的单例</h3><pre><code class="hljs java"><span class="hljs-keyword">enum</span> EnumSingleton &#123;
+    INSTANCE;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> EnumSingleton <span class="hljs-title">getInstance</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        <span class="hljs-keyword">return</span> INSTANCE;
+    &#125;
+&#125;</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             </article>
             <hr>
@@ -223,9 +303,9 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                      <a class="hover-with-bg" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">排序算法</a>
+                      <a class="hover-with-bg" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B/">创建型</a>
                     
                   </div>
                 
@@ -233,7 +313,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+                      <a class="hover-with-bg" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
                     
                   </div>
                 
@@ -246,9 +326,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/06/11/SpringMVC/">
+                      <a href="/2020/06/11/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">SpringMVC</span>
+                        <span class="hidden-mobile">工厂模式</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -256,8 +336,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/06/11/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/">
-                        <span class="hidden-mobile">基数排序</span>
+                      <a href="/2020/06/11/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                        <span class="hidden-mobile">设计模式</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -396,7 +476,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "排序算法总结&nbsp;",
+        "单例模式&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>排序算法总结 - 郭寰宇</title>
+  <title>工厂模式 - 郭寰宇</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-06-11 12:38">
-      2020年6月11日 下午
+    <time datetime="2020-06-11 21:13">
+      2020年6月11日 晚上
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      208 字
+      286 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      3
        分钟
     </span>
   
@@ -204,17 +204,34 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="排序算法总结"><a href="#排序算法总结" class="headerlink" title="排序算法总结"></a>排序算法总结</h1><p>各个算法的时间和空间复杂度如下图所示：</p>
-<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200611124222.png" srcset="/img/loading.gif" alt="image-20200611124218763"></p>
-<p>选择排序：最稳定的排序算法，无论什么情况时间复杂度否是O(n^2)</p>
-<p>插入排序：采用in-place内部排序，空间复杂度为O(1)</p>
-<p>归并排序：稳定的排序算法，分治思想的典型应用，先使子序列有序，再将两个子序列合并成有序序列</p>
-<p>快速排序：不稳定</p>
-<p>堆排序：利用数据结构堆设计的排序算法</p>
-<p>计数排序：稳定排序算法，不是基于比较的排序算法，将数组转换成键值对的形式存储在额外的数组空间</p>
-<p>桶排序：稳定，桶的划分很重要</p>
-<p>基数排序：稳定，按照数字位上的数排序。</p>
+              <h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><p>工厂模式解决的问题是：<strong>创建对象的过程比较复杂，希望对外隐藏这些细节</strong>。比如创建线程池对象、连接池对象等</p>
+<p>工厂模式又分成：简单工厂、静态工厂、抽象工厂模式</p>
+<p><strong>简单工厂模式：</strong>又叫静态工厂模式，但不属于23种GOF设计模式之一。简单工厂模式是由一个工厂对象决定创建出哪一种产品类的实例</p>
+<p><strong>工厂模式：</strong>实例化对象不适用new，用工厂方法代替</p>
+<p><strong>抽象工厂模式：</strong>抽象工厂模式是所有形态的工厂模式中最为抽象和最具一般性的一种形态。抽象工厂模式是指当有多个抽象角色时，使用的一种工厂模式</p>
+<h2 id="简单工厂"><a href="#简单工厂" class="headerlink" title="简单工厂"></a>简单工厂</h2><p>代码如下</p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> main.java.guo.factory.simple;
 
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CarFactory</span> </span>&#123;
+    <span class="hljs-comment">//方法一：</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Car <span class="hljs-title">getCar</span><span class="hljs-params">(String car)</span></span>&#123;
+        <span class="hljs-keyword">if</span>(car.equals(<span class="hljs-string">"wuling"</span>))
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> WuLing();
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (car.equals(<span class="hljs-string">"tesla"</span>))
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Tesla();
+        <span class="hljs-keyword">else</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    &#125;
+    <span class="hljs-comment">//方法二：</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Car <span class="hljs-title">getWuLing</span><span class="hljs-params">()</span></span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> WuLing();
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Car <span class="hljs-title">getTesla</span><span class="hljs-params">()</span></span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Tesla();
+    &#125;
+&#125;</code></pre>
+
+<h2 id="工厂模式-1"><a href="#工厂模式-1" class="headerlink" title="工厂模式"></a>工厂模式</h2><h2 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h2>
             </article>
             <hr>
             <div>
@@ -223,9 +240,9 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                      <a class="hover-with-bg" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">排序算法</a>
+                      <a class="hover-with-bg" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B/">创建型</a>
                     
                   </div>
                 
@@ -233,7 +250,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+                      <a class="hover-with-bg" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
                     
                   </div>
                 
@@ -246,18 +263,12 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/06/11/SpringMVC/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">SpringMVC</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/06/11/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/">
-                        <span class="hidden-mobile">基数排序</span>
+                      <a href="/2020/06/11/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">
+                        <span class="hidden-mobile">单例模式</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -396,7 +407,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "排序算法总结&nbsp;",
+        "工厂模式&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
