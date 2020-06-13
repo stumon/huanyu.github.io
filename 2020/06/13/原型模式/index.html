@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>设计模式 - 郭寰宇</title>
+  <title>原型模式 - 郭寰宇</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-06-11 19:21">
-      2020年6月11日 晚上
+    <time datetime="2020-06-13 09:31">
+      2020年6月13日 上午
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      516 字
+      542 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      7
        分钟
     </span>
   
@@ -204,20 +204,89 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><p>设计模式基于六大设计原则，分成三类，一共有23种</p>
-<h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><p>开闭原则：扩展开发，修改关闭</p>
-<p>单一职责：一个类只负责一件事情</p>
-<p>里氏替换原则：子类应该可以完全替代父类。</p>
-<p>依赖倒置原则：高层模块不应该依赖低层模块，它们都应该依赖抽象。抽象不应该依赖于细节，细节应该依赖于抽象。代码要依赖于抽象的类，而不要依赖于具体的类；要针对接口或抽象类编程，而不是针对具体类编程。</p>
-<p>迪米特法则：又名最少知道原则，一个类不应知道自己操作的类的细节，换言之，只和朋友谈话，不和朋友的朋友谈话。</p>
-<p>接口隔离原则：客户端不应依赖它不需要的接口。如果一个接口在实现时，部分方法未被客户端实现，则应该将接口拆分，让实现类只需依赖自己需要的接口方法</p>
-<p>组合原则：尽量使用对象组合，而不是继承来达到复用的目的。</p>
-<h2 id="创建型模式"><a href="#创建型模式" class="headerlink" title="创建型模式"></a>创建型模式</h2><p>创建型模型提供创建对象的机制，省去new的步骤</p>
-<p>一共有六种：<strong>单例模式(Singleton)、原型模式(prototype)、工厂方法(Factory method)、抽象工厂(Abstract Factory)</strong>和建造者模式(Builder)</p>
-<h2 id="结构型模式"><a href="#结构型模式" class="headerlink" title="结构型模式"></a>结构型模式</h2><p>结构型模式将对象和类组装成较大的结构， 并同时保持结构的灵活和高效。</p>
-<p>一共有七种：<strong>组合模式(Composite)、适配器模式(Adapter)、装饰者模式(Decorator)、代理模式(Proxy)</strong>、外观模式(Facade)、桥接模式(Bridge)、享元模式(Flyweight)</p>
-<h2 id="行为模式"><a href="#行为模式" class="headerlink" title="行为模式"></a>行为模式</h2><p>行为模式负责对象间的高效沟通和职责委派。</p>
-<p>一共有十一种：<strong>策略模式(Strategy)、观察者模式(Observer)</strong>、责任链(chain of Responsibilty)、命令(Command)、迭代器(Iterator)、中介者(Mediator)、备忘录(Memento)、状态(State)、模板方法(Template Method)、访问者(Visitor)、解释器模式(Interpreter)</p>
+              <h1 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h1><p>原型模式：顾名思义以某个对象为原型，复制一个新的对象。创建复制对象的时候，可以提高效率</p>
+<p>原型模式主要用于对象的复制，其中原型类也就是被复制的类需要具备两个条件：1实现Cloneable接口，2重写Object的clone方法。</p>
+<p>代码如下</p>
+<pre><code class="hljs java"><span class="hljs-comment">//原型类型</span>
+<span class="hljs-keyword">package</span> day01.test;
+
+<span class="hljs-keyword">import</span> javax.sql.DataSource;
+<span class="hljs-keyword">import</span> java.util.Date;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Cloneable</span> </span>&#123;
+    <span class="hljs-keyword">public</span> Date date;
+    <span class="hljs-keyword">public</span> String name;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> Object <span class="hljs-title">clone</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> CloneNotSupportedException </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.clone();
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(Date date, String name)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.date = date;
+        <span class="hljs-keyword">this</span>.name = name;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"Person&#123;"</span> +
+                <span class="hljs-string">"date="</span> + date +
+                <span class="hljs-string">", name='"</span> + name + <span class="hljs-string">'\''</span> +
+                <span class="hljs-string">'&#125;'</span>;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Date <span class="hljs-title">getDate</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> date;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setDate</span><span class="hljs-params">(Date date)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.date = date;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> name;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.name = name;
+    &#125;
+&#125;
+
+<span class="hljs-comment">//主线程</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> CloneNotSupportedException </span>&#123;
+    Date date=<span class="hljs-keyword">new</span> Date();
+    Person p1=<span class="hljs-keyword">new</span> Person(date,<span class="hljs-string">"zs"</span>);
+    Person clone = (Person) p1.clone();
+    System.out.println(p1.toString());
+    System.out.println(clone.toString());
+    System.out.println(<span class="hljs-string">"================"</span>);
+    date.setTime(<span class="hljs-number">123</span>);<span class="hljs-comment">//修改date</span>
+    System.out.println(p1.toString());
+    System.out.println(clone.toString());
+&#125;</code></pre>
+
+<p>上面的代码以原型p1为模板，克隆了一个原型对象，但是这种克隆只是浅克隆，如果我们修改原型对象的引用类型数据，那么克隆对象中的引用类型也会随之改动</p>
+<h2 id="浅克隆"><a href="#浅克隆" class="headerlink" title="浅克隆"></a>浅克隆</h2><p>浅克隆是只克隆按值传递的数据，比如基本数据类型、String类型，而不会克隆它所引用的对象，对修改原对象中的引用类型数据，克隆对象中的数据也会随之修改，如下图所示：</p>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200613100516.png" srcset="/img/loading.gif" alt="image-20200613100510733"></p>
+<h2 id="深克隆"><a href="#深克隆" class="headerlink" title="深克隆"></a>深克隆</h2><p>深克隆是除了克隆基本数据类型和String类型的值外，还会克隆引用类型的数据，重新在堆中开辟一段空间，用来放置引用对象，并且用新的引用指向该对象</p>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200613100751.png" srcset="/img/loading.gif" alt="image-20200613100747462"></p>
+<p>深克隆代码如下</p>
+<pre><code class="hljs java"><span class="hljs-comment">//只需要修改clone方法的代码即可</span>
+<span class="hljs-function"><span class="hljs-keyword">protected</span> Object <span class="hljs-title">clone</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> CloneNotSupportedException </span>&#123;
+        Person person = (Person)<span class="hljs-keyword">super</span>.clone();<span class="hljs-comment">//得到克隆对象，将其转成person类型</span>
+        Date clone =(Date) <span class="hljs-keyword">this</span>.date.clone();<span class="hljs-comment">//得到原型对象中的引用对象</span>
+        person.date=clone;<span class="hljs-comment">//修改原型对象中的引用对象</span>
+        <span class="hljs-keyword">return</span> person;<span class="hljs-comment">//返回克隆对象</span>
+    &#125;</code></pre>
+
+
+
+
+
+
+
+
+
 
             </article>
             <hr>
@@ -229,7 +298,7 @@
                     
                       <a class="hover-with-bg" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
                     
-                      <a class="hover-with-bg" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%A4%A7%E7%BA%B2/">大纲</a>
+                      <a class="hover-with-bg" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B/">创建型</a>
                     
                   </div>
                 
@@ -250,9 +319,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/06/11/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">
+                      <a href="/2020/06/13/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">单例模式</span>
+                        <span class="hidden-mobile">建造者模式</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -260,8 +329,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/06/11/SpringMVC/">
-                        <span class="hidden-mobile">SpringMVC</span>
+                      <a href="/2020/06/12/LeetCode76-%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/">
+                        <span class="hidden-mobile">LeetCode76-最小覆盖子串</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -400,7 +469,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "设计模式&nbsp;",
+        "原型模式&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

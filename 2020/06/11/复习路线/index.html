@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      0 字
+      2.8k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      30
        分钟
     </span>
   
@@ -204,12 +204,156 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              
+              <h1 id="JAVA基础"><a href="#JAVA基础" class="headerlink" title="JAVA基础"></a>JAVA基础</h1><p>介绍一下反射机制，动态代理的好处和坏处</p>
+<p>BIO/NIO/AIO介绍一下，NIO的实现方式</p>
+<blockquote>
+<p>IO(BIO)是面向流的，NIO是面向缓冲区的<br>BIO：Block IO 同步阻塞式 IO，就是我们平常使用的传统 IO，它的特点是模式简单使用方便，并发处理能力低。<br>NIO：New IO 同步非阻塞 IO，是传统 IO 的升级，客户端和服务器端通过 Channel（通道）通讯，实现了多路复用。<br>AIO：Asynchronous IO 是 NIO 的升级，也叫 NIO2，实现了异步非堵塞 IO ，异步 IO 的操作基于事件和回调机制。</p>
+</blockquote>
+<p>接口和抽象类的区别</p>
+<blockquote>
+<p>1、抽象类和接口都不能直接实例化，如果要实例化，抽象类变量必须指向实现所有抽象方法的子类对象，接口变量必须指向实现所有接口方法的类对象。<br>2、抽象类要被子类继承，接口要被类实现。<br>3、接口只能做方法申明，抽象类中可以做方法申明，也可以做方法实现<br>4、接口里定义的变量只能是公共的静态的常量，抽象类中的变量是普通变量。<br>5、抽象类里的抽象方法必须全部被子类所实现，如果子类不能全部实现父类抽象方法，那么该子类只能是抽象类。同样，一个实现接口的时候，如不能全部实现接口方法，那么该类也只能为抽象类。<br>6、抽象方法只能申明，不能实现。abstract void abc();不能写成abstract void abc(){}。<br>7、抽象类里可以没有抽象方法<br>8、如果一个类里有抽象方法，那么这个类只能是抽象类<br>9、抽象方法要被实现，所以不能是静态的，也不能是私有的。<br>10、接口可继承接口，并可多继承接口，但类只能单根继承。</p>
+</blockquote>
+<p>继承和组合的区别</p>
+<blockquote>
+<p>继承：子类继承父类</p>
+<p>组合：has-a</p>
+</blockquote>
+<p>什么是值传递和引用传递，区别以及应用</p>
+<p>JDK8新特性</p>
+<p>深克隆和浅克隆</p>
+<p>介绍一下static关键字，static方法能否被重写</p>
+<p>序列化和反序列化什么时候用，如何对对象实现序列化</p>
+<p>介绍一下HashMap，数据结构，线程安全</p>
+<p>介绍一下ConcurentHashMap，JDK7和JDK8的区别，实现原理</p>
+<p>介绍一下红黑树、B树、B+树，B树的插入过程，它们的应用场景</p>
+<p>邻接表和邻接矩阵的区别，用处</p>
+<p>介绍一下访问权限修饰符</p>
+<blockquote>
+<p>public           所有类可见<br>protected     本包和所有子类都可见（本包中的子类非子类均可访问，不同包中的子类可以访问，不是子类不能访问）<br>default          本包可见（即默认的形式）（本包中的子类非子类均可访问，不同包中的类及子类均不能访问）<br>priavte          本类可见</p>
+</blockquote>
+<p>介绍一下java的异常</p>
+<p>Object类里面有哪些方法？</p>
+<blockquote>
+<pre><code class="hljs aspectj">&gt;<span class="hljs-keyword">public</span> <span class="hljs-keyword">native</span> <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">hashCode</span><span class="hljs-params">()</span></span>;
+&gt;<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Object obj)</span> </span>&#123;<span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span> == obj);&#125;
+&gt;<span class="hljs-keyword">protected</span> <span class="hljs-keyword">native</span> <span class="hljs-function">Object <span class="hljs-title">clone</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> CloneNotSupportedException</span>;
+&gt;<span class="hljs-keyword">public</span> <span class="hljs-function">String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;<span class="hljs-keyword">return</span> getClass().getName() + <span class="hljs-string">"@"</span> + Integer.toHexString(hashCode());&#125;
+&gt;<span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">wait</span><span class="hljs-params">(<span class="hljs-keyword">long</span> timeoutMillis, <span class="hljs-keyword">int</span> nanos)</span> <span class="hljs-keyword">throws</span> InterruptedException </span>&#123;&#125;
+&gt;<span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">wait</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException </span>&#123;wait(<span class="hljs-number">0</span>L);&#125;
+&gt;<span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">native</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">wait</span><span class="hljs-params">(<span class="hljs-keyword">long</span> timeoutMillis)</span> <span class="hljs-keyword">throws</span> InterruptedException</span>;
+&gt;<span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">native</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">notify</span><span class="hljs-params">()</span></span>;
+&gt;<span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">native</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">notifyAll</span><span class="hljs-params">()</span></span>;
+&gt;<span class="hljs-keyword">protected</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">finalize</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123; &#125;</code></pre>
+</blockquote>
+<h1 id="JAVA并发"><a href="#JAVA并发" class="headerlink" title="JAVA并发"></a>JAVA并发</h1><p>创建线程的三种方式，Runnable和Callable的区别，线程状态</p>
+<p>wait和sleep的区别，wait和notify的使用场景</p>
+<p>介绍一下volatile关键字，底层实现原理</p>
+<p>介绍一下synchronized关键字以及原理，synchronized锁升级过程</p>
+<p>介绍一下对象头</p>
+<p>介绍一下AQS</p>
+<p>介绍一下你知道的锁，公平锁、非公平锁、偏向锁、轻量级锁、重量级锁、自旋锁、悲观锁和乐观锁的原理</p>
+<p>介绍一下cas操作，它是如何保证内存可见性的，可能出现的问题</p>
+<p>介绍一下线程池，工作原理，重要参数、各种策略，有哪些阻塞队列，如何关闭线程池，创建线程池</p>
+<p>常用的JUC包</p>
+<p>Java内存模型介绍一下，八个指令是八个</p>
+<p>cpu密集型多线程和io密集型多线程的比较。cpu密集型里如何管理多线程？ 用什么样的线程池和阻塞队列</p>
+<p>线程之间的通讯，进程之间的通讯</p>
+<p>io多路复用的原理和实现</p>
+<h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><p>JVM运行时内存区域划分？哪些线程私有？运行时数据区，私有共享都是哪些？堆区内存如何分配？</p>
+<p>对象的生命周期？</p>
+<p>JVM垃圾回收器，cms和g1的特点，两者的区别是什么，比g1更加先进的垃圾回收器有了解么，ZGC原理，能够管理多大的内存，CMS能管理多大的内存，G1呢</p>
+<p>JVM内存模型 类的生命周期 类加载过程  双亲委派机制了解吗  进入老年代过程 什么情况下直接进入老年代</p>
+<p>JVM内存分布（堆栈等，程序计数器+jvm栈+本地方法栈线程不共享，堆和方法区线程共享）</p>
+<p>类加载机制，过程，类加载机制？如何自定义实现类加载器？双亲委派模型、类加载器类别，双亲委派模型本质是解决了什么问题？安全性，有哪几种类加载器？类加载的流程。知道哪些类加载器。类加载器之间的关系？双亲委派模型。为什么使用双亲委派模型？</p>
+<p>垃圾回收算法，常见的垃圾回收器及他们之间区别，垃圾回收发生在哪里，怎么判断对象存活、GC Roots具体有哪些、讲讲对象分配与回收，什么可以作为垃圾回收的对象，垃圾回收算法和流程。</p>
+<p>栈什么情况下会溢出？</p>
+<p>静态变量存放在内存哪个区域？</p>
+<p>怎么查看java虚拟机内存占用？</p>
+<p>如何减少full gc的次数？方法区是否需要gc</p>
+<p>4个引用类型</p>
+<h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><p>输入一个url后的过程；浏览器从发送请求的全部过程</p>
+<p>OSI七层和TCP四层协议，OSI七层模型/五层模型，每一层有哪些协议，http，tcp，ip位于哪一层</p>
+<p>TCP三次握手四次分手，tcp四次挥手为什么要四次，为什么TCP是安全的，TCP，UDP的区别</p>
+<p>TCP报文结构，HTTP结构， TCP，UDP，HTTP的报文格式（我懵了）</p>
+<p>设计一个应用层协议（没有答出来</p>
+<p>HTTP协议连接过程，HTTPS连接过程，HTTP的长连接是怎么做的HTTP2和HTTP1区别，HTTP请求过程<br>http的几种方法，HTTP跟HTTPS的区别，https加密过程</p>
+<h1 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h1><p>程序，进程和线程的区别</p>
+<p>什么时候情况下要用多线程？</p>
+<p>进程之间怎么通信的？</p>
+<p>一个手机应用程序里面的进程和线程分别是怎么进行的？</p>
+<p>死锁，怎么解死锁，死锁条件，怎么预防</p>
+<p>进程的状态：阻塞+就绪+执行</p>
+<p>手机内存8g，是32位的，一个进程能申请多少内存？</p>
+<p>线程的应用，举例，线程的阻塞</p>
+<p>主线程和子线程的区别</p>
+<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><p>linux中如何查看CPU负载 top</p>
+<p>linux用过嘛（扯到了我训练过深度模型，小哥哥直接来了个场景题）<br>场景题：推荐算法中如何控制广告推送频率（结合强化学习说了一些</p>
+<p>Linux了解不，df dh区别，如何格式化磁盘，磁盘挂载过程，tcp丢包如何排查，docker是用什么实现的</p>
+<p>怎么查找特定后缀名或前缀名的文件</p>
+<h1 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h1><p>数据库引擎事务隔离级别，串行化如何实现，数据库的隔离级别？四个。你平常使用的是哪个隔离级别。数据库隔离级别以及分别解决了什么问题</p>
+<p>MySQL的存储引擎有哪些？它们之间的区别？你用的mysql存储引擎？为什么选择它？实现原理？</p>
+<p>怎么判断一个SQL语句有没有走索引？紧接着问explain知道哪些字段吗</p>
+<p>mysql存储模型 区别 怎么看用没用索引 怎么判断sql语句好坏</p>
+<p>数据库中索引B+树</p>
+<p>一个手机应用要更改数据库，它的底层是怎么实现的？</p>
+<p>sql查询过程</p>
+<p>MySQL InnoDB存储引擎中的MVCC解决了什么问题，能说下MVCC的实现原理么</p>
+<p>SQL语句经常写吧，那我给你出一道SQL题（分组求和排序）</p>
+<p>你认为什么情况下不应该建立索引</p>
+<p>mysql有几种锁？怎么实现？</p>
+<p>innodb事物的级别</p>
+<p>b 树的结构？与二叉树的区别？与b树的区别？</p>
+<p>写过最复杂的sql，  手写代码： 统计各个科目考试最高分:最复杂的包括了sum、case、left join、group by，追问左连接和内联区别，没答上来</p>
+<p>聚簇索引跟红黑树</p>
+<p>sql :给一个日期范围，统计每天入库的数据总量</p>
+<p>sql语句里like和in关键字</p>
+<p>sql语句，求平均分超过60分的学生学号</p>
+<p>数据库sql怎么优化 </p>
+<p>什么情况不能用索引？</p>
+<p>SELECT column_name(s)<br>FROM table_name<br>WHERE column_name<br>BETWEEN value1 AND value2 什么时候会发生死锁；怎么解决死锁；N个资源怎么办？</p>
+<h1 id="SSM"><a href="#SSM" class="headerlink" title="SSM"></a>SSM</h1><h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><p>双重检索单例</p>
+<p>设计模式分为哪三类，各有什么？设计模式，用过哪些设计模式，讲几个，设计模式和原则</p>
+<p>代理模式属于哪一类</p>
+<p>生产者消费者模式,生产消费者的，以及多生产者同步</p>
+<p>描述适配器，写单例</p>
+<p>单例模式，装饰模式，</p>
+<h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><p>排序算法有哪些，简述冒泡和归并排序，冒泡算法的优化,讲讲归并排序,冒泡的优化知道吗；回答相等不交换，还有flag做已排序标志的优化；直接插入排序，写一下伪代码或者说一下思路,插入排序，时间复杂度</p>
+<p>堆排序原理</p>
+<p>快排,快排是什么思想，快排的优化是啥，为啥这么做；</p>
+<p>字母排序</p>
+<p>100个数中找出想要的数</p>
+<p>一个数组分成2个相等或接近的子数组</p>
+<p>派单的最短路径问题</p>
+<p>很大的数据，内存放不下，如何快速找到中间值</p>
+<p>手撕栈</p>
+<p>链表找环 链表找环入口，不用双指针怎么做</p>
+<p>双向链表实现 ，写了个add()和add(index)的</p>
+<p>求数组的全排列</p>
+<p>中序遍历，递归非递归</p>
+<p>求四个数绝对值的最小值</p>
+<p>黑猫白猫，混在一起，如何把他们区分开？ 黑白灰三种猫混在一起，如何按照黑白灰排好序？ 还有两个小问题忘记了。</p>
+<p>如何用一个int值，表示三种状态？</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/weixin_43495390/article/details/86533482" target="_blank" rel="noopener">https://blog.csdn.net/weixin_43495390/article/details/86533482</a></p>
+
             </article>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%A4%8D%E4%B9%A0%E5%A4%A7%E7%BA%B2/">复习大纲</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%A4%8D%E4%B9%A0/">复习</a>
+                    
+                  </div>
                 
               </div>
               
@@ -219,6 +363,12 @@
                 <div class="post-prevnext row">
                   <div class="post-prev col-6">
                     
+                    
+                      <a href="/2020/06/12/LeetCode215-TopK/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">LeetCode215-TopK</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </div>
                   <div class="post-next col-6">

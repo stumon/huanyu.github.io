@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      286 字
+      1k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      14
        分钟
     </span>
   
@@ -210,28 +210,193 @@
 <p><strong>工厂模式：</strong>实例化对象不适用new，用工厂方法代替</p>
 <p><strong>抽象工厂模式：</strong>抽象工厂模式是所有形态的工厂模式中最为抽象和最具一般性的一种形态。抽象工厂模式是指当有多个抽象角色时，使用的一种工厂模式</p>
 <h2 id="简单工厂"><a href="#简单工厂" class="headerlink" title="简单工厂"></a>简单工厂</h2><p>代码如下</p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> main.java.guo.factory.simple;
+<pre><code class="hljs java"><span class="hljs-comment">//接口</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Product</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">name</span><span class="hljs-params">()</span></span>;
+&#125;
 
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CarFactory</span> </span>&#123;
-    <span class="hljs-comment">//方法一：</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Car <span class="hljs-title">getCar</span><span class="hljs-params">(String car)</span></span>&#123;
-        <span class="hljs-keyword">if</span>(car.equals(<span class="hljs-string">"wuling"</span>))
-            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> WuLing();
-        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (car.equals(<span class="hljs-string">"tesla"</span>))
-            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Tesla();
-        <span class="hljs-keyword">else</span>
-            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+<span class="hljs-comment">//实现类---ProductA</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductA</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Product</span> </span>&#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">name</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"ProductA"</span>);
     &#125;
-    <span class="hljs-comment">//方法二：</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Car <span class="hljs-title">getWuLing</span><span class="hljs-params">()</span></span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> WuLing();
+&#125;
+<span class="hljs-comment">//实现类---ProductB</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductB</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Product</span> </span>&#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">name</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"ProductB"</span>);
     &#125;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Car <span class="hljs-title">getTesla</span><span class="hljs-params">()</span></span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Tesla();
-    &#125;
+&#125;
+
+<span class="hljs-comment">//静态工厂</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Product <span class="hljs-title">getPerson</span><span class="hljs-params">(String product)</span></span>
+<span class="hljs-function"></span>&#123;
+    <span class="hljs-keyword">if</span>(product.equals(<span class="hljs-string">"ProductA"</span>)) <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ProductA();
+    <span class="hljs-keyword">if</span>(product.equals(<span class="hljs-string">"ProductB"</span>)) <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ProductB();
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+&#125;
+
+<span class="hljs-comment">//主线程</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+    Product p1=StaticFactory.getProduct(<span class="hljs-string">"ProductA"</span>);
+    Product p2=StaticFactory.getProduct(<span class="hljs-string">"ProductB"</span>);
+    p1.name();
+    p2.name();
 &#125;</code></pre>
 
-<h2 id="工厂模式-1"><a href="#工厂模式-1" class="headerlink" title="工厂模式"></a>工厂模式</h2><h2 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h2>
+<p>弊端：假如需要新增加一个新产品ProductC，那么就需要修改StaticFactory的原代码，违反了开闭原则</p>
+<p>解决方法：工厂方法模式</p>
+<h2 id="工厂模式-1"><a href="#工厂模式-1" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>工厂方法模式是在不修改已有类的前提下，通过增加新的工厂来扩展功能</p>
+<p>代码如下</p>
+<pre><code class="hljs java"><span class="hljs-comment">//工厂接口</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Factory</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Product <span class="hljs-title">createProduct</span><span class="hljs-params">()</span></span>;
+&#125;
+<span class="hljs-comment">//工厂实现类A</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FactoryA</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Factory</span></span>&#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Product <span class="hljs-title">createProduct</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ProductA();
+    &#125;
+&#125;
+<span class="hljs-comment">//工厂实现类B</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FactoryB</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Factory</span></span>&#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Product <span class="hljs-title">createProduct</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ProductB();
+    &#125;
+&#125;
+
+<span class="hljs-comment">//主程序</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+    Factory factory1=<span class="hljs-keyword">new</span> FactoryA();
+    Factory factory2=<span class="hljs-keyword">new</span> FactoryB();
+    factory1.createProduct().name();
+    factory2.createProduct().name();
+
+&#125;</code></pre>
+
+<p>如果我们想拓展新的产品，那么只需要添加一个工厂即可，比如想添加产品productC，代码如下</p>
+<pre><code class="hljs java"><span class="hljs-comment">//产品类C</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductC</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Product</span></span>&#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">name</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"ProductC"</span>);
+    &#125;
+&#125;
+<span class="hljs-comment">//工厂C</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FactoryC</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Factory</span></span>&#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Product <span class="hljs-title">createProduct</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ProductC();
+    &#125;
+&#125;
+<span class="hljs-comment">//主线程</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+    Factory factory1=<span class="hljs-keyword">new</span> FactoryA();
+    Factory factory2=<span class="hljs-keyword">new</span> FactoryB();
+    Factory factory3=<span class="hljs-keyword">new</span> FactoryB();<span class="hljs-comment">//构建一个工厂C，用来生产产品C</span>
+    factory1.createProduct().name();
+    factory2.createProduct().name();
+    factory3.createProduct().name();<span class="hljs-comment">//生产产品C</span>
+&#125;</code></pre>
+
+<p>上面的两种模式都只有一个产品接口，如果产品接口多了起来，需要很多工厂类，代码量会翻倍，所以需要引入抽象工厂模式。</p>
+<h2 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h2><p>抽象工厂可以认为是有多个接口的工厂方法，比如product中有接口A、接口B、接口C等。类比到手机产品，有充电接口、耳机接口、电池接口等</p>
+<p>代码如下</p>
+<pre><code class="hljs java"><span class="hljs-comment">//接口</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Product</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">name</span><span class="hljs-params">()</span></span>;
+&#125;
+
+<span class="hljs-comment">//接口</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">OtherProduct</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">look</span><span class="hljs-params">()</span></span>;
+&#125;
+
+<span class="hljs-comment">//Product接口的实现类见上文</span>
+<span class="hljs-comment">//OtherProduct接口的实现类A</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OtherProductA</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">OtherProduct</span></span>&#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">look</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"lookA"</span>);
+    &#125;
+&#125;
+<span class="hljs-comment">//OtherProduct接口的实现类B</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OtherProductB</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">OtherProduct</span></span>&#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">look</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"OtherProductB"</span>);
+    &#125;
+&#125;
+<span class="hljs-comment">//OtherProduct接口的实现类C</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OtherProductC</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">OtherProduct</span></span>&#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">look</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"OtherProductC"</span>);
+    &#125;
+&#125;
+
+<span class="hljs-comment">//工厂接口</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Factory</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Product <span class="hljs-title">createProduct</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> OtherProduct <span class="hljs-title">createOtherProduct</span><span class="hljs-params">()</span></span>;
+&#125;
+
+<span class="hljs-comment">//工厂接口实现类A</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FactoryA</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Factory</span></span>&#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> OtherProduct <span class="hljs-title">createOtherProduct</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> OtherProductA();
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Product <span class="hljs-title">createProduct</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ProductA();
+    &#125;
+&#125;
+<span class="hljs-comment">//工厂接口实现类B</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FactoryB</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Factory</span></span>&#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Product <span class="hljs-title">createProduct</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ProductB();
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> OtherProduct <span class="hljs-title">createOtherProduct</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> OtherProductB();
+    &#125;
+&#125;
+<span class="hljs-comment">//工厂接口实现类C</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FactoryC</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Factory</span></span>&#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Product <span class="hljs-title">createProduct</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ProductC();
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> OtherProduct <span class="hljs-title">createOtherProduct</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> OtherProductC();
+    &#125;
+&#125;
+<span class="hljs-comment">//主线程</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+    Factory factory1=<span class="hljs-keyword">new</span> FactoryA();
+    Factory factory2=<span class="hljs-keyword">new</span> FactoryB();
+    Factory factory3=<span class="hljs-keyword">new</span> FactoryC();
+    factory1.createProduct().name();
+    factory1.createOtherProduct().look();
+    factory2.createProduct().name();
+    factory2.createOtherProduct().look();
+    factory3.createProduct().name();
+    factory3.createOtherProduct().look();
+
+&#125;</code></pre>
+
+<p>总结：工厂设计模式的出现是为了封装复杂的创建过程，只提供给调用者实现，其中简单工厂和工厂模式可以认为是只有一个接口的抽象工厂</p>
+
             </article>
             <hr>
             <div>
