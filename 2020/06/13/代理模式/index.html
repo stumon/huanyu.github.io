@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      559 字
+      2k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      22
        分钟
     </span>
   
@@ -205,47 +205,96 @@
             
             <article class="markdown-body">
               <h1 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h1><p>代理模式给某一个对象提供一个代理对象，并由代理对象控制对原对象的引用。代理模式一般由四个角色构成：抽象角色、真实角色、代理角色、客户，而且代理分为静态代理和动态代理</p>
-<h2 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h2><p>以租房这件事情为例，来分析静态代理</p>
-<p>抽象角色：一般使用接口或者抽象类来解决（租房）</p>
-<p>真实角色：被代理的角色（租房的人）</p>
-<p>代理角色：代理真实角色</p>
-<p>客户：访问代理对象的人</p>
-<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200613110133.png" srcset="/img/loading.gif" alt="image-20200613110129162"></p>
+<h2 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h2><p>假如有一个需求是，给每一个方法都实现一个打印日志功能，你怎么做？</p>
+<p>最暴力：直接修改每一个方法，缺点方法太大，改不过来，容易出错，违法开闭原则</p>
+<p>简单点：为每一个类写一个代理类，让代理类和目标类都实现相同的接口，在创建代理对象时，通过构造器塞入一个目标对象，然后在代理对象的方法内部调用目标对象同名方法，并在调用前后打印日志。这样以后，就不需要调用目标类生成对象，直接生成代理对象便完成了添加打印日志的功能。</p>
 <p>代码如下：</p>
 <pre><code class="hljs java"><span class="hljs-comment">//接口</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Rent</span> </span>&#123;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">rent</span><span class="hljs-params">()</span></span>;
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Person</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">name</span><span class="hljs-params">()</span></span>;
 &#125;
-<span class="hljs-comment">//房东实现了租房接口</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Host</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Rent</span> </span>&#123;
+<span class="hljs-comment">//接口实现类---学生</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Person</span></span>&#123;
     <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">rent</span><span class="hljs-params">()</span> </span>&#123;
-        System.out.println(<span class="hljs-string">"房东要出租房子"</span>);
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">name</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"name is Student"</span>);
     &#125;
 &#125;
-<span class="hljs-comment">//中介也实现了租房接口</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Proxy</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Rent</span> </span>&#123;
-    <span class="hljs-keyword">private</span> Host host;
 
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Proxy</span><span class="hljs-params">(Host host)</span> </span>&#123;
-        <span class="hljs-keyword">this</span>.host = host;
+<span class="hljs-comment">//接口实现类---老师</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Teacher</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Person</span></span>&#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">name</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"name is Teacher"</span>);
+
+    &#125;
+&#125;
+
+<span class="hljs-comment">//学生代理类</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StudentPerson</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Person</span></span>&#123;
+    <span class="hljs-keyword">private</span> Student student;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">StudentPerson</span><span class="hljs-params">(Student student)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.student = student;
     &#125;
 
     <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">rent</span><span class="hljs-params">()</span> </span>&#123;
-        host.rent();
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">name</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"学生类的代理类打印日志功能"</span>);
+        student.name();
     &#125;
 &#125;
-<span class="hljs-comment">//测试</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
-    Host host=<span class="hljs-keyword">new</span> Host();
-    Proxy px=<span class="hljs-keyword">new</span> Proxy(host);
-    px.rent();
+
+<span class="hljs-comment">//老师代理类</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TeacherProxy</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Person</span></span>&#123;
+    <span class="hljs-keyword">private</span> Teacher teacher;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">TeacherProxy</span><span class="hljs-params">(Teacher teacher)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.teacher = teacher;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">name</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"老师类的代理类实现日志功能"</span>);
+        teacher.name();
+    &#125;
 &#125;</code></pre>
 
 <p>好处：公共业务交给代理角色，真实角色只需要做自己独有业务即可</p>
-<p>缺点：一个真实角色就会产生一个代理角色，代码量翻倍</p>
-<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><p>静态代理的代理类是程序员事先写好的，动态代理的代理类是动态生成的</p>
+<p>缺点：程序员要<strong>手动</strong>为每一个目标类编写对应的代理类，代码量翻倍。</p>
+<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><p>静态代理需要程序员自己写代理类，使用new关键字创建对应的代理对象，根据代理对象调用代理方法</p>
+<p>创建对象过程：加载、连接、初始化。（下面回顾一下创建过程，可以跳过）</p>
+<h3 id="类的加载过程"><a href="#类的加载过程" class="headerlink" title="类的加载过程"></a>类的加载过程</h3><p><strong>类加载全过程：加载、验证、准备、解析和初始化</strong></p>
+<h4 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h4><p>加载阶段，JVM需要做三件事情</p>
+<blockquote>
+<p>通过类的全限定名获取定义此类的二进制字节流</p>
+<p>将这个字节流代表的静态存储结构转化为方法区的运行时数据结构</p>
+<p>内存中生成一个代表这个类的java.lang.Class对象，作为方法区这个类的各种数据的访问入口</p>
+</blockquote>
+<h4 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h4><p>连接阶段又可以分成：验证、准备和解析三个阶段</p>
+<blockquote>
+<p>验证：确保Class文件额字节流中包含的信息符合约束要求，保证这些信息被当做代码运行后<strong>不会危害JVM的安全</strong></p>
+<p>​    验证又可以分成：文件格式验证、元数据验证、字节码验证和符号引用验证</p>
+<p>准备：准备阶段是为类<strong>中定义的变量分配内存</strong>并设置<strong>类变量初始值</strong>的阶段，<strong>理论上</strong>这些变量使用的内存都应该在<strong>方法区</strong>中进行分配，但是方法区只是一个逻辑概念，JDK7之前，HotSpot使用永久代来实现方法区，JDK8之后，类变量则随着Class对象一起放到Java堆中。</p>
+<p>​    注意：这里为类变量分配初始值，是分配的各个类型的默认值，如0、null等，不是程序员写到程序中的初始值</p>
+<p>解析：将JVM常量池中的符号引用替换为直接引用。</p>
+<p>​        符号引用：符号引用以一组符号来描述引用的目标，可以是任何形式的字面量，只要可以无歧义的定位到目标即可</p>
+<p>​        直接引用：直接引用是可以执行目标的指针、相对偏移量或者是一个能间接定位到目标的句柄</p>
+</blockquote>
+<h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><p>类的初始化是类加载过程的最后一步。准备阶段，变量已经赋过一次系统要求的初始零值，初始化阶段，则会根据程序员在代码中编写的代码进行相应的初始化</p>
+<h4 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h4><p>对于任意一个类，必须由加载它的类加载器和这个类本身一起确定它在JVM中的唯一性，每一个类加载器，都有一个独立的类名称空间。</p>
+<p>有两种类加载器，一种是启动类加载器（C++实现），一种是其他类加载器（Java实现）。后者全都继承抽象类java,lang.ClassLoader。关系如下图</p>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200615085250.png" srcset="/img/loading.gif" alt="image-20200615085244972"></p>
+<p>类加载器之间的层次关系被称为双亲委派模型</p>
+<blockquote>
+<p>双亲委派模型：一个类加载器收到类加载请求时，不会自己去尝试加载这个类，而是把这个请求委派给父加载器去完成，每一个层次都是如此，最终会传到启动类加载器，如果负加载器无法完成这个加载请求，自家在其才会尝试自己去加载。</p>
+<p>优点：保证类的全局唯一性，维护了Java程序的稳定运行</p>
+</blockquote>
+<h3 id="基于接口的动态代理"><a href="#基于接口的动态代理" class="headerlink" title="基于接口的动态代理"></a>基于接口的动态代理</h3><p>动态代理的目标是不写代理类，而是直接得到代理Class对象，然后根据它来创建代理实例。Class对象包含了一个类的所有信息，比如构造器、方法和成员变量等。而为了获得这些信息，<strong>因为接口拥有目标对象的类信息</strong>，我们需要<strong>让代理类和目标类实现同一组接口，确保代理对象的内部结构和目标对象一致</strong>。</p>
+<p>JDK提供了java.lang.reflect.<strong>InvocationHandler</strong>接口和 java.lang.reflect.<strong>Proxy</strong>类。</p>
+<p>Proxy有个静态方法：<strong>getProxyClass</strong>(ClassLoader, interfaces)，只要你给它传入<strong>类加载器和一组接口，它就给你返回代理Class对象</strong>。getProxyClass()这个方法，会从你传入的接口Class中，“拷贝”类结构信息到一个新的Class对象中，新的Class对象带有构造器，是可以创建对象的。一旦我们明确接口，完全可以<strong>通过接口的Class对象，创建一个代理Class，通过代理Class即可创建代理对象</strong>。</p>
+<p>但一般不用<strong>getProxyClass</strong>方法，而是用Proxy类的另一个静态方法：Proxy.newProxyInstance()，直接返回代理实例。</p>
+<p>根据代理Class的构造器创建对象时，需要传入InvocationHandler。每次调用代理对象的方法，最终都会调用InvocationHandler的invoke()方法：</p>
 <p>动态代理分成基于接口的动态代理（JDK）和基于类的动态代理（CGLib）</p>
 <pre><code class="hljs java"><span class="hljs-comment">//基于接口的动态代理</span>
 <span class="hljs-keyword">import</span> java.lang.reflect.InvocationHandler;
@@ -283,20 +332,8 @@
     proxy.rent();
 &#125;</code></pre>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<h3 id="基于类的动态代理（待续）"><a href="#基于类的动态代理（待续）" class="headerlink" title="基于类的动态代理（待续）"></a>基于类的动态代理（待续）</h3><p>JDK动态代理的话，他有一个限制，就是它只能为接口创建代理实例，对于没有通过接口定义业务方法的类，需要通过CGLib来创建代理实例</p>
+<h4 id="Enhancer"><a href="#Enhancer" class="headerlink" title="Enhancer"></a>Enhancer</h4><p>Enhancer可能是CGLIB中最常用的一个类，类似于JDK的proxy</p>
 
             </article>
             <hr>
@@ -328,6 +365,12 @@
                 <div class="post-prevnext row">
                   <div class="post-prev col-6">
                     
+                    
+                      <a href="/2020/06/14/LeetCode567-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">LeetCode567-字符串的排列</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </div>
                   <div class="post-next col-6">

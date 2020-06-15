@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      507 字
+      1.6k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      19
        分钟
     </span>
   
@@ -204,9 +204,30 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h1><p><strong>前言：</strong>本文转自<a href="https://www.iteye.com/blog/downpour-1341459" target="_blank" rel="noopener">https://www.iteye.com/blog/downpour-1341459</a> 如有侵权，立即删除</p>
+              <h1 id="SpringMVC（待续）"><a href="#SpringMVC（待续）" class="headerlink" title="SpringMVC（待续）"></a>SpringMVC（待续）</h1><p>MVC是一种开发模式，将程序分层的一种思想。</p>
+<blockquote>
+<p>M：Model—&gt;业务数据（service、repository、entity）</p>
+<p>V：View—&gt;视图（JSP、HTML、APP客户端）</p>
+<p>C：Controller—&gt;控制（Servlet、Handler、Action）</p>
+<p>这三者关系简单来说是：请求进入Controller，Controller调用业务模型Model，Model再去数据库获取数据，然后返回View层</p>
+</blockquote>
 <p>SpringMVC就是通过DispatcherServlet将一堆组件串联起来的Web框架，SpringMVC的整个运行体系，是由DispatcherServlet、组件和容器这三者共同构成的。DispatcherServlet是逻辑处理的调度中心，组件则是被调度的操作对象。而容器在这里所起到的作用，是协助DispatcherServlet更好地对组件进行管理DispatcherServlet对容器进行初始化，容器对组件进行全局管理，DispatcherServlet对组件进行逻辑调用</p>
-<h3 id="DispatcherServlet"><a href="#DispatcherServlet" class="headerlink" title="DispatcherServlet"></a>DispatcherServlet</h3><p>DispatcherServlet对于容器<strong>WebApplicationContext</strong>的初始化是在FrameworkServlet中完成的，在默认情况下，这个初始化过程是由web.xml中的入口程序配置所驱动的</p>
+<h2 id="核心组件"><a href="#核心组件" class="headerlink" title="核心组件"></a>核心组件</h2><p>DispatcherServlet：前置控制器，整个流程控制的核心，控制其他组件的执行，进行统一调度，降低组件之间的耦合性。</p>
+<p>Handler：处理器，完成具体的业务逻辑，相当于Servlet</p>
+<p>HandlerMapping：DispatcherServlet接受到请求后，通过HandlerMapping将不同的请求映射到不同的Handler</p>
+<p>HandlerInterceptor：处理器拦截器，主要功能是负责拦截一些请求和操作</p>
+<p>HandlerExecutionChain：处理器执行链，包括两部分：Handler和HandlerInterceptor</p>
+<p>HandlerAdapter：处理器适配器，handler执行业务方法之前，需要进行一系列操作，包括表单数据的验证、数据类型的转换、将表单数据封装到JavaBean等，使得开发者只需要将注意力集中到业务逻辑的处理上。DispatcherServlet通过HandlerAdapter执行不同的Handler</p>
+<p>ModelAndView：装载了模型数据和视图信息，作为Handler的处理结果，返回给DispatcherServlet</p>
+<p>ViewResolver：视图解析器，DispatcherServlet通过它将逻辑视图解析为物理视图。逻辑视图不是真实存在的一个视图，逻辑概念，物理视图是真实存在的</p>
+<h3 id="执行流程："><a href="#执行流程：" class="headerlink" title="执行流程："></a>执行流程：</h3><p>客户端发起请求，DispatcherServlet接受请求</p>
+<p>HandlerMapping根据不同的请求映射到不同的Handler上，返回一个HandlerExecutionChain给DispatcherServlet</p>
+<p>DispatcherServlet调用HandlerAdapter执行handler，handler执行完毕后返回一个ModelAndView</p>
+<p>DispatcherServlet拿到结果后解析ModelAndView，解析由ViewResolver负责解析，把逻辑视图解析成物理视图。解析结果返回给DispatcherServlet</p>
+<p>DispatcherServlet根据View进行视图渲染，将模型数据填充到视图View中</p>
+<p>DispatcherServlet将渲染后的结果响应再返回给客户端</p>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200613165102.png" srcset="/img/loading.gif" alt="image-20200613165056813"></p>
+<h2 id="DispatcherServlet：前置控制器"><a href="#DispatcherServlet：前置控制器" class="headerlink" title="DispatcherServlet：前置控制器"></a>DispatcherServlet：前置控制器</h2><p>DispatcherServlet对于容器<strong>WebApplicationContext</strong>的初始化是在FrameworkServlet中完成的，在默认情况下，这个初始化过程是由web.xml中的入口程序配置所驱动的</p>
 <pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- Processes application requests --&gt;</span>  
 <span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span>  
     <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>dispatcher<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span>  
@@ -228,6 +249,61 @@
 <li><strong>DispatcherServlet负责对容器（WebApplicationContext）进行初始化。</strong></li>
 <li><strong>容器（WebApplicationContext）将读取SpringMVC的核心配置文件进行组件的实例化。</strong></li>
 </ul>
+<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><p>@RequestMapping</p>
+<p>作用：将URL请求与业务方法进行映射，在Handler的类定义出以及方法定义处都可以添加。在类定义处添加，相当于客户端多了一层访问路径。</p>
+<p>参数</p>
+<blockquote>
+<p>value：直到URL请求的实际地址，是@RequestMapping的默认值</p>
+<p>method：指定请求的类型（GET/POST/PUT/DELETE），表示该方法只可以被指定请求来访问，不加的话get和post都可以</p>
+<p>params：表示指定请求中必须含有某些参数，否则无法访问</p>
+</blockquote>
+<p>SpringMVC支持restful风格，使用方式</p>
+<blockquote>
+<p>@RequestMapping(“/xx/{xx}/{xx}”)，而且必须在形参列表加注解@PathVariable(“xx”)，传统方式是参数名和形参名一样即可</p>
+</blockquote>
+<p>@Controller</p>
+<p>作用：将该类交给IOC容器来管理（结合springmvc.xml的自动扫描配置使用），成为一个控制器，可以接受客户端请求</p>
+<p>@RestController</p>
+<p>作用：该控制器会直接将业务方法的返回值响应给客户端，不进行视图解析</p>
+<p>@RequestParam</p>
+<p>作用：在形参列表中添加该注解，可以完成请求参数与业务方法形参的映射</p>
+<p>@ResponseBody</p>
+<p>作用：直接返回该类型值给客户端，如果不加，SpringMVC会将该方法传递给DispatcherServlet，再由DispatcherServlet调用ViewResolver对返回值进行解析，映射到JSP资源</p>
+<p>数据绑定：直接获取客户端HTTP请求中的参数，将参数映射到业务方法的形参中，该工作由HandleAdapter完成</p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p>常用依赖</p>
+<blockquote>
+<pre><code class="hljs xml">&gt;<span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
+       <span class="hljs-comment">&lt;!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc --&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+           <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+           <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-webmvc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+           <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.1.9.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+           <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+           <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+           <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.12<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+           <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.servlet<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+           <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>servlet-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+           <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.5<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+           <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.servlet.jsp<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+           <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jsp-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+           <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+           <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.servlet<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+           <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jstl<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+           <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span></code></pre>
+
+
+</blockquote>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>Spring：<a href="https://docs.spring.io/spring/docs/4.3.24.RELEASE/spring-framework-reference/html/mvc.html" target="_blank" rel="noopener">https://docs.spring.io/spring/docs/4.3.24.RELEASE/spring-framework-reference/html/mvc.html</a></p>
 
             </article>
             <hr>
