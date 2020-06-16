@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.6k 字
+      2.5k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      19
+      35
        分钟
     </span>
   
@@ -211,10 +211,11 @@
 <p>C：Controller—&gt;控制（Servlet、Handler、Action）</p>
 <p>这三者关系简单来说是：请求进入Controller，Controller调用业务模型Model，Model再去数据库获取数据，然后返回View层</p>
 </blockquote>
-<p>SpringMVC就是通过DispatcherServlet将一堆组件串联起来的Web框架，SpringMVC的整个运行体系，是由DispatcherServlet、组件和容器这三者共同构成的。DispatcherServlet是逻辑处理的调度中心，组件则是被调度的操作对象。而容器在这里所起到的作用，是协助DispatcherServlet更好地对组件进行管理DispatcherServlet对容器进行初始化，容器对组件进行全局管理，DispatcherServlet对组件进行逻辑调用</p>
-<h2 id="核心组件"><a href="#核心组件" class="headerlink" title="核心组件"></a>核心组件</h2><p>DispatcherServlet：前置控制器，整个流程控制的核心，控制其他组件的执行，进行统一调度，降低组件之间的耦合性。</p>
+<p>SpringMVC就是通过DispatcherServlet将一堆组件串联起来的Web框架，SpringMVC的整个运行体系，是由DispatcherServlet、组件和容器这三者共同构成的。DispatcherServlet是逻辑处理的<strong>调度中心</strong>，组件则是被调度的操作对象。而容器在这里所起到的作用，是协助DispatcherServlet更好地对组件进行管理。</p>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200615132013.png" srcset="/img/loading.gif" alt="image-20200615132008381"></p>
+<h2 id="核心组件"><a href="#核心组件" class="headerlink" title="核心组件"></a>核心组件</h2><p>DispatcherServlet：前置控制器，将请求分发到不同的处理器，整个流程控制的核心，控制其他组件的执行，进行统一调度，降低组件之间的耦合性。</p>
 <p>Handler：处理器，完成具体的业务逻辑，相当于Servlet</p>
-<p>HandlerMapping：DispatcherServlet接受到请求后，通过HandlerMapping将不同的请求映射到不同的Handler</p>
+<p>HandlerMapping：处理器映射器，DispatcherServlet接受到请求后，调用HandlerMapping将不同的请求映射到不同的Handler</p>
 <p>HandlerInterceptor：处理器拦截器，主要功能是负责拦截一些请求和操作</p>
 <p>HandlerExecutionChain：处理器执行链，包括两部分：Handler和HandlerInterceptor</p>
 <p>HandlerAdapter：处理器适配器，handler执行业务方法之前，需要进行一系列操作，包括表单数据的验证、数据类型的转换、将表单数据封装到JavaBean等，使得开发者只需要将注意力集中到业务逻辑的处理上。DispatcherServlet通过HandlerAdapter执行不同的Handler</p>
@@ -227,7 +228,11 @@
 <p>DispatcherServlet根据View进行视图渲染，将模型数据填充到视图View中</p>
 <p>DispatcherServlet将渲染后的结果响应再返回给客户端</p>
 <p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200613165102.png" srcset="/img/loading.gif" alt="image-20200613165056813"></p>
-<h2 id="DispatcherServlet：前置控制器"><a href="#DispatcherServlet：前置控制器" class="headerlink" title="DispatcherServlet：前置控制器"></a>DispatcherServlet：前置控制器</h2><p>DispatcherServlet对于容器<strong>WebApplicationContext</strong>的初始化是在FrameworkServlet中完成的，在默认情况下，这个初始化过程是由web.xml中的入口程序配置所驱动的</p>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200615141505.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200615141313.png" srcset="/img/loading.gif" alt="image-20200615141309525"></p>
+<h2 id="DispatcherServlet：前置控制器"><a href="#DispatcherServlet：前置控制器" class="headerlink" title="DispatcherServlet：前置控制器"></a>DispatcherServlet：前置控制器</h2><p>结构图：</p>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200615132420.png" srcset="/img/loading.gif" alt="image-20200615132416258"></p>
+<p>DispatcherServlet对于容器<strong>WebApplicationContext</strong>的初始化是在FrameworkServlet中完成的，在默认情况下，这个初始化过程是由web.xml中的入口程序配置所驱动的</p>
 <pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- Processes application requests --&gt;</span>  
 <span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span>  
     <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>dispatcher<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span>  
@@ -250,7 +255,31 @@
 <li><strong>容器（WebApplicationContext）将读取SpringMVC的核心配置文件进行组件的实例化。</strong></li>
 </ul>
 <h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><p>@RequestMapping</p>
-<p>作用：将URL请求与业务方法进行映射，在Handler的类定义出以及方法定义处都可以添加。在类定义处添加，相当于客户端多了一层访问路径。</p>
+<p>作用：映射URL到控制器类（实现了Controller的类，就是一个控制类）或一个特定的处理程序方法。可以用于类或者方法上。用于类上表示所有响应请求的方法都是以该地址作为父路径</p>
+<pre><code class="hljs java"><span class="hljs-comment">//浏览器地址栏输入：http://localhost:8080/c3/t1	访问该方法</span>
+<span class="hljs-meta">@Controller</span>
+<span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/c3"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloController</span> </span>&#123;
+    <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/t1"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">hello</span><span class="hljs-params">(Model model)</span></span>&#123;
+        model.addAttribute(<span class="hljs-string">"msg"</span>,<span class="hljs-string">"Hello ,annotation"</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"hello"</span>;
+    &#125;
+&#125;</code></pre>
+
+
+
+<p>接受请求参数以及参数回显：</p>
+<pre><code class="hljs java"><span class="hljs-meta">@GetMapping</span>(<span class="hljs-string">"/c2"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">test</span><span class="hljs-params">(User user)</span></span>
+<span class="hljs-function"></span>&#123;
+    System.out.println(user);
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"hello"</span>;
+&#125;
+<span class="hljs-comment">//http://localhost:8080/c2?name=qsq&amp;id=12&amp;age=6</span></code></pre>
+
+
+
 <p>参数</p>
 <blockquote>
 <p>value：直到URL请求的实际地址，是@RequestMapping的默认值</p>
@@ -261,8 +290,34 @@
 <blockquote>
 <p>@RequestMapping(“/xx/{xx}/{xx}”)，而且必须在形参列表加注解@PathVariable(“xx”)，传统方式是参数名和形参名一样即可</p>
 </blockquote>
+<pre><code class="hljs java"><span class="hljs-comment">//http://localhost:8080/c3/t1/1/2。。。浏览器输入</span>
+<span class="hljs-meta">@Controller</span>
+<span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/c3"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloController</span> </span>&#123;
+    <span class="hljs-meta">@RequestMapping</span>(value = <span class="hljs-string">"/t1/&#123;a&#125;/&#123;b&#125;"</span>,method = RequestMethod.POST)<span class="hljs-comment">//浏览器按回车，会出现405，请求方式不支持，必须是GET请求才可以</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">hello</span><span class="hljs-params">(@PathVariable <span class="hljs-keyword">int</span> a,@PathVariable <span class="hljs-keyword">int</span> b, Model model)</span></span>&#123;
+        <span class="hljs-keyword">int</span> res=a+b;
+        model.addAttribute(<span class="hljs-string">"msg"</span>,<span class="hljs-string">"计算结果为"</span>+res);
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"hello"</span>;
+    &#125;
+&#125;
+
+<span class="hljs-meta">@Controller</span>
+<span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/c3"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloController</span> </span>&#123;
+    <span class="hljs-meta">@PostMapping</span>(value = <span class="hljs-string">"/t1/&#123;a&#125;/&#123;b&#125;"</span>)<span class="hljs-comment">//这里就限制了请求的方式</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">hello</span><span class="hljs-params">(@PathVariable <span class="hljs-keyword">int</span> a,@PathVariable <span class="hljs-keyword">int</span> b, Model model)</span></span>&#123;
+        <span class="hljs-keyword">int</span> res=a+b;
+        model.addAttribute(<span class="hljs-string">"msg"</span>,<span class="hljs-string">"计算结果为"</span>+res);
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"hello"</span>;
+    &#125;
+&#125;</code></pre>
+
+
+
 <p>@Controller</p>
 <p>作用：将该类交给IOC容器来管理（结合springmvc.xml的自动扫描配置使用），成为一个控制器，可以接受客户端请求</p>
+<p>被这个注解的类中所有方法，如果返回值是String类型，并且由具体页面可以跳转，那么就会被视图解析器解析</p>
 <p>@RestController</p>
 <p>作用：该控制器会直接将业务方法的返回值响应给客户端，不进行视图解析</p>
 <p>@RequestParam</p>
@@ -301,8 +356,106 @@
        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
    <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span></code></pre>
 
-
 </blockquote>
+<p>spring配置文件</p>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span></span>
+<span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span></span>
+<span class="hljs-tag">       <span class="hljs-attr">xmlns:p</span>=<span class="hljs-string">"http://www.springframework.org/schema/p"</span></span>
+<span class="hljs-tag">       <span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">"http://www.springframework.org/schema/context"</span></span>
+<span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"</span></span>
+<span class="hljs-tag"><span class="hljs-string">        http://www.springframework.org/schema/beans</span></span>
+<span class="hljs-tag"><span class="hljs-string">        https://www.springframework.org/schema/beans/spring-beans.xsd</span></span>
+<span class="hljs-tag"><span class="hljs-string">        http://www.springframework.org/schema/context</span></span>
+<span class="hljs-tag"><span class="hljs-string">        https://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span>
+<span class="hljs-comment">&lt;!--处理器映射器--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"</span>/&gt;</span>
+<span class="hljs-comment">&lt;!--处理器适配器--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"</span>/&gt;</span>
+<span class="hljs-comment">&lt;!--视图解析器--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"InternalResourceViewResolver"</span>&gt;</span>
+<span class="hljs-comment">&lt;!--       前缀--&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"prefix"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"/WEB-INF/jsp/"</span>/&gt;</span>
+<span class="hljs-comment">&lt;!--        后缀--&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"suffix"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">".jsp"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
+
+<p>注解版配置文件</p>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span></span>
+<span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span></span>
+<span class="hljs-tag">       <span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">"http://www.springframework.org/schema/context"</span></span>
+<span class="hljs-tag">       <span class="hljs-attr">xmlns:mvc</span>=<span class="hljs-string">"http://www.springframework.org/schema/mvc"</span></span>
+<span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"</span></span>
+<span class="hljs-tag"><span class="hljs-string">        http://www.springframework.org/schema/beans</span></span>
+<span class="hljs-tag"><span class="hljs-string">        https://www.springframework.org/schema/beans/spring-beans.xsd</span></span>
+<span class="hljs-tag"><span class="hljs-string">        http://www.springframework.org/schema/context</span></span>
+<span class="hljs-tag"><span class="hljs-string">        https://www.springframework.org/schema/context/spring-context.xsd</span></span>
+<span class="hljs-tag"><span class="hljs-string">        http://www.springframework.org/schema/mvc</span></span>
+<span class="hljs-tag"><span class="hljs-string">        https://www.springframework.org/schema/mvc/spring-mvc.xsd"</span>&gt;</span>
+<span class="hljs-comment">&lt;!--     自动扫描包，让指定包下的注解生效，由IOC容器统一管理--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">"com.guo.controller"</span>/&gt;</span>
+<span class="hljs-comment">&lt;!--    让SpringMVC不再处理静态资源，css/js/html--&gt;</span> 
+    <span class="hljs-tag">&lt;<span class="hljs-name">mvc:default-servlet-handler</span>/&gt;</span>
+<span class="hljs-comment">&lt;!--     支持mvc注解驱动，在spring中采用@RequestMapping注解来完成映射关系，要想使@RequestMaping生效，必须向上下文</span>
+<span class="hljs-comment">    注册DefaultAnnotaionHandlerMapping和一个AnnotationMethodHandlerAdapter实例</span>
+<span class="hljs-comment">    这两个实例方法分别再类级别和方法级别处理，而annotation-driven配置帮助我们自动完成上述两个实例的注入--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">mvc:annotation-driven</span>/&gt;</span>
+<span class="hljs-comment">&lt;!--    视图解析器--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span></span>
+<span class="hljs-tag">    <span class="hljs-attr">id</span>=<span class="hljs-string">"internalResourceViewResolver"</span>&gt;</span>
+<span class="hljs-comment">&lt;!--        前缀--&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"prefix"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"/WEB-INF/jsp/"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"suffix"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">".jsp"</span>/&gt;</span>
+<span class="hljs-comment">&lt;!--    后缀--&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
+
+
+
+<p>web.xml配置文件</p>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee"</span></span>
+<span class="hljs-tag">         <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span></span>
+<span class="hljs-tag">         <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"</span></span>
+<span class="hljs-tag">         <span class="hljs-attr">version</span>=<span class="hljs-string">"4.0"</span>&gt;</span>
+<span class="hljs-comment">&lt;!--    配置DispatcherServlet--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>springmvc<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-class</span>&gt;</span>
+<span class="hljs-comment">&lt;!--    绑定spring配置文件--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>contextConfigLocation<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>classpath:springmvc-servlet.xml<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">init-param</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">servlet</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-mapping</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>springmvc<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre>
+
+<p>导入Json</p>
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- https://mvnrepository.com/artifact/com.alibaba/fastjson --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.alibaba<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>fastjson<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.2.68<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jackson-core<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.11.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+
+
+
+
+
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>Spring：<a href="https://docs.spring.io/spring/docs/4.3.24.RELEASE/spring-framework-reference/html/mvc.html" target="_blank" rel="noopener">https://docs.spring.io/spring/docs/4.3.24.RELEASE/spring-framework-reference/html/mvc.html</a></p>
 
             </article>
