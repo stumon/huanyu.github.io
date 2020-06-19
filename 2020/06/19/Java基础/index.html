@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>Java基础 - 郭寰宇</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>郭寰宇的个人博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-06-19 18:37">
+      2020年6月19日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      56
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="Java面试问题"><a href="#Java面试问题" class="headerlink" title="Java面试问题"></a>Java面试问题</h1><p>为什么String定义为final。</p>
+<blockquote>
+<p>为了安全性和效率</p>
+<p>用final就是<strong>拒绝继承,</strong>为了线程安全(字符串自己便是线程安全的)。比如我们使用string作为hash的键，如果string是可变的，那么键也是可变的。</p>
+<p><strong>字符串常量池</strong>,  在大量使用字符串的情况下，可以节省内存空间，提高效率。但之所以能实现这个特性，String的不可变性是最基本的一个必要条件</p>
+<p>final修饰的对象只是引用地址不可变，内容还是能变的</p>
+<p><a href="https://www.zhihu.com/question/31345592/answer/114126087" target="_blank" rel="noopener">https://www.zhihu.com/question/31345592/answer/114126087</a></p>
+</blockquote>
+<p>描述下java集合，项目中用到哪些。</p>
+<blockquote>
+<ul>
+<li><p>Collection</p>
+</li>
+<li><ul>
+<li><p>List</p>
+</li>
+<li><p><strong>ArrayList</strong></p>
+</li>
+<li><p>LinkedList</p>
+</li>
+<li><p>Vector(了解，已过时)</p>
+</li>
+</ul>
+</li>
+<li><p>Set</p>
+<ul>
+<li><p><strong>HashSet</strong></p>
+<ul>
+<li>LinkedHashSet</li>
+</ul>
+</li>
+<li><p>TreeSet</p>
+</li>
+</ul>
+</li>
+<li><p>Map</p>
+<ul>
+<li><p><strong>HashMap</strong></p>
+</li>
+<li><p>LinkedHashMap</p>
+</li>
+</ul>
+</li>
+<li><p>TreeMap</p>
+</li>
+<li><p>ConcurrentHashMap</p>
+</li>
+<li><p>Hashtable(了解，，已过时)</p>
+</li>
+</ul>
+</blockquote>
+<p>ArrayList和Vector的区别</p>
+<blockquote>
+<p>这两个类都实现了List接口，它们都是<strong>有序</strong>的集合(存储有序)，<strong>底层是数组</strong>。我们可以按位置索引号取出某个元素，<strong>允许元素重复和为null</strong>。</p>
+<ul>
+<li>ArrayList是非同步的</li>
+<li>Vector是同步的</li>
+<li>Vector增长原来的一倍，ArrayList增长原来的0.5倍</li>
+</ul>
+</blockquote>
+<p>HashMap和Hashtable的区别</p>
+<blockquote>
+<ul>
+<li><p><strong>同步性：</strong></p>
+</li>
+<li><p>HashMap是非同步的</p>
+</li>
+<li><p>Hashtable是同步的</p>
+</li>
+<li><p>需要同步的时候，我们往往不使用，而使用ConcurrentHashMap</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>是否允许为null：</strong></p>
+</li>
+<li><p>HashMap允许为null</p>
+</li>
+<li><p>Hashtable不允许为null</p>
+</li>
+</ul>
+<p>HashMap把Hashtable的contains方法去掉了，改成了containsValue和containsKey</p>
+</blockquote>
+<p>Set里的元素是不能重复的，那么用什么方法来区分重复与否呢</p>
+<blockquote>
+<p>Set集合如果添加的元素相同时，<strong>是根本没有插入的(仅修改了一个无用的value值)</strong></p>
+</blockquote>
+<p>Collection和Collections的区别</p>
+<blockquote>
+<ol>
+<li>Collection是集合的上级<strong>接口</strong>，继承它的有Set和List接口</li>
+<li>Collections是集合的<strong>工具类</strong>，提供了一系列的静态方法对集合的搜索、查找、同步等操作</li>
+</ol>
+</blockquote>
+<p>ArrayList,LinkedList的存储性能和特性</p>
+<blockquote>
+<p>rrayList的底层是数组，LinkedList的底层是双向链表。</p>
+<ul>
+<li>ArrayList它支持以角标位置进行索引出对应的元素(随机访问)，而LinkedList则需要遍历整个链表来获取对应的元素。因此<strong>一般来说ArrayList的访问速度是要比LinkedList要快的</strong></li>
+<li>ArrayList由于是数组，对于删除和修改而言消耗是比较大(复制和移动数组实现)，LinkedList是双向链表删除和修改只需要修改对应的指针即可，消耗是很小的。因此<strong>一般来说LinkedList的增删速度是要比ArrayList要快的</strong></li>
+</ul>
+</blockquote>
+<p>Java中HashMap的key值要是为类对象则该类需要满足什么条件？</p>
+<blockquote>
+<p><strong>需要同时重写该类的hashCode()方法和它的equals()方法</strong>。</p>
+<ul>
+<li>在插入元素的时候是<strong>先算出该对象的hashCode</strong>。如果hashcode相等话的。那么表明该对象是存储在同一个位置上的。</li>
+<li>如果调用equals()方法，<strong>两个key相同</strong>，则<strong>替换元素</strong></li>
+<li>如果调用equals()方法，<strong>两个key不相同</strong>，则说明该<strong>hashCode仅仅是碰巧相同</strong>，此时是散列冲突，将新增的元素放在桶子上</li>
+</ul>
+<p>一般来说，我们会认为：<strong>只要两个对象的成员变量的值是相等的，那么我们就认为这两个对象是相等的</strong>！因为，Object底层比较的是两个对象的地址，而对我们开发来说这样的意义并不大~这也就为什么我们要重写<code>equals()</code>方法</p>
+<p>重写了equals()方法，就要重写hashCode()的方法。因为<strong>equals()认定了这两个对象相同</strong>，而<strong>同一个对象调用hashCode()方法时</strong>，是应该返回相同的值的！</p>
+</blockquote>
+<p>StringBuilder和StringBuffer的区别。</p>
+<blockquote>
+<p>StringBuilder是线程不安全，StringBuffer是线程安全。这是因为源代码中StringBuffer的很多方法都被关键字<strong>synchronized</strong> 修饰了，而StringBuilder没有。</p>
+<p>StringBuffer、StringBuilder和String一样，也用来代表字符串。String类是不可变类，任何对String的改变都 会引发新的String对象的生成；StringBuffer则是可变类，任何对它所指代的字符串的改变都不会产生新的对象。</p>
+<p>三者在执行速度方面的比较：StringBuilder &gt; StringBuffer &gt; String</p>
+</blockquote>
+<p>HashMap中常用的方法有哪些，什么时候会触发树化，jdk1.7和1.8实现的差异，1.7的实现为什么会出现死锁，画图说明下。HashMap和TreeMap的区别。</p>
+<blockquote>
+<p>HashMap通过hashcode对其内容进行快速查找，而 TreeMap中所有的元素都保持着某种固定的顺序，如果你需要得到一个有序的结果你就应该使用TreeMap.</p>
+<p>存入TreeMap的元素应当实现Comparable接口或者实现Comparator接口，会按照排序后的顺序迭代元素，两个相比较的key不得抛出classCastException。主要用于存入元素的时候对元素进行自动排序，迭代输出的时候就按排序顺序输出</p>
+</blockquote>
+<p>说下枚举类型，底层实现原理，项目中是如何使用的。</p>
+<blockquote>
+<p>枚举是可以防止反序列化的，以及反射</p>
+<p>枚举是一种特殊类。一个枚举在经过编译器编译过后，变成了一个抽象类，它继承了java.lang.Enum；而枚举中定义的枚举常量，变成了相应的public static final属性，而且其类型就是抽象类的类型，名字就是枚举常量的名字</p>
+</blockquote>
+<p>详细描述Error和Exception(运行期和编译期)的区别。</p>
+<blockquote>
+<p>Error是一般不可处理的，由jvm抛出的严重性的问题。<br>Exception可以处理的。常见的Exception有</p>
+<p>IOException:</p>
+<p>RuntimeException:</p>
+<pre><code class="hljs angelscript"> ClassNotFoundException找不到对应类因此
+ NullPointerException空指针异常类
+ llegalArgumentException参数异常
+ ClassCastException类型强制转换异常
+ArithmeticException算术异常类---<span class="hljs-built_in">int</span> a=<span class="hljs-number">5</span>/<span class="hljs-number">0</span>;
+&gt;ArrayIndexOutOfBoundsException数组下标越界异常</code></pre>
+</blockquote>
+<p>创建线程的方式，线程的生命周期。</p>
+<blockquote>
+<p>新建状态（New）: 当线程对象创建后，即进入新建状态，如：Thread t = new MyThread();</p>
+<p>就绪状态（Runnable）: 当调用线程对象的start()方法时，线程即进入就绪状态。处于就绪状态的线程只是说明此线程已经做好准备，随时等待CPU调度执行，并不是说执行了start()方法就立即执行。</p>
+<p>运行状态（Running）: 当CPU开始调度处于就绪状态的线程时，此时线程才得以真正执行，即进入到运行状态。</p>
+<p>阻塞状态（Blocked）: 处于运行状态中的线程由于某种原因，暂时放弃对CPU的使用权，停止执行，此时进入阻塞状态，直到其进入到就绪状态，才有机会再次被CPU调用以进入到运行状态。</p>
+<p>死亡状态: 线程执行完毕或者是异常退出，该线程结束生命周期。</p>
+</blockquote>
+<p>ThrealLocal实现原理，为什么会出现内存泄漏。</p>
+<p>volatile关键字原理，项目中是如何使用的。</p>
+<p>synchronized和lock的区别，底层实现原理。AQS队列实现原理，用了哪些设计模式。公平锁和非公平锁、独占锁和共享锁、读写锁分别是如何实现的，为什么说非公平锁比公平锁性能高。</p>
+<p>序列化和反序列化。</p>
+<blockquote>
+<p>Java序列化就是指就是将内存中的对象转换为字节序列，方便持久化到磁盘或者网络传输。</p>
+<p>步骤：第一: 将对象转换为字节数组  第二: 将字节数组存储到磁盘</p>
+<p>Java反序列化就是将字节序列转换为内存中的对象</p>
+<p>序列化最重要的作用：在传递和保存对象时.保证对象的完整性和可传递性。对象转换为有序字节流,以便在网络上传输或者保存在本地文件中。</p>
+<p>反序列化的最重要的作用：根据字节流中保存的对象状态及描述信息，通过反序列化重建对象。</p>
+</blockquote>
+<p>深拷贝和浅拷贝区别。</p>
+<blockquote>
+<p>深拷贝和浅拷贝最根本的区别在于是否真正获取一个对象的复制实体，而不是引用</p>
+<p>浅拷贝只是复制了对象的引用地址，两个对象指向同一个内存地址，所以修改其中任意的值，另一个值都会随之变化，这就是浅拷贝</p>
+<p>深拷贝是将对象及值复制过来，两个对象修改其中任意的值另一个值不会改变，这就是深拷贝</p>
+</blockquote>
+<p>java内部类的区别(成员<em>内部类<em>、静态嵌套类、方法</em>内部类<em>、匿名</em>内部类</em> )。</p>
+<blockquote>
+<p>成员内部类与实例变量、实例方法一样，属于外部类对象</p>
+<p>静态内部类是使用<code>static</code>修饰的成员内部类，属于外部类—-非静态内部类中不能含有静态内部类</p>
+<p>局部内部类是在方法体中定义的内部类</p>
+<p>匿名内部类是没有类名的内部类，匿名内部类的定义与对象创建时一起的，一般时给接口的引用或抽象类的引用赋值匿名内部类对象</p>
+<pre><code class="hljs haxe">&gt;<span class="hljs-keyword">new</span> <span class="hljs-type"></span>实现接口（）
+&gt;&#123;
+   <span class="hljs-comment">//匿名内部类类体部分</span>
+&gt;&#125;
+&gt;<span class="hljs-keyword">new</span> <span class="hljs-type"></span>父类构造器（实参列表）
+&gt;&#123;
+ <span class="hljs-comment">//匿名内部类类体部分</span>
+&gt;&#125;</code></pre>
+
+
+
+<p>管什么类编译后都会生成独立的字节码文件</p>
+</blockquote>
+<p>java线程池参数描述，线程池工作原理，线程池如何调优。</p>
+<blockquote>
+<p>使用线程池大致有3个好处</p>
+<p><strong>第一：降低资源消耗。</strong>通过重复利用已创建的线程降低线程创建和销毁造成的消耗，减少了每次创建线程、销毁线程的开销。<br><strong>第二：提高响应速度。</strong>当任务到达时，任务可以不需要等到线程创建就能立即执行。<br><strong>第三：提高线程的可管理性。</strong>线程是稀缺资源，如果无限制地创建，不仅会消耗系统资源</p>
+<p><strong>线程池创建</strong></p>
+<p>ThreadPoolExecutor是线程池的真正实现,通过构造方法的一系列参数,来构成不同配置的线程池</p>
+<p>七大参数+四大拒绝策略：</p>
+<pre><code class="hljs shell"><span class="hljs-meta">&gt;</span><span class="bash">public ThreadPoolExecutor(int corePoolSize, <span class="hljs-comment">#核心线程数</span></span>
+                    int maximumPoolSize, #最大线程数
+                    long keepAliveTime,, #该线程池中非核心线程闲置超时时长
+                    TimeUnit unit,#keepAliveTime单位
+                    BlockingQueue&lt;Runnable&gt; workQueue, #阻塞队列
+                    RejectedExecutionHandler handler) #饱和策略
+<span class="hljs-meta">&gt;</span><span class="bash">corePoolSize：线程池新建线程的时候，如果当前线程总数小于corePoolSize，则新建的是核心线程，如果超过corePoolSize，则新建的是非核心线程核心线程默认情况下会一直存活在线程池中，即使这个核心线程啥也不干(闲置状态)。                     </span>
+<span class="hljs-meta">&gt;</span><span class="bash">int maximumPoolSize： 该线程池中线程总数最大值，线程总数 = 核心线程数 + 非核心线程数。  </span>
+<span class="hljs-meta">&gt;</span><span class="bash">keepAliveTime：一个非核心线程，如果不干活(闲置状态)的时长超过这个参数所设定的时长，就会被销毁掉，如果设置allowCoreThreadTimeOut = <span class="hljs-literal">true</span>，则会作用于核心线程。</span>
+<span class="hljs-meta">&gt;</span><span class="bash">BlockingQueue workQueue：该线程池中的任务队列：维护着等待执行的Runnable对象，当所有的核心线程都在干活时，新添加的任务会被添加到这个队列中等待处理，如果队列满了，则新建非核心线程执行任务。</span>
+<span class="hljs-meta">&gt;</span><span class="bash">常用的workQueue类型：</span>
+SynchronousQueue：这个队列接收到任务的时候，会直接提交给线程处理，而不保留它，如果所有线程都在工作怎么办？那就新建一个线程来处理这个任务！所以为了保证不出现&lt;线程数达到了maximumPoolSize而不能新建线程&gt;的错误，使用这个类型队列的时候，maximumPoolSize一般指定成Integer.MAX_VALUE，即无限大
+LinkedBlockingQueue：这个队列接收到任务的时候，如果当前线程数小于核心线程数，则新建线程(核心线程)处理任务；如果当前线程数等于核心线程数，则进入队列等待。由于这个队列没有最大值限制，即所有超过核心线程数的任务都将被添加到队列中，这也就导致了maximumPoolSize的设定失效，因为总线程数永远不会超过corePoolSize
+ArrayBlockingQueue：可以限定队列的长度，接收到任务的时候，如果没有达到corePoolSize的值，则新建线程(核心线程)执行任务，如果达到了，则入队等候，如果队列已满，则新建线程(非核心线程)执行任务，又如果总线程数到了maximumPoolSize，并且队列也满了，则发生错误
+DelayQueue：队列内元素必须实现Delayed接口，这就意味着你传进去的任务必须先实现Delayed接口。这个队列接收到任务时，首先先入队，只有达到了指定的延时时间，才会执行任务
+
+<span class="hljs-meta">&gt;</span><span class="bash">RejectedExecutionHandler（饱和策略）：当队列和线程池都满了，说明线程池处于饱和状态，那么必须采取一种策略处理提交的新任务。这个策略默认情况下是AbortPolicy，表示无法处理新任务时抛出异常</span>
+<span class="hljs-meta">&gt;</span><span class="bash">AbortPolicy：不处理，直接抛出异常。</span>
+<span class="hljs-meta">&gt;</span><span class="bash">CallerRunsPolicy：若线程池还没关闭，调用当前所在线程来运行任务，r.run()执行。</span>
+<span class="hljs-meta">&gt;</span><span class="bash">DiscardOldestPolicy：LRU策略，丢弃队列里最近最久不使用的一个任务，并执行当前任务。</span>
+<span class="hljs-meta">&gt;</span><span class="bash">DiscardPolicy：不处理，丢弃掉，不抛出异常。</span></code></pre>
+<p><strong>向线程池提交任务</strong></p>
+<p>可以使用两个方法向线程池提交任务，分别为execute()和submit()方法</p>
+<p>execute()方法用于提交不需要返回值的任务，所以无法判断任务是否被线程池执行成功</p>
+<p>submit()方法用于提交需要返回值的任务。</p>
+<p>线程池会返回一个future类型的对象，通过这个future对象可以判断任务是否执行成功，并且可以通过future的get()方法来获取返回值，get()方法会阻塞当前线程直到任务完成，而使用get(long timeout，TimeUnit unit)，在指定的时间内会等待任务执行，超时则抛出超时异常，等待时候会阻塞当前线程<br><strong>关闭线程池</strong></p>
+<p>ThreadPoolExecutor提供了两个方法，用于线程池的关闭，分别是shutdown()和shutdownNow()，它们的原理是遍历线<br>程池中的工作线程，然后逐个调用线程的interrupt方法来中断线程</p>
+<p>shutdown()：不会立即终止线程池，而是要等所有任务缓存队列中的任务都执行完后才终止，但再也不会接受新的任务</p>
+<p>shutdownNow()：立即终止线程池，并尝试打断正在执行的任务，并且清空任务缓存队列，返回尚未执行的任务</p>
+<p><strong>线程池状态</strong></p>
+<p>1、RUNNING</p>
+<p>(1) 状态说明：线程池处在RUNNING状态时，能够接收新任务，以及对已添加的任务进行处理。<br>(2) 状态切换：线程池的初始化状态是RUNNING。线程池被一旦被创建，就处于RUNNING状态，且线程池中的任务数为0</p>
+<p>2、 SHUTDOWN</p>
+<p>(1) 状态说明：线程池处在SHUTDOWN状态时，不接收新任务，但能处理已添加的任务。<br>(2) 状态切换：调用线程池的shutdown()接口时，线程池由RUNNING -&gt; SHUTDOWN。</p>
+<p>3、STOP</p>
+<p>(1) 状态说明：线程池处在STOP状态时，不接收新任务，不处理已添加的任务，并且会中断正在处理的任务。<br>(2) 状态切换：调用线程池的shutdownNow()接口时，线程池由(RUNNING or SHUTDOWN ) -&gt; STOP。</p>
+<p>4、TIDYING</p>
+<p>(1) 状态说明：当所有的任务已终止，ctl记录的”任务数量”为0，线程池会变为TIDYING状态。当线程池变为TIDYING状态时，会执行钩子函数terminated()。terminated()在ThreadPoolExecutor类中是空的，若用户想在线程池变为TIDYING时，进行相应的处理；可以通过重载terminated()函数来实现。<br>(2) 状态切换：当线程池在SHUTDOWN状态下，阻塞队列为空并且线程池中执行的任务也为空时，就会由 SHUTDOWN -&gt; TIDYING。 当线程池在STOP状态下，线程池中执行的任务为空时，就会由STOP -&gt; TIDYING。</p>
+<p>5、 TERMINATED</p>
+<p>(1) 状态说明：线程池彻底终止，就变成TERMINATED状态。<br>(2) 状态切换：线程池处在TIDYING状态时，执行完terminated()之后，就会由 TIDYING -&gt; TERMINATED。</p>
+</blockquote>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200619212551.png" srcset="/img/loading.gif" alt="image-20200619212548437"></p>
+<p>主线程到达一个条件，需要多个子线程去执行任务，等子任务都执行完后再往下走，如何编写代码(CountDownLatch)。</p>
+<p>写个程序，两个线程交叉打印1到100的数字，需要多种实现方式。</p>
+<pre><code class="hljs java">
+<span class="hljs-comment">//https://blog.csdn.net/u013760665/article/details/88805644</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyPrint</span> </span>&#123;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">int</span> flag=<span class="hljs-number">1</span>;
+    <span class="hljs-keyword">private</span> Thread t1,t2;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">runThread</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        t1=<span class="hljs-keyword">new</span> Thread(<span class="hljs-keyword">new</span> MyThread1());
+        t2=<span class="hljs-keyword">new</span> Thread(<span class="hljs-keyword">new</span> MyThread2());
+        t1.start();
+        t2.start();
+
+    &#125;
+    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyThread1</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span></span>
+<span class="hljs-class">    </span>&#123;
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;
+            <span class="hljs-keyword">while</span>(i&lt;<span class="hljs-number">100</span>)
+            &#123;
+                <span class="hljs-keyword">if</span>(flag==<span class="hljs-number">1</span>)
+                &#123;
+                    System.out.println(i);
+                    i++;
+                    flag=<span class="hljs-number">2</span>;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyThread2</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span></span>
+<span class="hljs-class">    </span>&#123;
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;
+            <span class="hljs-keyword">while</span>(i&lt;<span class="hljs-number">100</span>)
+            &#123;
+                <span class="hljs-keyword">if</span>(flag==<span class="hljs-number">2</span>)
+                &#123;
+                    System.out.println(i);
+                    i++;
+                    flag=<span class="hljs-number">1</span>;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+
+
+<p>Hashmap 源码级掌握，扩容，红黑树，最小树化容量，hash冲突解决，有些面试官会提出发自灵魂的审问，比如为什么是红黑树，别的树不可以吗；为什么8的时候树化，4不可以吗，等等</p>
+<p>concureentHashMap，段锁，如何分段，和hashmap在hash上的区别，性能，等等</p>
+<p>HashTable ，同步锁，这块可能会问你synchronized关键字 1.6之后提升了什么，怎么提升的这些</p>
+<p>ArrayList 优势，扩容，什么时候用</p>
+<p>LinkedList 优势，什么时候用，和arraylist的区别 等等</p>
+<p>基本类型和包装类型的区别，涉及自动装箱和拆箱，怎么做的，原理</p>
+<p>String ，StringBuffer，StringBuilder哪个是安全的</p>
+<p>字符串编码的区别，被问到过，我觉得比较容易被忽视的一个点</p>
+<p>什么是泛型，怎么用泛型</p>
+<p>static能不能修饰threadLocal，为什么，这道题我当时一听到其实挺懵逼的</p>
+<p>Comparable和Comparator接口是干什么的，其区别</p>
+<p>多态的原理是什么，感觉这个很容易被问到</p>
+<p>接口和抽象类，面试官问我是怎么理解的，我说接口对应功能，抽象类对应属性，然后面试官给我说了他的看法，说抽象类更偏向于一种模板~ 然后又交流了一下各自的想法</p>
+<p>如何通过反射和设置对象私有字段的值</p>
+<p>快速失败(fail-fast)和安全失败(fail-safe)的区别是什么</p>
+<p>synchronized 的实现原理以及锁优化？</p>
+<p>volatile 的实现原理？</p>
+<p>Java 的信号灯？</p>
+<p>synchronized 在静态方法和普通方法的区别？</p>
+<p>怎么实现所有线程在等待某个事件的发生才会去执行？</p>
+<p>CAS？CAS 有什么缺陷，如何解决？</p>
+<p>synchronized 和 lock 有什么区别？</p>
+<p>Hashtable 是怎么加锁的 ？</p>
+<p>List，Map，Set接口在取元素师，各有什么特点</p>
+<p>如何线程安全的实现一个计数器</p>
+<p>生产者消费者模式，要求手写过代码，还是要知道的</p>
+<p>单例模式，饿汉式，懒汉式，线程安全的做法，两次判断instance是否为空，每次判断的作用是什么。</p>
+<p>线程池，这个还是很重要的，在生产中用的挺多，四个线程池类型，其参数，参数的理解很重要，corepoolSize怎么设置，maxpoolsize怎么设置，keep-alive各种的，和美团面试官探讨过阻塞队列在生产中的设置，他说他一般设置为0，防止用户阻塞</p>
+<p>cyclicbarrier 和countdownlatch的区别，个人理解 赛马和点火箭</p>
+<p>线程回调，这块 被问过让我设计一个RPC，怎么实现，其实用到了回调这块的东西</p>
+<p>sleep 和yeild方法有什么区别</p>
+<p>volatile关键字，可见性。</p>
+<p>乐观锁和悲观锁的使用场景</p>
+<p>悲观锁的常见实现方式：lock synchronized retreentlock</p>
+<p>乐观锁：CAS MVCC</p>
+<p>读写锁的实现方式，16位int的前八位和后八位分别作为读锁和写锁的标志位</p>
+<p>死锁的条件，怎么解除死锁，怎么观测死锁。</p>
+<p>希望大家能够好好看一下反射的原理，怎么确定类，怎么调方法</p>
+<p>RPC框架，同步异步，响应时间，这些都被问到过，还让设计过</p>
+<p>同步，异步，阻塞，非阻塞 在深信服的面试中遇到过，最好再找一些应用场景加以理解</p>
+<p>问题+答案来源：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/35723259" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/35723259</a></p>
+<p>线程池：<a href="https://blog.csdn.net/lzxlfly/article/details/83904032" target="_blank" rel="noopener">https://blog.csdn.net/lzxlfly/article/details/83904032</a></p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%A4%8D%E4%B9%A0%E5%A4%A7%E7%BA%B2/">复习大纲</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%A4%8D%E4%B9%A0/">复习</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/06/19/Java%E5%B9%B6%E5%8F%91/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Java并发</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/19/Redis/">
+                        <span class="hidden-mobile">Redis</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Java基础&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

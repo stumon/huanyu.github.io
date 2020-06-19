@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      138 字
+      363 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      5
        分钟
     </span>
   
@@ -233,6 +233,40 @@
         dfs(node.left);
         dfs(node.right);
         list.add(node.val);
+    &#125;
+&#125;</code></pre>
+
+<h2 id="非递归遍历"><a href="#非递归遍历" class="headerlink" title="非递归遍历"></a>非递归遍历</h2><p>思路有点巧妙，利用了栈+LinkedList的addFirst函数</p>
+<p>使用栈按照根左右的顺序依次放入结点，先放入根节点，再放入左节点和右节点，每次pop出的元素，都插入到list的队首，实现了后序遍历。</p>
+<pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Definition for a binary tree node.</span>
+<span class="hljs-comment"> * public class TreeNode &#123;</span>
+<span class="hljs-comment"> *     int val;</span>
+<span class="hljs-comment"> *     TreeNode left;</span>
+<span class="hljs-comment"> *     TreeNode right;</span>
+<span class="hljs-comment"> *     TreeNode() &#123;&#125;</span>
+<span class="hljs-comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span>
+<span class="hljs-comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span>
+<span class="hljs-comment"> *         this.val = val;</span>
+<span class="hljs-comment"> *         this.left = left;</span>
+<span class="hljs-comment"> *         this.right = right;</span>
+<span class="hljs-comment"> *     &#125;</span>
+<span class="hljs-comment"> * &#125;</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Integer&gt; <span class="hljs-title">postorderTraversal</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;
+        Stack&lt;TreeNode&gt; stack=<span class="hljs-keyword">new</span> Stack&lt;&gt;();<span class="hljs-comment">//使用栈的先进后出的特性</span>
+        LinkedList&lt;Integer&gt; list=<span class="hljs-keyword">new</span> LinkedList&lt;&gt;();
+        <span class="hljs-keyword">if</span>(root==<span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> list;
+        stack.push(root);
+        <span class="hljs-keyword">while</span>(!stack.empty())
+        &#123;
+            TreeNode temp=stack.pop();<span class="hljs-comment">//弹出栈顶元素</span>
+            list.addFirst(temp.val);<span class="hljs-comment">//向list头插入元素</span>
+            <span class="hljs-keyword">if</span>(temp.left!=<span class="hljs-keyword">null</span>) stack.push(temp.left);<span class="hljs-comment">//插入左节点</span>
+            <span class="hljs-keyword">if</span>(temp.right!=<span class="hljs-keyword">null</span>) stack.push(temp.right);<span class="hljs-comment">//插入右节点</span>
+        &#125;
+        <span class="hljs-keyword">return</span> list;
     &#125;
 &#125;</code></pre>
 

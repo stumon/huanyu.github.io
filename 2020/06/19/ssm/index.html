@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>LeetCode144-二叉树前序遍历 - 郭寰宇</title>
+  <title>ssm - 郭寰宇</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-06-10 11:52">
-      2020年6月10日 中午
+    <time datetime="2020-06-19 18:34">
+      2020年6月19日 晚上
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      319 字
+      575 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      6
        分钟
     </span>
   
@@ -204,72 +204,51 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="LeetCode144-二叉树前序遍历"><a href="#LeetCode144-二叉树前序遍历" class="headerlink" title="LeetCode144 二叉树前序遍历"></a>LeetCode144 二叉树前序遍历</h1><h2 id="递归遍历"><a href="#递归遍历" class="headerlink" title="递归遍历"></a>递归遍历</h2><p>递归遍历有模板，简单套用即可</p>
-<pre><code class="hljs java"><span class="hljs-comment">/**</span>
-<span class="hljs-comment"> * Definition for a binary tree node.</span>
-<span class="hljs-comment"> * public class TreeNode &#123;</span>
-<span class="hljs-comment"> *     int val;</span>
-<span class="hljs-comment"> *     TreeNode left;</span>
-<span class="hljs-comment"> *     TreeNode right;</span>
-<span class="hljs-comment"> *     TreeNode() &#123;&#125;</span>
-<span class="hljs-comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span>
-<span class="hljs-comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span>
-<span class="hljs-comment"> *         this.val = val;</span>
-<span class="hljs-comment"> *         this.left = left;</span>
-<span class="hljs-comment"> *         this.right = right;</span>
-<span class="hljs-comment"> *     &#125;</span>
-<span class="hljs-comment"> * &#125;</span>
-<span class="hljs-comment"> */</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;
-    List&lt;Integer&gt; list;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Integer&gt; <span class="hljs-title">preorderTraversal</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;
-        list=<span class="hljs-keyword">new</span> LinkedList&lt;&gt;();
-        dfs(root);
-        <span class="hljs-keyword">return</span> list;
-    &#125;
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(TreeNode node)</span></span>
-<span class="hljs-function">    </span>&#123;
-        <span class="hljs-keyword">if</span>(node==<span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span>;
-        list.add(node.val);
-        dfs(node.left);
-        dfs(node.right);
-    &#125;
-&#125;</code></pre>
-
-<h2 id="非递归遍历"><a href="#非递归遍历" class="headerlink" title="非递归遍历"></a>非递归遍历</h2><p>前序遍历是：根左右，所以使用栈来实现，先放入右节点，再放入左节点，这样可以保证根节点的右节点是在左节点遍历完之后才会遍历</p>
-<pre><code class="hljs java"><span class="hljs-comment">/**</span>
-<span class="hljs-comment"> * Definition for a binary tree node.</span>
-<span class="hljs-comment"> * public class TreeNode &#123;</span>
-<span class="hljs-comment"> *     int val;</span>
-<span class="hljs-comment"> *     TreeNode left;</span>
-<span class="hljs-comment"> *     TreeNode right;</span>
-<span class="hljs-comment"> *     TreeNode() &#123;&#125;</span>
-<span class="hljs-comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span>
-<span class="hljs-comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span>
-<span class="hljs-comment"> *         this.val = val;</span>
-<span class="hljs-comment"> *         this.left = left;</span>
-<span class="hljs-comment"> *         this.right = right;</span>
-<span class="hljs-comment"> *     &#125;</span>
-<span class="hljs-comment"> * &#125;</span>
-<span class="hljs-comment"> */</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Integer&gt; <span class="hljs-title">preorderTraversal</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;
-        Stack&lt;TreeNode&gt; stack=<span class="hljs-keyword">new</span> Stack&lt;&gt;();<span class="hljs-comment">//使用栈的先进后出的特性</span>
-        List&lt;Integer&gt; list=<span class="hljs-keyword">new</span> LinkedList&lt;&gt;();
-        <span class="hljs-keyword">if</span>(root==<span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> list;
-        stack.push(root);
-        <span class="hljs-keyword">while</span>(!stack.empty())
-        &#123;
-            TreeNode temp=stack.pop();
-            list.add(temp.val);
-            <span class="hljs-keyword">if</span>(temp.right!=<span class="hljs-keyword">null</span>) stack.push(temp.right);<span class="hljs-comment">//先放入右节点</span>
-            <span class="hljs-keyword">if</span>(temp.left!=<span class="hljs-keyword">null</span>) stack.push(temp.left);<span class="hljs-comment">//再放入左节点</span>
-        &#125;
-        <span class="hljs-keyword">return</span> list;
-    
-    &#125;
-&#125;</code></pre>
-
+              <h1 id="SSM面试问题"><a href="#SSM面试问题" class="headerlink" title="SSM面试问题"></a>SSM面试问题</h1><ol>
+<li>Spring框架用到了哪些设计模式。</li>
+<li>Spring生命周期详细描述。</li>
+<li>Spring是如何解决循环依赖的。</li>
+<li>Spring扩展点有哪些，项目中是如何应用的。</li>
+<li>Spring IOC、AOP描述。</li>
+<li>Spring事务和MySQL事务的区别，Spring事务传播机制介绍，Spring事务失效和解决方案。</li>
+<li>Spring全局异常捕获如何编写。</li>
+<li>AOP动态代理实现：jdk动态代理和cglib实现差异，cglib性能为什么比jdk动态代理性能高，Fastclass机制描述下，哪些方法不能被动态代理。</li>
+<li>AOP失效举例，为什么会失效，如何解决。</li>
+<li>BeanFactory和FactoryBean的区别。</li>
+<li>Spring创建了单例对象，如果多线程并发对属性赋值，造成相互覆盖的情况，如何处理。</li>
+<li>SpringMVC和SpringBoot的区别。</li>
+</ol>
+<p>spring的两大特性- ioc aop，实现原理</p>
+<p>如果存在A依赖B，B依赖A，那么是怎么加到IOC中去的</p>
+<p>beanFactory的理解，怎么加载bean</p>
+<p>FactoryBean的理解</p>
+<p>基于注解的形式，是怎么实现的， 你知道其原理吗，说一下</p>
+<p>依赖冲突，有碰到过吗，你是怎么解决的~</p>
+<p>bean的生命周期</p>
+<p>spring中的自动装配方式</p>
+<p>BeanFactory 和 FactoryBean</p>
+<p>Spring IOC 的理解，其初始化过程？</p>
+<p>BeanFactory 和 ApplicationContext？</p>
+<p>Spring Bean 的生命周期，如何被管理的？Spring Bean 的加载过程是怎样的？</p>
+<p>如果要你实现Spring AOP，请问怎么实现？</p>
+<p>如果要你实现Spring IOC，你会注意哪些问题？</p>
+<p>Spring 是如何管理事务的，事务管理机制？</p>
+<p>Spring 的不同事务传播行为有哪些，干什么用的？</p>
+<p>Spring 中用到了那些设计模式？</p>
+<p>Spring MVC 的工作原理？</p>
+<p>Spring 循环注入的原理？</p>
+<p>Spring 如何保证 Controller 并发的安全？</p>
+<p>你一般是怎么对mvc项目进行分层的</p>
+<p>dispatch-servlet的工作原理</p>
+<p>为什么有了springmvc还要在项目中使用spring？</p>
+<p>springmvc的运行机制，dispatch -》 hanldermapping-—》handler -》handlerAdapter-》执行handler-》modelandview -》 返回mv -》 视图解析器-》返回view -》 渲染响应</p>
+<p>怎么防止依赖注入</p>
+<p>怎么让mapper 和xml对应</p>
+<p>如何自动包装对象</p>
+<p>和spring相比，做了什么改变</p>
+<p>starter你知道哪些</p>
+<p>如何部署springmvc项目 以及如何部署springboot项目</p>
+<p>springboot的插件，你使用过哪些</p>
 
             </article>
             <hr>
@@ -279,11 +258,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-                    
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/LeetCode/">LeetCode</a>
-                    
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/LeetCode/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a>
+                      <a class="hover-with-bg" href="/categories/%E5%A4%8D%E4%B9%A0%E5%A4%A7%E7%BA%B2/">复习大纲</a>
                     
                   </div>
                 
@@ -291,7 +266,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+                      <a class="hover-with-bg" href="/tags/%E5%A4%8D%E4%B9%A0/">复习</a>
                     
                   </div>
                 
@@ -304,9 +279,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/06/10/LeetCode102-%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/">
+                      <a href="/2020/06/19/MySQL/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">LeetCode102-二叉树层序遍历</span>
+                        <span class="hidden-mobile">MySQL</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -314,8 +289,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/06/10/LeetCode94-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/">
-                        <span class="hidden-mobile">LeetCode94-二叉树中序遍历</span>
+                      <a href="/2020/06/19/jvm/">
+                        <span class="hidden-mobile">jvm</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -454,7 +429,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "LeetCode144-二叉树前序遍历&nbsp;",
+        "ssm&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

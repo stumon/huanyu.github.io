@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      164 字
+      765 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      10
        分钟
     </span>
   
@@ -210,26 +210,138 @@
 <p>微服务</p>
 <p>每一个功能元素块都是一个可替换、可独立升级的软件代码</p>
 <p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200616200710.png" srcset="/img/loading.gif" alt="image-20200616200707622"></p>
-<h2 id="自动配置"><a href="#自动配置" class="headerlink" title="自动配置"></a>自动配置</h2><p>启动器:springboot的启动场景，spring-boot-starter-web就会自动导入web环境所有的依赖，springboot会将所以功能场景都变成启动器，需要什么功能，找到对应的启动器即可</p>
+<h2 id="自动配置"><a href="#自动配置" class="headerlink" title="自动配置"></a>自动配置</h2><p>启动器:springboot的启动场景。</p>
+<p>比如spring-boot-starter-web就会自动导入web环境所有的依赖，springboot会将所有的功能场景都变成启动器，需要什么功能，找到对应的启动器即可</p>
 <pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
 
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200617100253.png" srcset="/img/loading.gif" alt="image-20200617100249387"></p>
+<h3 id="主程序"><a href="#主程序" class="headerlink" title="主程序"></a>主程序</h3><pre><code class="hljs java"><span class="hljs-meta">@SpringBootApplication</span><span class="hljs-comment">//标注这个类是springboot的应用，导入启动类下的所有资源</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Springboot01HelloworldApplication</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        SpringApplication.run(Springboot01HelloworldApplication<span class="hljs-class">.<span class="hljs-keyword">class</span>, <span class="hljs-title">args</span>)</span>;<span class="hljs-comment">//启动springboot应用，通过反射加载这个类</span>
+    &#125;
+&#125;</code></pre>
+
+<h3 id="注解-SpringBootApplication"><a href="#注解-SpringBootApplication" class="headerlink" title="注解@SpringBootApplication"></a>注解@SpringBootApplication</h3><p>组成成分</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Target</span>(ElementType.TYPE)
+<span class="hljs-meta">@Retention</span>(RetentionPolicy.RUNTIME)
+<span class="hljs-meta">@Documented</span>
+<span class="hljs-meta">@Inherited</span>
+<span class="hljs-meta">@SpringBootConfiguration</span><span class="hljs-comment">//核心，springboot的配置</span>
+<span class="hljs-meta">@EnableAutoConfiguration</span><span class="hljs-comment">//核心。自动配置</span>
+<span class="hljs-meta">@ComponentScan</span>(excludeFilters = &#123; <span class="hljs-meta">@Filter</span>(type = FilterType.CUSTOM, classes = TypeExcludeFilter<span class="hljs-class">.<span class="hljs-keyword">class</span>),//扫描包</span>
+<span class="hljs-class">		@<span class="hljs-title">Filter</span>(<span class="hljs-title">type</span> </span>= FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter<span class="hljs-class">.<span class="hljs-keyword">class</span>) &#125;)</span></code></pre>
+
+<h4 id="SpringBootConfiguration"><a href="#SpringBootConfiguration" class="headerlink" title="@SpringBootConfiguration"></a>@SpringBootConfiguration</h4><p>组成成分</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Target</span>(ElementType.TYPE)
+<span class="hljs-meta">@Retention</span>(RetentionPolicy.RUNTIME)
+<span class="hljs-meta">@Documented</span>
+<span class="hljs-meta">@Configuration</span><span class="hljs-comment">//代表它是一个spring配置类</span></code></pre>
+
+<h5 id="Configuration"><a href="#Configuration" class="headerlink" title="@Configuration"></a>@Configuration</h5><p>组成成分</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Target</span>(&#123;ElementType.TYPE&#125;)
+<span class="hljs-meta">@Retention</span>(RetentionPolicy.RUNTIME)
+<span class="hljs-meta">@Documented</span>
+<span class="hljs-meta">@Component</span></code></pre>
+
+<h4 id="EnableAutoConfiguration"><a href="#EnableAutoConfiguration" class="headerlink" title="@EnableAutoConfiguration"></a>@EnableAutoConfiguration</h4><pre><code class="hljs java"><span class="hljs-meta">@Target</span>(ElementType.TYPE)
+<span class="hljs-meta">@Retention</span>(RetentionPolicy.RUNTIME)
+<span class="hljs-meta">@Documented</span>
+<span class="hljs-meta">@Inherited</span>
+<span class="hljs-meta">@AutoConfigurationPackage</span><span class="hljs-comment">//自动配置包</span>
+<span class="hljs-meta">@Import</span>(AutoConfigurationImportSelector<span class="hljs-class">.<span class="hljs-keyword">class</span>)//自动配置导入选择器</span></code></pre>
+
+<h5 id="AutoConfigurationPackage"><a href="#AutoConfigurationPackage" class="headerlink" title="@AutoConfigurationPackage"></a>@AutoConfigurationPackage</h5><p>组成成分</p>
+<pre><code class="hljs less"><span class="hljs-variable">@Target</span>(ElementType.TYPE)
+<span class="hljs-variable">@Retention</span>(RetentionPolicy.RUNTIME)
+<span class="hljs-variable">@Documented</span>
+<span class="hljs-variable">@Inherited</span>
+<span class="hljs-variable">@Import</span>(AutoConfigurationPackages.Registrar.class)<span class="hljs-comment">//自动配置包</span></code></pre>
+
+<h5 id="Import-AutoConfigurationImportSelector-class"><a href="#Import-AutoConfigurationImportSelector-class" class="headerlink" title="@Import(AutoConfigurationImportSelector.class)"></a>@Import(AutoConfigurationImportSelector.class)</h5><pre><code class="hljs kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AutoConfigurationPackages</span></span></code></pre>
 
 
 
+<p>结论：springboot的所有自动配置都是在启动的时候扫描并加载：/META-INF/spring.factories的所有自动配置类都在这里面，但是不一定生效，要判断条件是否成立，只要导入对应starter（启动器），才会生效。核心注解：<code>ConditionalOnXX</code></p>
+<h2 id="Sptingboot配置"><a href="#Sptingboot配置" class="headerlink" title="Sptingboot配置"></a>Sptingboot配置</h2><h3 id="yml"><a href="#yml" class="headerlink" title="yml"></a>yml</h3><p>实体类</p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.guo.pojo;
 
 
+<span class="hljs-keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;
+<span class="hljs-keyword">import</span> org.springframework.stereotype.Component;
 
+<span class="hljs-keyword">import</span> java.util.Date;
+<span class="hljs-keyword">import</span> java.util.List;
+<span class="hljs-keyword">import</span> java.util.Map;
 
+<span class="hljs-meta">@Component</span><span class="hljs-comment">//声明组件</span>
+<span class="hljs-meta">@ConfigurationProperties</span>(prefix = <span class="hljs-string">"person"</span>)<span class="hljs-comment">//将配置文件中配置的每一个属性都映射到这个组件中</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>&#123;
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> Integer age;
+    <span class="hljs-keyword">private</span> Boolean happy;
+    <span class="hljs-keyword">private</span> Date birth;
+    <span class="hljs-keyword">private</span> Map&lt;String, Object&gt; maps;
+    <span class="hljs-keyword">private</span> List&lt;Object&gt; list;
+    <span class="hljs-keyword">private</span> Dog dog;
+<span class="hljs-comment">//省略有参构造、无参构造、tostring、gettter和setter方法</span>
+&#125;
+<span class="hljs-comment">//dog</span>
+<span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Value;
+<span class="hljs-keyword">import</span> org.springframework.stereotype.Component;
 
+<span class="hljs-meta">@Component</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dog</span> </span>&#123;
+    <span class="hljs-meta">@Value</span>(<span class="hljs-string">"旺财"</span>)
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-meta">@Value</span>(<span class="hljs-string">"3"</span>)
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age;
+&#125;</code></pre>
 
+<p>yml配置</p>
+<pre><code class="hljs yml"><span class="hljs-attr">person:</span>
+  <span class="hljs-attr">name:</span> <span class="hljs-string">gt</span>
+  <span class="hljs-attr">age:</span> <span class="hljs-number">3</span>
+  <span class="hljs-attr">happy:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-attr">bitrh:</span> <span class="hljs-number">2020</span><span class="hljs-string">/2/2</span>
+  <span class="hljs-attr">maps:</span> <span class="hljs-string">&#123;k1:</span> <span class="hljs-string">v1,k2:</span> <span class="hljs-string">v2&#125;</span>
+  <span class="hljs-attr">list:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">music</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">dog</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">girl</span>
+  <span class="hljs-attr">dog:</span>
+    <span class="hljs-attr">name:</span> <span class="hljs-string">wa</span>
+    <span class="hljs-attr">age:</span> <span class="hljs-number">4</span></code></pre>
 
+<p>测试类</p>
+<pre><code class="hljs java"><span class="hljs-meta">@SpringBootTest</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Springboot02ConfigApplicationTests</span> </span>&#123;
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> Person person;
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> Dog dog;
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">contextLoads</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(person);
+    &#125;
+&#125;</code></pre>
 
+<p>输出</p>
+<pre><code class="hljs java">Person&#123;name=<span class="hljs-string">'gt'</span>, age=<span class="hljs-number">3</span>, happy=<span class="hljs-keyword">true</span>, birth=<span class="hljs-keyword">null</span>, maps=&#123;k1=v1, k2=v2&#125;, list=[music, dog, girl], dog=Dog&#123;name=<span class="hljs-string">'wa'</span>, age=<span class="hljs-number">4</span>&#125;&#125;</code></pre>
 
-
-
+<p>yaml优点：</p>
+<p>支持松散绑定</p>
+<blockquote>
+<p>比如类中名字是 last-name，和lastName是一样的，-后面跟着的字母默认是大写的，这就是松散绑定</p>
+</blockquote>
+<h3 id="JSR303校验"><a href="#JSR303校验" class="headerlink" title="JSR303校验"></a>JSR303校验</h3><p>指定数据类型，如果不是指定类型就会报错。</p>
+<h2 id="核心注解"><a href="#核心注解" class="headerlink" title="核心注解"></a>核心注解</h2><p>@ConditionalOnXX</p>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200617095621.png" srcset="/img/loading.gif" alt="image-20200617095616759"></p>
+<p>@@ConfigurationProperties(prefix = “person”)</p>
+<p>绑定person类下的所有配置，spring会去properties下面找默认值</p>
 
             </article>
             <hr>
@@ -261,6 +373,12 @@
                 <div class="post-prevnext row">
                   <div class="post-prev col-6">
                     
+                    
+                      <a href="/2020/06/19/%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">阿里云服务器搭建</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </div>
                   <div class="post-next col-6">
