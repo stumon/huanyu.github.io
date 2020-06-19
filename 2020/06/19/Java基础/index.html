@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.2k 字
+      5.4k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      56
+      59
        分钟
     </span>
   
@@ -489,7 +489,15 @@ DelayQueue：队列内元素必须实现Delayed接口，这就意味着你传进
 
 
 <p>Hashmap 源码级掌握，扩容，红黑树，最小树化容量，hash冲突解决，有些面试官会提出发自灵魂的审问，比如为什么是红黑树，别的树不可以吗；为什么8的时候树化，4不可以吗，等等</p>
+<blockquote>
+<p>为啥使用红黑树：</p>
+<p>AVL树和红黑树有几点比较和区别：<br>（1）AVL树是更加严格的平衡，因此可以提供更快的查找速度，一般读取查找密集型任务，适用AVL树。<br>（2）红黑树更适合于插入修改密集型任务。<br>（3）通常，AVL树的旋转比红黑树的旋转更加难以平衡和调试。</p>
+</blockquote>
 <p>concureentHashMap，段锁，如何分段，和hashmap在hash上的区别，性能，等等</p>
+<blockquote>
+<p>JDK7：ConcurrentHashMap所使用的锁分段技术，首先将数据分成一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据的时候，其他段的数据也能被其他线程访问</p>
+<p>JDK8：在JDK1.7之前，ConcurrentHashMap是通过分段锁机制来实现的，所以其最大并发度受Segment的个数限制。因此，在JDK1.8中，ConcurrentHashMap的实现原理摒弃了这种设计，而是选择了与HashMap类似的数组+链表+红黑树的方式实现，而加锁则采用CAS和synchronized实现。<br><a href="https://blog.csdn.net/bill_xiang_/article/details/81122044" target="_blank" rel="noopener">https://blog.csdn.net/bill_xiang_/article/details/81122044</a></p>
+</blockquote>
 <p>HashTable ，同步锁，这块可能会问你synchronized关键字 1.6之后提升了什么，怎么提升的这些</p>
 <p>ArrayList 优势，扩容，什么时候用</p>
 <p>LinkedList 优势，什么时候用，和arraylist的区别 等等</p>
