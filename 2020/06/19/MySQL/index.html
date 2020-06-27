@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      13.1k 字
+      13.3k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      139
+      141
        分钟
     </span>
   
@@ -344,10 +344,11 @@
 <p>SQL标准定义的四个隔离级别为：</p>
 <ol>
 <li>read uncommited ：读到未提交数据</li>
-<li>read committed：脏读，不可重复读</li>
-<li>repeatable read：可重读</li>
-<li>serializable ：串行事物</li>
+<li>read committed：读已经提交，大多数主流数据库的默认事务等级，保证了一个事务不会读到另一个并行事务已修改但未提交的数据，避免了“脏读取”，但不能避免“幻读”和“不可重复读取”。该级别适用于大多数系统。</li>
+<li>repeatable read：重复读：保证了一个事务不会修改已经由另一个事务读取但未提交（回滚）的数据。避免了“脏读取”和“不可重复读取”的情况，但不能避免“幻读”，但是带来了更多的性能损失。</li>
+<li>serializable ：最严格的级别，事务串行执行，资源消耗最大</li>
 </ol>
+<p>不可重复读和幻读比较：<br>两者有些相似，但是前者针对的是update或delete，后者针对的insert。</p>
 </blockquote>
 <p><strong>CHAR和VARCHAR的区别？</strong></p>
 <blockquote>
@@ -387,8 +388,8 @@
 <p>SQL注入产生的原因：程序开发过程中不注意规范书写sql语句和对特殊字符进行过滤，导致客户端可以通过全局变量POST和GET提交一些sql语句正常执行。</p>
 <p>防止SQL注入的方式：<br>开启配置文件中的magic_quotes_gpc 和 magic_quotes_runtime设置</p>
 <p>执行sql语句时使用addslashes进行sql语句转换</p>
-<p>Sql语句书写尽量不要省略双引号和单引号。</p>
-<p>过滤掉sql语句中的一些关键词：update、insert、delete、select、 * 。</p>
+<p>Sql语句书写尽量不要省略双引号和单引号</p>
+<p>过滤掉sql语句中的一些关键词：update、insert、delete、select、 * </p>
 <p>提高数据库表和字段的命名技巧，对一些重要的字段根据程序的特点命名，取不易被猜到的。</p>
 </blockquote>
 <p>索引</p>
@@ -507,11 +508,11 @@
 </blockquote>
 <p><strong>前缀索引</strong></p>
 <blockquote>
-<p>index(field(10))，使用字段值的前10个字符建立索引，默认是使用字段的全部内容建立索引。</p>
+<p>index(field(10))，使用字段值的前10个字符建立索引，默认是使用字段的全部内容建立索引</p>
 </blockquote>
 <p><strong>什么是最左前缀原则？什么是最左匹配原则</strong></p>
 <blockquote>
-<p>在创建多列索引时，要根据业务需求，where子句中使用最频繁的一列放在最左边。</p>
+<p>在创建多列索引时，要根据业务需求，where子句中使用最频繁的一列放在最左边</p>
 <p>最左前缀匹配原则，非常重要的原则，mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)就停止匹配，比如a = 1 and b = 2 and c &gt; 3 and d = 4 如果建立(a,b,c,d)顺序的索引，d是用不到索引的，如果建立(a,b,d,c)的索引则都可以用到，a,b,d的顺序可以任意调整。</p>
 </blockquote>
 <p><strong>使用B树的好处</strong></p>
@@ -582,7 +583,7 @@
 <p><strong>脏读？幻读？不可重复读？</strong></p>
 <blockquote>
 <p>脏读(Drity Read)：某个事务已更新一份数据，另一个事务在此时读取了同一份数据，由于某些原因，前一个RollBack了操作，则后一个事务所读取的数据就会是不正确的。</p>
-<p>不可重复读(Non-repeatable read):在一个<strong>事务的两次查询</strong>之中<strong>数据不一致，</strong>这可能是两次查询过程中间插入了一个事务更新的原有的数据。</p>
+<p>不可重复读(Non-repeatable read)：事务A首先读取了一条数据，然后执行逻辑的时候，事务B将这条数据改变了，然后事务A再次读取的时候，发现数据不匹配了，就是所谓的不可重复读了。</p>
 <p>幻读(Phantom Read):幻读是指一个<strong>事务内多次根据同一条件查询出来的记录行数</strong>不一致。，例如有一个事务查询了几列(Row)数据，而另一个事务却在此时插入了新的几列数据，先前的事务在接下来的查询中，就会发现有几列数据是它先前所没有的。</p>
 <p>不可重复读的重点是修改，幻读的重点在于新增或者删除。</p>
 </blockquote>

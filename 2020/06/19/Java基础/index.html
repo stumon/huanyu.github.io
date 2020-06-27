@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      14.2k 字
+      14.4k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      155
+      157
        分钟
     </span>
   
@@ -317,6 +317,10 @@
 <h2 id="HashMap中常用的方法有哪些，什么时候会触发树化，jdk1-7和1-8实现的差异，1-7的实现为什么会出现死锁，画图说明下。HashMap和TreeMap的区别。"><a href="#HashMap中常用的方法有哪些，什么时候会触发树化，jdk1-7和1-8实现的差异，1-7的实现为什么会出现死锁，画图说明下。HashMap和TreeMap的区别。" class="headerlink" title="HashMap中常用的方法有哪些，什么时候会触发树化，jdk1.7和1.8实现的差异，1.7的实现为什么会出现死锁，画图说明下。HashMap和TreeMap的区别。"></a>HashMap中常用的方法有哪些，什么时候会触发树化，jdk1.7和1.8实现的差异，1.7的实现为什么会出现死锁，画图说明下。HashMap和TreeMap的区别。</h2><blockquote>
 <p>HashMap通过hashcode对其内容进行快速查找，而 TreeMap中所有的元素都保持着某种固定的顺序，如果你需要得到一个有序的结果你就应该使用TreeMap.</p>
 <p>存入TreeMap的元素应当实现Comparable接口或者实现Comparator接口，会按照排序后的顺序迭代元素，两个相比较的key不得抛出classCastException。主要用于存入元素的时候对元素进行自动排序，迭代输出的时候就按排序顺序输出</p>
+<p><strong>为什么HashMap需要加载因子？</strong></p>
+<p>必须在“冲突的机会”与“空间利用率”之间，寻找一种平衡与折衷。</p>
+<p>那么为什么选择了0.75作为HashMap的加载因子呢？这个跟一个统计学里很重要的原理——泊松分布有关。</p>
+<p>在理想情况下，使用随机哈希码，在扩容阈值（加载因子）为0.75的情况下，节点出现在频率在Hash桶（表）中遵循参数平均为0.5的泊松分布。忽略方差，即X = λt，P(λt = k)，其中λt = 0.5的情况</p>
 </blockquote>
 <h2 id="说下枚举类型，底层实现原理，项目中是如何使用的。"><a href="#说下枚举类型，底层实现原理，项目中是如何使用的。" class="headerlink" title="说下枚举类型，底层实现原理，项目中是如何使用的。"></a>说下枚举类型，底层实现原理，项目中是如何使用的。</h2><blockquote>
 <p>枚举是可以防止反序列化的，以及反射</p>

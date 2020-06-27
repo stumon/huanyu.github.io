@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      22
+      23
        分钟
     </span>
   
@@ -205,6 +205,7 @@
             
             <article class="markdown-body">
               <h1 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h1><p>代理模式给某一个对象提供一个代理对象，并由代理对象控制对原对象的引用。代理模式一般由四个角色构成：抽象角色、真实角色、代理角色、客户，而且代理分为静态代理和动态代理</p>
+<p>静态代理代理的是<strong>一个业务</strong>，动态代理可以代理<strong>一类业务</strong></p>
 <h2 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h2><p>假如有一个需求是，给每一个方法都实现一个打印日志功能，你怎么做？</p>
 <p>最暴力：直接修改每一个方法，缺点方法太大，改不过来，容易出错，违法开闭原则</p>
 <p>简单点：为每一个类写一个代理类，让代理类和目标类都实现相同的接口，在创建代理对象时，通过构造器塞入一个目标对象，然后在代理对象的方法内部调用目标对象同名方法，并在调用前后打印日志。这样以后，就不需要调用目标类生成对象，直接生成代理对象便完成了添加打印日志的功能。</p>
@@ -293,43 +294,61 @@
 <h3 id="基于接口的动态代理"><a href="#基于接口的动态代理" class="headerlink" title="基于接口的动态代理"></a>基于接口的动态代理</h3><p>动态代理的目标是不写代理类，而是直接得到代理Class对象，然后根据它来创建代理实例。Class对象包含了一个类的所有信息，比如构造器、方法和成员变量等。而为了获得这些信息，<strong>因为接口拥有目标对象的类信息</strong>，我们需要<strong>让代理类和目标类实现同一组接口，确保代理对象的内部结构和目标对象一致</strong>。</p>
 <p>JDK提供了java.lang.reflect.<strong>InvocationHandler</strong>接口和 java.lang.reflect.<strong>Proxy</strong>类。</p>
 <p>Proxy有个静态方法：<strong>getProxyClass</strong>(ClassLoader, interfaces)，只要你给它传入<strong>类加载器和一组接口，它就给你返回代理Class对象</strong>。getProxyClass()这个方法，会从你传入的接口Class中，“拷贝”类结构信息到一个新的Class对象中，新的Class对象带有构造器，是可以创建对象的。一旦我们明确接口，完全可以<strong>通过接口的Class对象，创建一个代理Class，通过代理Class即可创建代理对象</strong>。</p>
-<p>但一般不用<strong>getProxyClass</strong>方法，而是用Proxy类的另一个静态方法：Proxy.newProxyInstance()，直接返回代理实例。</p>
+<p>但一般不用<strong>getProxyClass</strong>方法，而是用Proxy类的另一个静态方法：<strong>Proxy.newProxyInstance()</strong>，直接返回代理实例。</p>
 <p>根据代理Class的构造器创建对象时，需要传入InvocationHandler。每次调用代理对象的方法，最终都会调用InvocationHandler的invoke()方法：</p>
 <p>动态代理分成基于接口的动态代理（JDK）和基于类的动态代理（CGLib）</p>
 <pre><code class="hljs java"><span class="hljs-comment">//基于接口的动态代理</span>
-<span class="hljs-keyword">import</span> java.lang.reflect.InvocationHandler;
-<span class="hljs-keyword">import</span> java.lang.reflect.Method;
-<span class="hljs-keyword">import</span> java.lang.reflect.Proxy;
-<span class="hljs-comment">//用来生成代理类</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProxyInvocation</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">InvocationHandler</span> </span>&#123;
-    <span class="hljs-keyword">private</span> Rent rent;<span class="hljs-comment">//要代理的接口</span>
 
-    <span class="hljs-function"><span class="hljs-keyword">public</span> Rent <span class="hljs-title">getRent</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">return</span> rent;
+
+<span class="hljs-comment">//接口</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Rent</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">home</span><span class="hljs-params">()</span></span>;
+&#125;
+
+<span class="hljs-comment">//实现类</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Host</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Rent</span> </span>&#123;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">home</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"出租房子"</span>);
+    &#125;
+&#125;
+<span class="hljs-comment">//这个类用来生成代理对象</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProxyClass</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">InvocationHandler</span> </span>&#123;<span class="hljs-comment">//实现InvocationHandler接口，创建自己的调用处理器</span>
+    <span class="hljs-keyword">public</span> Object object;<span class="hljs-comment">//传入接口类型</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">getObject</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> object;
     &#125;
 
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setRent</span><span class="hljs-params">(Rent rent)</span> </span>&#123;
-        <span class="hljs-keyword">this</span>.rent = rent;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setObject</span><span class="hljs-params">(Object object)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.object = object;
     &#125;
-    <span class="hljs-comment">//生成代理类</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">getProxy</span><span class="hljs-params">()</span></span>&#123;
-        <span class="hljs-keyword">return</span> Proxy.newProxyInstance(<span class="hljs-keyword">this</span>.getClass().getClassLoader(),rent.getClass().getInterfaces(),<span class="hljs-keyword">this</span>);
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">getProxy</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>&#123;
+        <span class="hljs-comment">//创建代理类对象</span>
+        <span class="hljs-keyword">return</span> Proxy.newProxyInstance(<span class="hljs-keyword">this</span>.getClass().getClassLoader(),object.getClass().getInterfaces(),<span class="hljs-keyword">this</span>);
     &#125;
-    <span class="hljs-comment">//处理代理实例，并返回结果，这个函数不是显式调用，具体信息目前还不懂</span>
     <span class="hljs-meta">@Override</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;
-        Object result = method.invoke(rent, args);
-        <span class="hljs-keyword">return</span> result;
+        <span class="hljs-comment">//调用方法前做一些处理工作</span>
+        Object invoke = method.invoke(object, args);
+        <span class="hljs-comment">//调用方法后做一些处理工作</span>
+        <span class="hljs-keyword">return</span> invoke;
     &#125;
 &#125;
 
+
+
 <span class="hljs-comment">//测试</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
-    Host host=<span class="hljs-keyword">new</span> Host();<span class="hljs-comment">//真实角色</span>
-    ProxyInvocation px=<span class="hljs-keyword">new</span> ProxyInvocation();<span class="hljs-comment">//用来生成代理类</span>
-    px.setRent(host);<span class="hljs-comment">//传入要代理的接口</span>
-    Rent proxy =(Rent) px.getProxy();<span class="hljs-comment">//生成代理角色</span>
-    proxy.rent();
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        Host host=<span class="hljs-keyword">new</span> Host();
+        ProxyClass proxyClass=<span class="hljs-keyword">new</span> ProxyClass();<span class="hljs-comment">//生成代理类</span>
+        proxyClass.setObject(host);<span class="hljs-comment">//传入要代理的接口</span>
+        Rent proxy = (Rent) proxyClass.getProxy();<span class="hljs-comment">//</span>
+        proxy.home();
+    &#125;
 &#125;</code></pre>
 
 <h3 id="基于类的动态代理（待续）"><a href="#基于类的动态代理（待续）" class="headerlink" title="基于类的动态代理（待续）"></a>基于类的动态代理（待续）</h3><p>JDK动态代理的话，他有一个限制，就是它只能为接口创建代理实例，对于没有通过接口定义业务方法的类，需要通过CGLib来创建代理实例</p>

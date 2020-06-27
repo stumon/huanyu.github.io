@@ -1,0 +1,1721 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>秒杀项目-1 - 郭寰宇</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>郭寰宇的个人博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-06-27 21:23">
+      2020年6月27日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      9.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      148
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="秒杀项目（一）"><a href="#秒杀项目（一）" class="headerlink" title="秒杀项目（一）"></a>秒杀项目（一）</h1><h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1 前言"></a>1 前言</h2><p>设计一个秒杀系统。功能：解决秒杀超卖、恶意请求、链接暴露、MD5加密用户密码、Redis缓存热点数据、资源静态化、按钮控制、限流。并对秒杀接口进行压测</p>
+<p>流程图：</p>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200627215023.png" srcset="/img/loading.gif" alt="秒杀流程图"></p>
+<h2 id="2-实现登录功能"><a href="#2-实现登录功能" class="headerlink" title="2 实现登录功能"></a>2 实现登录功能</h2><h3 id="2-1-数据库设计"><a href="#2-1-数据库设计" class="headerlink" title="2.1 数据库设计"></a>2.1 数据库设计</h3><p>秒杀用户表：主要有用户id、手机号、密码、salt、头像、注册时间、最后一次登录时间、登录次数</p>
+<p>主键是ID，对密码做了两次MD5</p>
+<pre><code class="hljs sql"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> <span class="hljs-string">`miaosha_user`</span>;
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`miaosha_user`</span> (
+  <span class="hljs-string">`id`</span> <span class="hljs-built_in">bigint</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> AUTO_INCREMENT <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'用户ID，手机号码'</span>,
+  <span class="hljs-string">`nickname`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-string">`password`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">32</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'MD5(MD5(pass明文+固定salt) + salt)'</span>,
+  <span class="hljs-string">`salt`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">10</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-string">`head`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">128</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'头像，云存储的ID'</span>,
+  <span class="hljs-string">`register_date`</span> datetime <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'注册时间'</span>,
+  <span class="hljs-string">`last_login_date`</span> datetime <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'上蔟登录时间'</span>,
+  <span class="hljs-string">`login_count`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-string">'0'</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'登录次数'</span>,
+  PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`id`</span>)
+) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span> AUTO_INCREMENT=<span class="hljs-number">18912341246</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8mb4;</code></pre>
+
+<blockquote>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200625113944.png" srcset="/img/loading.gif" alt="image-20200625113939729"></p>
+</blockquote>
+<h3 id="2-2-明文密码两次MD5处理"><a href="#2-2-明文密码两次MD5处理" class="headerlink" title="2.2 明文密码两次MD5处理"></a>2.2 明文密码两次MD5处理</h3><p>http在网络上是以明文的形式传输的，所以用户登录时输入的密码是以明文的形式传输的，如果这个数据包在网络上被其他人劫持了，那么用户账户密码就有泄漏的风险，所以需要对用户密码做一些处理，这就是第一次MD5。</p>
+<p>服务端在接受到传入的密码后，也不是直接把这个MD5写入到数据库的，需要生成一个随机的salt，和第一次MD5处理后的结果，做一次拼装，再做一次MD5。把第二次MD5处理后的结果和salt同时写入到数据库中。</p>
+<p>第一次MD5：防止用户密码以明文的形式在网络上进行安全传输</p>
+<blockquote>
+<p>PASS=MD5(明文+固定salt)</p>
+</blockquote>
+<p>第二次MD5：保证数据库被盗后，用户密码不被泄漏</p>
+<blockquote>
+<p>PASS=MD5(用户输入+随机salt)</p>
+</blockquote>
+<p>引入MD5的依赖：</p>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>commons-codec<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>commons-codec<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.commons<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>commons-lang3<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.6<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+
+<p>对明文字符串做一次MD5：</p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">md5</span><span class="hljs-params">(String src)</span> </span>&#123;
+    <span class="hljs-keyword">return</span> DigestUtils.md5Hex(src);<span class="hljs-comment">//调用已有的工具类</span>
+&#125;</code></pre>
+
+<pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String salt = <span class="hljs-string">"1a2b3c4d"</span>;<span class="hljs-comment">//固定salt</span>
+<span class="hljs-comment">//把用户输入的密码转换成MD5</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">inputPassToFormPass</span><span class="hljs-params">(String inputPass)</span> </span>&#123;
+    String str=<span class="hljs-string">""</span>+salt.charAt(<span class="hljs-number">0</span>)+salt.charAt(<span class="hljs-number">2</span>)+formPass+salt.charAt(<span class="hljs-number">5</span>)+salt.charAt(<span class="hljs-number">4</span>);
+    <span class="hljs-keyword">return</span> mdf(str);
+&#125;
+<span class="hljs-comment">//服务端接受到表单条件的密码后，再做一次MD5，就得到了数据库中的密码</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">formPassToDBPass</span><span class="hljs-params">(String formPass, String salt)</span> </span>&#123;
+    String str = <span class="hljs-string">""</span>+salt.charAt(<span class="hljs-number">0</span>)+salt.charAt(<span class="hljs-number">2</span>) + formPass +salt.charAt(<span class="hljs-number">5</span>) + salt.charAt(<span class="hljs-number">4</span>);
+    <span class="hljs-keyword">return</span> md5(str);
+&#125;
+<span class="hljs-comment">//合并上面两个方法，就得到了用户密码经过两次MD5后的密码，把这个密码和salt一起输入到数据库中</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">inputPassToDbPass</span><span class="hljs-params">(String inputPass, String saltDB)</span> </span>&#123;
+    String formPass = inputPassToFormPass(inputPass);
+    String dbPass = formPassToDBPass(formPass, saltDB);
+    <span class="hljs-keyword">return</span> dbPass;
+&#125;</code></pre>
+
+<h3 id="2-3-JSR303参数校验-全局异常处理器"><a href="#2-3-JSR303参数校验-全局异常处理器" class="headerlink" title="2.3 JSR303参数校验+全局异常处理器"></a>2.3 JSR303参数校验+全局异常处理器</h3><h3 id="实现登录功能"><a href="#实现登录功能" class="headerlink" title="实现登录功能"></a>实现登录功能</h3><p>前端：form表单</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"loginForm"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"loginForm"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"post"</span>  <span class="hljs-attr">style</span>=<span class="hljs-string">"width:50%; margin:0 auto"</span>&gt;</span>
+ 
+    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"text-align:center; margin-bottom: 20px"</span>&gt;</span>用户登录<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+ 
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group"</span>&gt;</span>
+           <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
+               <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-label col-md-4"</span>&gt;</span>请输入手机号码<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-md-5"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"mobile"</span> <span class="hljs-attr">name</span> = <span class="hljs-string">"mobile"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-control"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"手机号码"</span> <span class="hljs-attr">required</span>=<span class="hljs-string">"true"</span>  <span class="hljs-attr">minlength</span>=<span class="hljs-string">"11"</span> <span class="hljs-attr">maxlength</span>=<span class="hljs-string">"11"</span> /&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-md-1"</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+ 
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group"</span>&gt;</span>
+             <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-label col-md-4"</span>&gt;</span>请输入密码<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-md-5"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-control"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"password"</span>  <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"密码"</span> <span class="hljs-attr">required</span>=<span class="hljs-string">"true"</span> <span class="hljs-attr">minlength</span>=<span class="hljs-string">"6"</span> <span class="hljs-attr">maxlength</span>=<span class="hljs-string">"16"</span> /&gt;</span>
+                   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+              <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+ 
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
+                 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-md-5"</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-primary btn-block"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"reset"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"reset()"</span>&gt;</span>重置<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+                    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-md-5"</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-primary btn-block"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"login()"</span>&gt;</span>登录<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+                    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+ 
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></code></pre>
+
+<p>点击登录按钮后，需要去验证一下这个form表单里面的东西，如果验证通过，就会去调用 doLogin();方法</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">login</span>(<span class="hljs-params"></span>)</span>&#123;
+    $(<span class="hljs-string">"#loginForm"</span>).validate(&#123;
+        submitHandler:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">form</span>)</span>&#123;
+             doLogin();
+        &#125;
+    &#125;);
+&#125;</code></pre>
+
+<p>点击登录按钮后，就是ajax的一个post提交，</p>
+<p>这里获取到form表单中提交的密码和salt，然后进行第一次MD5</p>
+<p><code>mobile:$(&quot;#mobile&quot;).val()</code>：这个是手机号<br><code>password: password</code>：这个是用户输入的密码进行第一次MD5加密后的加密密码</p>
+<p>成功就进行success的一个回调，失败就进行error回调</p>
+<p><code>g_showLoading()</code>：一个登录框，显示在加载</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doLogin</span>(<span class="hljs-params"></span>)</span>&#123;
+    g_showLoading();
+ 
+    <span class="hljs-keyword">var</span> inputPass = $(<span class="hljs-string">"#password"</span>).val();
+    <span class="hljs-keyword">var</span> salt = g_passsword_salt;
+    <span class="hljs-keyword">var</span> str = <span class="hljs-string">""</span>+salt.charAt(<span class="hljs-number">0</span>)+salt.charAt(<span class="hljs-number">2</span>) + inputPass +salt.charAt(<span class="hljs-number">5</span>) + salt.charAt(<span class="hljs-number">4</span>);
+    <span class="hljs-keyword">var</span> password = md5(str);
+ 
+    $.ajax(&#123;
+        url: <span class="hljs-string">"/login/do_login"</span>,
+        type: <span class="hljs-string">"POST"</span>,
+        data:&#123;
+            mobile:$(<span class="hljs-string">"#mobile"</span>).val(),
+            password: password
+        &#125;,
+        success:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;
+            layer.closeAll();
+            <span class="hljs-comment">// console.log(data);</span>
+            <span class="hljs-keyword">if</span>(data.code == <span class="hljs-number">0</span>)&#123;
+                layer.msg(<span class="hljs-string">"成功"</span>);
+                <span class="hljs-built_in">window</span>.location.href=<span class="hljs-string">"/goods/to_list"</span>;
+            &#125;<span class="hljs-keyword">else</span>&#123;
+                layer.msg(data.msg);
+            &#125;
+        &#125;,
+        error:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+            layer.closeAll();
+            <span class="hljs-comment">// console.log(data);</span>
+        &#125;
+    &#125;);
+&#125;</code></pre>
+
+<p>我们可以用<code>console.log(data);</code>打印一下数据，看看登录成功没有，控制台可以看到，成功打印出来用户名和密码，登录成功。</p>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200625122106.png" srcset="/img/loading.gif" alt="image-20200625122103414"></p>
+<p>继续完善登录，当我们收到参数之后，第一步就是要做参数校验，这里使用<code>JSR303</code>参数校验</p>
+<p>首先引入依赖</p>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-validation<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+
+<p>使用方法：在需要校验的参数上加一个注解@Valid，然后在需要校验的类上加注解</p>
+<pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/do_login"</span>)
+<span class="hljs-meta">@ResponseBody</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> Result&lt;Boolean&gt; <span class="hljs-title">doLogin</span><span class="hljs-params">(HttpServletResponse response, @Valid LoginVo loginVo)</span> </span>&#123;
+    log.info(loginVo.toString());
+    <span class="hljs-comment">//登录</span>
+    userService.login(response, loginVo);
+    <span class="hljs-keyword">return</span> Result.success(<span class="hljs-keyword">true</span>);
+&#125;</code></pre>
+
+<p>在需要校验的类上加注解，来标注这个属性的格式，@NotNull是不为空，@IsMobile和@Length(min=32)是我们自己定义的注解</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Data</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LoginVo</span> </span>&#123;
+ 
+    <span class="hljs-meta">@NotNull</span>
+    <span class="hljs-meta">@IsMobile</span>
+    <span class="hljs-keyword">private</span> String mobile;
+ 
+    <span class="hljs-meta">@NotNull</span>
+    <span class="hljs-meta">@Length</span>(min=<span class="hljs-number">32</span>)
+    <span class="hljs-keyword">private</span> String password;
+ 
+&#125;</code></pre>
+
+<p>自定义注解</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Target</span>(&#123; METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER &#125;)
+<span class="hljs-meta">@Retention</span>(RUNTIME)
+<span class="hljs-meta">@Documented</span>
+<span class="hljs-meta">@Constraint</span>(validatedBy = &#123;IsMobileValidator<span class="hljs-class">.<span class="hljs-keyword">class</span> &#125;)//看到<span class="hljs-title">validatedBy</span>后，系统会调用校验器，来进行校验</span>
+<span class="hljs-class"><span class="hljs-title">public</span> @<span class="hljs-title">interface</span>  <span class="hljs-title">IsMobile</span> </span>&#123;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">required</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">true</span></span>;<span class="hljs-comment">//默认必须有</span>
+ 
+    <span class="hljs-function">String <span class="hljs-title">message</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> "手机号码格式错误"</span>;<span class="hljs-comment">//message作用：如果校验不通过，会提示给用户的提示信息</span>
+ 
+    Class&lt;?&gt;[] groups() <span class="hljs-keyword">default</span> &#123; &#125;;
+ 
+    Class&lt;? extends Payload&gt;[] payload() <span class="hljs-keyword">default</span> &#123; &#125;;
+&#125;</code></pre>
+
+<p>定义校验器，校验器必须继承ConstraintValidator，它有两个参数，第一个数注解的类型，第二个是修饰字段的类型，就是校验参数的类型</p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IsMobileValidator</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ConstraintValidator</span>&lt;<span class="hljs-title">IsMobile</span>, <span class="hljs-title">String</span>&gt; </span>&#123;
+ 
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> required = <span class="hljs-keyword">false</span>;<span class="hljs-comment">//required是注解是否为空，required=true，是不可以为空，false是可以为空</span>
+    <span class="hljs-comment">//初始化方法，拿到注解</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initialize</span><span class="hljs-params">(IsMobile constraintAnnotation)</span> </span>&#123;
+        required = constraintAnnotation.required();
+    &#125;
+    <span class="hljs-comment">//判断参数是否合法</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isValid</span><span class="hljs-params">(String value, ConstraintValidatorContext context)</span> </span>&#123;
+        <span class="hljs-keyword">if</span>(required) &#123;<span class="hljs-comment">//如果参数不可以为空，就判断是否合法</span>
+            <span class="hljs-keyword">return</span> ValidatorUtil.isMobile(value);
+        &#125;<span class="hljs-keyword">else</span> &#123;<span class="hljs-comment">//如果参数可以为空</span>
+            <span class="hljs-keyword">if</span>(StringUtils.isEmpty(value)) &#123;<span class="hljs-comment">//如果参数为空，就合法</span>
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+            &#125;<span class="hljs-keyword">else</span> &#123;<span class="hljs-comment">//如果参数不为空，就判断参数是否合法</span>
+                <span class="hljs-keyword">return</span> ValidatorUtil.isMobile(value);
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+<p>验证参数是否合法</p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ValidatorUtil</span> </span>&#123;
+    <span class="hljs-comment">//手机正则表达式，要求以1开头，长度为11位的数字</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Pattern mobile_pattern = Pattern.compile(<span class="hljs-string">"1\\d&#123;10&#125;"</span>);
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isMobile</span><span class="hljs-params">(String src)</span> </span>&#123;
+        <span class="hljs-keyword">if</span>(StringUtils.isEmpty(src)) &#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        &#125;
+        Matcher m = mobile_pattern.matcher(src);
+        <span class="hljs-keyword">return</span> m.matches();
+    &#125;
+&#125;</code></pre>
+
+<p>全局异常拦截器：拦截异常、输出信息</p>
+<pre><code class="hljs java"><span class="hljs-meta">@ControllerAdvice</span>
+<span class="hljs-meta">@ResponseBody</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GlobalExceptionHandler</span> </span>&#123;
+    <span class="hljs-meta">@ExceptionHandler</span>(value=Exception<span class="hljs-class">.<span class="hljs-keyword">class</span>)//想拦截所有异常，所以用<span class="hljs-title">Exception</span>.<span class="hljs-title">class</span></span>
+<span class="hljs-class">    <span class="hljs-title">public</span> <span class="hljs-title">Result</span>&lt;<span class="hljs-title">String</span>&gt; <span class="hljs-title">exceptionHandler</span>(<span class="hljs-title">HttpServletRequest</span> <span class="hljs-title">request</span>, <span class="hljs-title">Exception</span> <span class="hljs-title">e</span>)</span>&#123;
+        e.printStackTrace();
+        <span class="hljs-keyword">if</span>(e <span class="hljs-keyword">instanceof</span> GlobalException) &#123;
+            GlobalException ex = (GlobalException)e;
+            <span class="hljs-keyword">return</span> Result.error(ex.getCm());
+        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(e <span class="hljs-keyword">instanceof</span> BindException) &#123;<span class="hljs-comment">//如果这个异常是绑定异常</span>
+            BindException ex = (BindException)e;
+            List&lt;ObjectError&gt; errors = ex.getAllErrors();<span class="hljs-comment">//得到异常列表，有很多异常，这里只取第一个</span>
+            ObjectError error = errors.get(<span class="hljs-number">0</span>);<span class="hljs-comment">//只取第一个异常</span>
+            String msg = error.getDefaultMessage();<span class="hljs-comment">//拿到异常后，从异常中得到一次信息</span>
+            <span class="hljs-keyword">return</span> Result.error(CodeMsg.BIND_ERROR.fillArgs(msg));
+        &#125;<span class="hljs-keyword">else</span> &#123;
+            <span class="hljs-keyword">return</span> Result.error(CodeMsg.SERVER_ERROR);<span class="hljs-comment">//如果不是绑定异常，就输出一个通用异常</span>
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+<p>小结一下：登录时，如果出现异常就往外抛出，异常拦截器拦截异常，然后返回给用户提示信息</p>
+<h3 id="2-4-分布式session"><a href="#2-4-分布式session" class="headerlink" title="2.4 分布式session"></a>2.4 分布式session</h3><p>用redis管理session</p>
+<p>登录成功后，给用户生成一个token，用来标识用户，将这个token写到cookie中，传到客户端，客户端在随后的访问中，都在cookie中上传这个token，服务端拿到cookie中，从cookie中去到token，根据这个token取用户对应的session信息。</p>
+<p>使用UUID来生成一个token</p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UUIDUtil</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">uuid</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> UUID.randomUUID().toString().replace(<span class="hljs-string">"-"</span>, <span class="hljs-string">""</span>);
+    &#125;
+&#125;</code></pre>
+
+<p>再把token写到cookie之前，我们要先标识一下这个token对应哪个用户，所以我们需要把用户信息写到redis中。这里是把session信息存到第三方缓存中</p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String COOKI_NAME_TOKEN = <span class="hljs-string">"token"</span>;
+ 
+<span class="hljs-meta">@Autowired</span>
+RedisService redisService;
+ 
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">login</span><span class="hljs-params">(HttpServletResponse response, LoginVo loginVo)</span> </span>&#123;
+    <span class="hljs-keyword">if</span>(loginVo == <span class="hljs-keyword">null</span>) &#123;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> GlobalException(CodeMsg.SERVER_ERROR);
+    &#125;
+    String mobile = loginVo.getMobile();
+    String formPass = loginVo.getPassword();
+    <span class="hljs-comment">//判断手机号是否存在</span>
+    MiaoshaUser user = getById(Long.parseLong(mobile));
+    <span class="hljs-keyword">if</span>(user == <span class="hljs-keyword">null</span>) &#123;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> GlobalException(CodeMsg.MOBILE_NOT_EXIST);
+    &#125;
+    <span class="hljs-comment">//验证密码</span>
+    String dbPass = user.getPassword();
+    String saltDB = user.getSalt();
+    String calcPass = MD5Util.formPassToDBPass(formPass, saltDB);
+    <span class="hljs-keyword">if</span>(!calcPass.equals(dbPass)) &#123;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> GlobalException(CodeMsg.PASSWORD_ERROR);
+    &#125;
+    <span class="hljs-comment">//生成cookie</span>
+    String token     = UUIDUtil.uuid();
+    addCookie(response, token, user);
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+&#125;
+ 
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addCookie</span><span class="hljs-params">(HttpServletResponse response, String token, MiaoshaUser user)</span> </span>&#123;
+    redisService.set(MiaoshaUserKey.token, token, user);
+    Cookie cookie = <span class="hljs-keyword">new</span> Cookie(COOKI_NAME_TOKEN, token);<span class="hljs-comment">//cookie传两个值，一个name，一个value</span>
+    cookie.setMaxAge(MiaoshaUserKey.token.expireSeconds());<span class="hljs-comment">//设置cookie的有效期为session的有效期</span>
+    cookie.setPath(<span class="hljs-string">"/"</span>);
+    response.addCookie(cookie);<span class="hljs-comment">//把cookie写入到响应中</span>
+&#125;
+ 
+<span class="hljs-comment">//MiaoshaUserKey</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MiaoshaUserKey</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BasePrefix</span></span>&#123;
+ 
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> TOKEN_EXPIRE = <span class="hljs-number">3600</span>*<span class="hljs-number">24</span> * <span class="hljs-number">2</span>;<span class="hljs-comment">//设置有效期为两天</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">MiaoshaUserKey</span><span class="hljs-params">(<span class="hljs-keyword">int</span> expireSeconds, String prefix)</span> </span>&#123;
+        <span class="hljs-keyword">super</span>(expireSeconds, prefix);
+    &#125;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> MiaoshaUserKey token = <span class="hljs-keyword">new</span> MiaoshaUserKey(TOKEN_EXPIRE, <span class="hljs-string">"tk"</span>);
+&#125;</code></pre>
+
+<p>这里登陆功能基本实现了，现在让登陆成功后，跳转到商品页面<code>/goods/to_list</code></p>
+<pre><code class="hljs js">success:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;
+            layer.closeAll();
+            <span class="hljs-comment">// console.log(data);</span>
+            <span class="hljs-keyword">if</span>(data.code == <span class="hljs-number">0</span>)&#123;
+                layer.msg(<span class="hljs-string">"成功"</span>);
+                <span class="hljs-built_in">window</span>.location.href=<span class="hljs-string">"/goods/to_list"</span>;
+            &#125;<span class="hljs-keyword">else</span>&#123;
+                layer.msg(data.msg);
+            &#125;
+        &#125;</code></pre>
+
+<p>商品页面<code>goods_list</code>代码如下：</p>
+<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">HTML</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">xmlns:th</span>=<span class="hljs-string">"http://www.thymeleaf.org"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>商品列表<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"Content-Type"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"'hello:'+$&#123;user.nickname&#125;"</span> &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+
+<p>对应的Controller代码如下：负责跳转到商品页面</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Controller</span>
+<span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/goods"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GoodsController</span> </span>&#123;
+ 
+    <span class="hljs-meta">@Autowired</span>
+    MiaoshaUserService userService;
+ 
+    <span class="hljs-meta">@Autowired</span>
+    RedisService redisService;
+ 
+    <span class="hljs-comment">//跳转到商品列表页</span>
+    <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/to_list"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">list</span><span class="hljs-params">(Model model,MiaoshaUser user)</span> </span>&#123;
+        model.addAttribute(<span class="hljs-string">"user"</span>, user);
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"goods_list"</span>;
+    &#125;
+&#125;</code></pre>
+
+<p>这里的逻辑是：用户登录成功后，自动跳转到<code>/goods/to_list</code>，而后端收到这个请求后，去执行上面代码，然后<code>return &quot;goods_list&quot;;</code>，返回给前端<code>goods_list_html</code>页面。这个页面中的数据已经在方法<code>list</code>中添加进去。后续客户端发起请求时就会携带这个token，服务端就可以将这个token取出来</p>
+<p>优化：让cookie的有效期为用户最近登录的时间+cookie的持续时间，而不是用户第一次登录的时间+cookie的持续时间</p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> MiaoshaUser <span class="hljs-title">getByToken</span><span class="hljs-params">(HttpServletResponse response, String token)</span> </span>&#123;
+    <span class="hljs-keyword">if</span>(StringUtils.isEmpty(token)) &#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    &#125;
+    MiaoshaUser user = redisService.get(MiaoshaUserKey.token, token, MiaoshaUser<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+    <span class="hljs-comment">//延长有效期</span>
+    <span class="hljs-keyword">if</span>(user != <span class="hljs-keyword">null</span>) &#123;
+        addCookie(response, token, user);
+    &#125;
+    <span class="hljs-keyword">return</span> user;
+&#125;</code></pre>
+
+<p>实现User对象注入到方法中。</p>
+<p>思路：实现一个ArgumentResolve</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WebConfig</span>  <span class="hljs-keyword">extends</span> <span class="hljs-title">WebMvcConfigurerAdapter</span></span>&#123;
+ 
+    <span class="hljs-meta">@Autowired</span>
+    UserArgumentResolver userArgumentResolver;
+ 
+    <span class="hljs-meta">@Autowired</span>
+    AccessInterceptor accessInterceptor;
+    <span class="hljs-comment">//SpringMVC的Controller可以带很多参数，比如Request、Response、Model等。这些参数值的来源就是是Spring框架调用addArgumentResolvers方法，往Controller方法里面的参数赋值</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addArgumentResolvers</span><span class="hljs-params">(List&lt;HandlerMethodArgumentResolver&gt; argumentResolvers)</span> </span>&#123;
+        argumentResolvers.add(userArgumentResolver);<span class="hljs-comment">//添加一个argumentResolvers</span>
+    &#125;
+ 
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addInterceptors</span><span class="hljs-params">(InterceptorRegistry registry)</span> </span>&#123;
+        registry.addInterceptor(accessInterceptor);
+    &#125;
+ 
+&#125;</code></pre>
+
+<p>实现argumentResolvers</p>
+<pre><code class="hljs java"> 
+<span class="hljs-meta">@Service</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserArgumentResolver</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">HandlerMethodArgumentResolver</span> </span>&#123;
+ 
+    <span class="hljs-meta">@Autowired</span>
+    MiaoshaUserService userService;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">supportsParameter</span><span class="hljs-params">(MethodParameter parameter)</span> </span>&#123;
+        Class&lt;?&gt; clazz = parameter.getParameterType();<span class="hljs-comment">//获得参数类型</span>
+        <span class="hljs-keyword">return</span> clazz==MiaoshaUser<span class="hljs-class">.<span class="hljs-keyword">class</span></span>;
+    &#125;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">resolveArgument</span><span class="hljs-params">(MethodParameter parameter, ModelAndViewContainer mavContainer,</span></span>
+<span class="hljs-function"><span class="hljs-params">                                  NativeWebRequest webRequest, WebDataBinderFactory binderFactory)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
+         <span class="hljs-comment">/**</span>
+<span class="hljs-comment">         *  threadlocal 存储线程副本 保证线程不冲突</span>
+<span class="hljs-comment">         */</span>
+        <span class="hljs-keyword">return</span> UserContext.getUser();<span class="hljs-comment">//后面实现了一个拦截器，在拦截器中实现参数解析，这里只需要获取即可</span>
+    &#125;
+ 
+&#125;</code></pre>
+
+
+
+<h2 id="3-实现秒杀功能"><a href="#3-实现秒杀功能" class="headerlink" title="3 实现秒杀功能"></a>3 实现秒杀功能</h2><p>逻辑：用户浏览商品列表，选择商品，进入商品详情页，点击秒杀按钮，秒杀成功，进入订单详情页</p>
+<h3 id="3-1-数据库设计"><a href="#3-1-数据库设计" class="headerlink" title="3.1 数据库设计"></a>3.1 数据库设计</h3><p>这里有四个表：商品表、订单表、秒杀商品表、秒杀订单表。如果只有商品表和订单表，后续不好维护，所以分成4个表。</p>
+<p>商品表</p>
+<pre><code class="hljs sql"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> <span class="hljs-string">`goods`</span>;
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`goods`</span> (
+  <span class="hljs-string">`id`</span> <span class="hljs-built_in">BIGINT</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> AUTO_INCREMENT <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'商品ID'</span>,
+  <span class="hljs-string">`goods_name`</span> <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">16</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'商品名称'</span>,
+  <span class="hljs-string">`goods_title`</span> <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">64</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'商品标题'</span>,
+  <span class="hljs-string">`goods_img`</span> <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">64</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'商品的图片'</span>,
+  <span class="hljs-string">`goods_detail`</span> LONGTEXT <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'商品的详情介绍'</span>,
+  <span class="hljs-string">`goods_price`</span> <span class="hljs-built_in">DECIMAL</span>(<span class="hljs-number">10</span>,<span class="hljs-number">2</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-string">'0.00'</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'商品单价'</span>,
+  <span class="hljs-string">`goods_stock`</span> <span class="hljs-built_in">INT</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-string">'0'</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'商品库存，-1表示没有限制'</span>,
+  PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`id`</span>)
+) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">INNODB</span> AUTO_INCREMENT=<span class="hljs-number">5</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8mb4;</code></pre>
+
+<p>订单表</p>
+<pre><code class="hljs sql"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> <span class="hljs-string">`order_info`</span>;
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`order_info`</span> (
+  <span class="hljs-string">`id`</span> <span class="hljs-built_in">BIGINT</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> AUTO_INCREMENT,
+  <span class="hljs-string">`user_id`</span> <span class="hljs-built_in">BIGINT</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'用户ID'</span>,
+  <span class="hljs-string">`goods_id`</span> <span class="hljs-built_in">BIGINT</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'商品ID'</span>,
+  <span class="hljs-string">`delivery_addr_id`</span> <span class="hljs-built_in">BIGINT</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'收获地址ID'</span>,
+  <span class="hljs-string">`goods_name`</span> <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">16</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'冗余过来的商品名称'</span>,
+  <span class="hljs-string">`goods_count`</span> <span class="hljs-built_in">INT</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-string">'0'</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'商品数量'</span>,
+  <span class="hljs-string">`goods_price`</span> <span class="hljs-built_in">DECIMAL</span>(<span class="hljs-number">10</span>,<span class="hljs-number">2</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-string">'0.00'</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'商品单价'</span>,
+  <span class="hljs-string">`order_channel`</span> <span class="hljs-built_in">TINYINT</span>(<span class="hljs-number">4</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-string">'0'</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'1pc，2android，3ios'</span>,
+  <span class="hljs-string">`status`</span> <span class="hljs-built_in">TINYINT</span>(<span class="hljs-number">4</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-string">'0'</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'订单状态，0新建未支付，1已支付，2已发货，3已收货，4已退款，5已完成'</span>,
+  <span class="hljs-string">`create_date`</span> DATETIME <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'订单的创建时间'</span>,
+  <span class="hljs-string">`pay_date`</span> DATETIME <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'支付时间'</span>,
+  PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`id`</span>)
+) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">INNODB</span> AUTO_INCREMENT=<span class="hljs-number">1565</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8mb4;</code></pre>
+
+<p>秒杀商品表</p>
+<pre><code class="hljs sql"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> <span class="hljs-string">`miaosha_goods`</span>;
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`miaosha_goods`</span> (
+  <span class="hljs-string">`id`</span> <span class="hljs-built_in">BIGINT</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> AUTO_INCREMENT <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'秒杀的商品表'</span>,
+  <span class="hljs-string">`goods_id`</span> <span class="hljs-built_in">BIGINT</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'商品Id'</span>,
+  <span class="hljs-string">`miaosha_price`</span> <span class="hljs-built_in">DECIMAL</span>(<span class="hljs-number">10</span>,<span class="hljs-number">2</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-string">'0.00'</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'秒杀价'</span>,
+  <span class="hljs-string">`stock_count`</span> <span class="hljs-built_in">INT</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'库存数量'</span>,
+  <span class="hljs-string">`start_date`</span> DATETIME <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'秒杀开始时间'</span>,
+  <span class="hljs-string">`end_date`</span> DATETIME <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'秒杀结束时间'</span>,
+  PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`id`</span>)
+) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">INNODB</span> AUTO_INCREMENT=<span class="hljs-number">5</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8mb4;</code></pre>
+
+<p>秒杀订单表</p>
+<pre><code class="hljs sql"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> <span class="hljs-string">`miaosha_order`</span>;
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`miaosha_order`</span> (
+  <span class="hljs-string">`id`</span> <span class="hljs-built_in">BIGINT</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> AUTO_INCREMENT,
+  <span class="hljs-string">`user_id`</span> <span class="hljs-built_in">BIGINT</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'用户ID'</span>,
+  <span class="hljs-string">`order_id`</span> <span class="hljs-built_in">BIGINT</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'订单ID'</span>,
+  <span class="hljs-string">`goods_id`</span> <span class="hljs-built_in">BIGINT</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'商品ID'</span>,
+  PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`id`</span>),
+  <span class="hljs-keyword">UNIQUE</span> <span class="hljs-keyword">KEY</span> <span class="hljs-string">`u_uid_gid`</span> (<span class="hljs-string">`user_id`</span>,<span class="hljs-string">`goods_id`</span>) <span class="hljs-keyword">USING</span> BTREE
+) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">INNODB</span> AUTO_INCREMENT=<span class="hljs-number">1551</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8mb4;</code></pre>
+
+<p>表对应的对象代码如下：</p>
+<pre><code class="hljs java"><span class="hljs-comment">//所有的getter和setter方法都省略</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Goods</span> </span>&#123;
+    <span class="hljs-keyword">private</span> Long id;
+    <span class="hljs-keyword">private</span> String goodsName;
+    <span class="hljs-keyword">private</span> String goodsTitle;
+    <span class="hljs-keyword">private</span> String goodsImg;
+    <span class="hljs-keyword">private</span> String goodsDetail;
+    <span class="hljs-keyword">private</span> Double goodsPrice;
+    <span class="hljs-keyword">private</span> Integer goodsStock;
+&#125;
+ 
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MiaoshaGoods</span> </span>&#123;
+    <span class="hljs-keyword">private</span> Long id;
+    <span class="hljs-keyword">private</span> Long goodsId;
+    <span class="hljs-keyword">private</span> Integer stockCount;
+    <span class="hljs-keyword">private</span> Date startDate;
+    <span class="hljs-keyword">private</span> Date endDate;
+&#125;
+ 
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MiaoshaOrder</span> </span>&#123;
+    <span class="hljs-keyword">private</span> Long id;
+    <span class="hljs-keyword">private</span> Long userId;
+    <span class="hljs-keyword">private</span> Long  orderId;
+    <span class="hljs-keyword">private</span> Long goodsId;
+&#125;
+ 
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MiaoshaUser</span> </span>&#123;
+    <span class="hljs-keyword">private</span> Long id;
+    <span class="hljs-keyword">private</span> String nickname;
+    <span class="hljs-keyword">private</span> String password;
+    <span class="hljs-keyword">private</span> String salt;
+    <span class="hljs-keyword">private</span> String head;
+    <span class="hljs-keyword">private</span> Date registerDate;
+    <span class="hljs-keyword">private</span> Date lastLoginDate;
+    <span class="hljs-keyword">private</span> Integer loginCount;
+&#125;
+ 
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OrderInfo</span> </span>&#123;
+    <span class="hljs-keyword">private</span> Long id;
+    <span class="hljs-keyword">private</span> Long userId;
+    <span class="hljs-keyword">private</span> Long goodsId;
+    <span class="hljs-keyword">private</span> Long  deliveryAddrId;
+    <span class="hljs-keyword">private</span> String goodsName;
+    <span class="hljs-keyword">private</span> Integer goodsCount;
+    <span class="hljs-keyword">private</span> Double goodsPrice;
+    <span class="hljs-keyword">private</span> Integer orderChannel;
+    <span class="hljs-keyword">private</span> Integer status;
+    <span class="hljs-keyword">private</span> Date createDate;
+    <span class="hljs-keyword">private</span> Date payDate;
+&#125;
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> id;
+    <span class="hljs-keyword">private</span> String name;
+&#125;</code></pre>
+
+<h3 id="3-2-商品列表页"><a href="#3-2-商品列表页" class="headerlink" title="3.2 商品列表页"></a>3.2 商品列表页</h3><p><code>controller</code>层：调用具体的业务</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Controller</span>
+<span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/goods"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GoodsController</span> </span>&#123;
+ 
+    <span class="hljs-meta">@Autowired</span>
+    MiaoshaUserService userService;
+ 
+    <span class="hljs-meta">@Autowired</span>
+    RedisService redisService;
+ 
+    <span class="hljs-meta">@Autowired</span>
+    GoodsService goodsService;<span class="hljs-comment">//把service注入到controller</span>
+ 
+    <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/to_list"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">list</span><span class="hljs-params">(Model model,MiaoshaUser user)</span> </span>&#123;
+        model.addAttribute(<span class="hljs-string">"user"</span>, user);
+        <span class="hljs-comment">//查询商品列表</span>
+        List&lt;GoodsVo&gt; goodsList = goodsService.listGoodsVo();<span class="hljs-comment">//查询列表</span>
+        model.addAttribute(<span class="hljs-string">"goodsList"</span>, goodsList);<span class="hljs-comment">//传到页面上</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"goods_list"</span>;<span class="hljs-comment">//进入到商品列表页面</span>
+    &#125;
+ 
+    <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/to_detail/&#123;goodsId&#125;"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">detail</span><span class="hljs-params">(Model model,MiaoshaUser user,</span></span>
+<span class="hljs-function"><span class="hljs-params">            @PathVariable(<span class="hljs-string">"goodsId"</span>)</span><span class="hljs-keyword">long</span> goodsId) </span>&#123;
+        model.addAttribute(<span class="hljs-string">"user"</span>, user);
+ 
+        GoodsVo goods = goodsService.getGoodsVoByGoodsId(goodsId);
+        model.addAttribute(<span class="hljs-string">"goods"</span>, goods);
+ 
+        <span class="hljs-keyword">long</span> startAt = goods.getStartDate().getTime();
+        <span class="hljs-keyword">long</span> endAt = goods.getEndDate().getTime();
+        <span class="hljs-keyword">long</span> now = System.currentTimeMillis();
+ 
+        <span class="hljs-keyword">int</span> miaoshaStatus = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">int</span> remainSeconds = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">if</span>(now &lt; startAt ) &#123;<span class="hljs-comment">//秒杀还没开始，倒计时</span>
+            miaoshaStatus = <span class="hljs-number">0</span>;
+            remainSeconds = (<span class="hljs-keyword">int</span>)((startAt - now )/<span class="hljs-number">1000</span>);
+        &#125;<span class="hljs-keyword">else</span>  <span class="hljs-keyword">if</span>(now &gt; endAt)&#123;<span class="hljs-comment">//秒杀已经结束</span>
+            miaoshaStatus = <span class="hljs-number">2</span>;
+            remainSeconds = -<span class="hljs-number">1</span>;
+        &#125;<span class="hljs-keyword">else</span> &#123;<span class="hljs-comment">//秒杀进行中</span>
+            miaoshaStatus = <span class="hljs-number">1</span>;
+            remainSeconds = <span class="hljs-number">0</span>;
+        &#125;
+        model.addAttribute(<span class="hljs-string">"miaoshaStatus"</span>, miaoshaStatus);
+        model.addAttribute(<span class="hljs-string">"remainSeconds"</span>, remainSeconds);
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"goods_detail"</span>;
+    &#125;
+ 
+&#125;</code></pre>
+
+<p><code>service</code>层：具体的业务</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Service</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GoodsService</span> </span>&#123;
+ 
+    <span class="hljs-meta">@Autowired</span>
+    GoodsDao goodsDao;<span class="hljs-comment">//引入dao</span>
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;GoodsVo&gt; <span class="hljs-title">listGoodsVo</span><span class="hljs-params">()</span></span>&#123;
+        <span class="hljs-keyword">return</span> goodsDao.listGoodsVo();
+    &#125;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> GoodsVo <span class="hljs-title">getGoodsVoByGoodsId</span><span class="hljs-params">(<span class="hljs-keyword">long</span> goodsId)</span> </span>&#123;
+        <span class="hljs-keyword">return</span> goodsDao.getGoodsVoByGoodsId(goodsId);
+    &#125;
+ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">reduceStock</span><span class="hljs-params">(GoodsVo goods)</span> </span>&#123;
+        MiaoshaGoods g = <span class="hljs-keyword">new</span> MiaoshaGoods();
+        g.setGoodsId(goods.getId());
+        goodsDao.reduceStock(g);
+    &#125;
+&#125;</code></pre>
+
+<p><code>dao</code>层：从数据库中查询数据，数据设计到两个表，所以要使用联合查询</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Mapper</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">GoodsDao</span> </span>&#123;
+    <span class="hljs-comment">//查询商品表中的所有信息、秒杀表中的商品数量、开始时间、结束时间、秒杀价格</span>
+    <span class="hljs-meta">@Select</span>(<span class="hljs-string">"select g.*,mg.stock_count, mg.start_date, mg.end_date,mg.miaosha_price from miaosha_goods mg left join goods g on mg.goods_id = g.id"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;GoodsVo&gt; <span class="hljs-title">listGoodsVo</span><span class="hljs-params">()</span></span>;
+<span class="hljs-comment">//</span>
+    <span class="hljs-meta">@Select</span>(<span class="hljs-string">"select g.*,mg.stock_count, mg.start_date, mg.end_date,mg.miaosha_price from miaosha_goods mg left join goods g on mg.goods_id = g.id where g.id = #&#123;goodsId&#125;"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> GoodsVo <span class="hljs-title">getGoodsVoByGoodsId</span><span class="hljs-params">(@Param(<span class="hljs-string">"goodsId"</span>)</span><span class="hljs-keyword">long</span> goodsId)</span>;
+ 
+    <span class="hljs-meta">@Update</span>(<span class="hljs-string">"update miaosha_goods set stock_count = stock_count - 1 where goods_id = #&#123;goodsId&#125;"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">reduceStock</span><span class="hljs-params">(MiaoshaGoods g)</span></span>;
+ 
+&#125;</code></pre>
+
+<p><code>VO</code>层：页面展示的数据由商品表和秒杀商品表的数据共同展示，所以专门再建立一个视图层对象类，将这两个类中想要查询的数据，都放到对应的VO中</p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GoodsVo</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Goods</span></span>&#123;
+    <span class="hljs-keyword">private</span> Double miaoshaPrice;
+    <span class="hljs-keyword">private</span> Integer stockCount;
+    <span class="hljs-keyword">private</span> Date startDate;
+    <span class="hljs-keyword">private</span> Date endDate;
+&#125;</code></pre>
+
+<p>对应的前端页面：<code>goods_list.html</code></p>
+<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">HTML</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">xmlns:th</span>=<span class="hljs-string">"http://www.thymeleaf.org"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>商品列表<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"Content-Type"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> /&gt;</span>
+    <span class="hljs-comment">&lt;!-- jquery --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/js/jquery.min.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- bootstrap --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;/bootstrap/css/bootstrap.min.css&#125;"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/bootstrap/js/bootstrap.min.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- jquery-validator --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/jquery-validation/jquery.validate.min.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/jquery-validation/localization/messages_zh.min.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- layer --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/layer/layer.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- md5.js --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/js/md5.min.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- common.js --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/js/common.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+ 
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"panel panel-default"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"panel-heading"</span>&gt;</span>秒杀商品列表<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"table"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"goodslist"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>商品名称<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>商品图片<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>商品原价<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>秒杀价<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>库存数量<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>详情<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>  <span class="hljs-attr">th:each</span>=<span class="hljs-string">"goods,goodsStat : $&#123;goodsList&#125;"</span>&gt;</span>  <span class="hljs-comment">&lt;!--遍历model传入的goodsList--&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;goods.goodsName&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">td</span> &gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;$&#123;goods.goodsImg&#125;&#125;"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"100"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"100"</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;goods.goodsPrice&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;goods.miaoshaPrice&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;goods.stockCount&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"'/goods/to_detail/'+$&#123;goods.id&#125;"</span>&gt;</span>详情<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200625161747.png" srcset="/img/loading.gif" alt="image-20200625161744031"></p>
+<h3 id="3-3-商品详情页"><a href="#3-3-商品详情页" class="headerlink" title="3.3 商品详情页"></a>3.3 商品详情页</h3><p>跳转到具体的详情页</p>
+<p>前端代码：<code>&lt;td&gt;&lt;a th:href=&quot;&#39;/goods/to_detail/&#39;+${goods.id}&quot;&gt;详情&lt;/a&gt;&lt;/td&gt;</code></p>
+<p>后端代码：</p>
+<pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/to_detail/&#123;goodsId&#125;"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">detail</span><span class="hljs-params">(Model model,MiaoshaUser user,</span></span>
+<span class="hljs-function"><span class="hljs-params">                     @PathVariable(<span class="hljs-string">"goodsId"</span>)</span><span class="hljs-keyword">long</span> goodsId) </span>&#123;
+    model.addAttribute(<span class="hljs-string">"user"</span>, user);
+ 
+    GoodsVo goods = goodsService.getGoodsVoByGoodsId(goodsId);<span class="hljs-comment">//查询goods</span>
+    model.addAttribute(<span class="hljs-string">"goods"</span>, goods);
+ 
+    <span class="hljs-keyword">long</span> startAt = goods.getStartDate().getTime();<span class="hljs-comment">//秒杀的开始时间</span>
+    <span class="hljs-keyword">long</span> endAt = goods.getEndDate().getTime();<span class="hljs-comment">//秒杀的结束时间</span>
+    <span class="hljs-keyword">long</span> now = System.currentTimeMillis();<span class="hljs-comment">//当前时间</span>
+ 
+    <span class="hljs-keyword">int</span> miaoshaStatus = <span class="hljs-number">0</span>;<span class="hljs-comment">//秒杀状态</span>
+    <span class="hljs-keyword">int</span> remainSeconds = <span class="hljs-number">0</span>;<span class="hljs-comment">//还有多少秒开始</span>
+    <span class="hljs-keyword">if</span>(now &lt; startAt ) &#123;<span class="hljs-comment">//如果当前时间小于秒杀开始时间，秒杀还没开始，倒计时。</span>
+        miaoshaStatus = <span class="hljs-number">0</span>;
+        remainSeconds = (<span class="hljs-keyword">int</span>)((startAt - now )/<span class="hljs-number">1000</span>);
+    &#125;<span class="hljs-keyword">else</span>  <span class="hljs-keyword">if</span>(now &gt; endAt)&#123;<span class="hljs-comment">//如果当前时间大于于秒杀结束时间，秒杀已经结束</span>
+        miaoshaStatus = <span class="hljs-number">2</span>;
+        remainSeconds = -<span class="hljs-number">1</span>;<span class="hljs-comment">//说明已经结束</span>
+    &#125;<span class="hljs-keyword">else</span> &#123;<span class="hljs-comment">//秒杀进行中</span>
+        miaoshaStatus = <span class="hljs-number">1</span>;<span class="hljs-comment">//秒杀进行中的对应状态为1</span>
+        remainSeconds = <span class="hljs-number">0</span>;
+    &#125;
+    model.addAttribute(<span class="hljs-string">"miaoshaStatus"</span>, miaoshaStatus);
+    model.addAttribute(<span class="hljs-string">"remainSeconds"</span>, remainSeconds);
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"goods_detail"</span>;
+&#125;</code></pre>
+
+<p>前端页面：</p>
+<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">HTML</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">xmlns:th</span>=<span class="hljs-string">"http://www.thymeleaf.org"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>商品详情<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"Content-Type"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> /&gt;</span>
+    <span class="hljs-comment">&lt;!-- jquery --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/js/jquery.min.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- bootstrap --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;/bootstrap/css/bootstrap.min.css&#125;"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/bootstrap/js/bootstrap.min.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- jquery-validator --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/jquery-validation/jquery.validate.min.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/jquery-validation/localization/messages_zh.min.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- layer --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/layer/layer.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- md5.js --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/js/md5.min.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- common.js --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/js/common.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+ 
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"panel panel-default"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"panel-heading"</span>&gt;</span>秒杀商品详情<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"panel-body"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">th:if</span>=<span class="hljs-string">"$&#123;user eq null&#125;"</span>&gt;</span> 您还没有登录，请登陆后再操作<span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>没有收货地址的提示。。。<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"table"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"goodslist"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>商品名称<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">colspan</span>=<span class="hljs-string">"3"</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;goods.goodsName&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>商品图片<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">colspan</span>=<span class="hljs-string">"3"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;$&#123;goods.goodsImg&#125;&#125;"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"200"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"200"</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>秒杀开始时间<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;#dates.format(goods.startDate, 'yyyy-MM-dd HH:mm:ss')&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"miaoshaTip"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"hidden"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"remainSeconds"</span> <span class="hljs-attr">th:value</span>=<span class="hljs-string">"$&#123;remainSeconds&#125;"</span> /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">th:if</span>=<span class="hljs-string">"$&#123;miaoshaStatus eq 0&#125;"</span>&gt;</span>秒杀倒计时：<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"countDown"</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;remainSeconds&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>秒<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">th:if</span>=<span class="hljs-string">"$&#123;miaoshaStatus eq 1&#125;"</span>&gt;</span>秒杀进行中<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">th:if</span>=<span class="hljs-string">"$&#123;miaoshaStatus eq 2&#125;"</span>&gt;</span>秒杀已结束<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"miaoshaForm"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"post"</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"/miaosha/do_miaosha"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-primary btn-block"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"buyButton"</span>&gt;</span>立即秒杀<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"hidden"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"goodsId"</span> <span class="hljs-attr">th:value</span>=<span class="hljs-string">"$&#123;goods.id&#125;"</span> /&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>商品原价<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">colspan</span>=<span class="hljs-string">"3"</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;goods.goodsPrice&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>秒杀价<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">colspan</span>=<span class="hljs-string">"3"</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;goods.miaoshaPrice&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>库存数量<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">colspan</span>=<span class="hljs-string">"3"</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;goods.stockCount&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
+<span class="javascript">$(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;</span>
+    countDown();
+&#125;);
+ 
+<span class="actionscript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">countDown</span><span class="hljs-params">()</span></span>&#123;</span>
+<span class="javascript">    <span class="hljs-keyword">var</span> remainSeconds = $(<span class="hljs-string">"#remainSeconds"</span>).val();</span>
+<span class="actionscript">    <span class="hljs-keyword">var</span> timeout;</span>
+<span class="actionscript">    <span class="hljs-keyword">if</span>(remainSeconds &gt; <span class="hljs-number">0</span>)&#123;<span class="hljs-comment">//秒杀还没开始，倒计时</span></span>
+<span class="javascript">        $(<span class="hljs-string">"#buyButton"</span>).attr(<span class="hljs-string">"disabled"</span>, <span class="hljs-literal">true</span>);</span>
+<span class="actionscript">        timeout = setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>&#123;</span>
+<span class="javascript">            $(<span class="hljs-string">"#countDown"</span>).text(remainSeconds - <span class="hljs-number">1</span>);</span>
+<span class="javascript">            $(<span class="hljs-string">"#remainSeconds"</span>).val(remainSeconds - <span class="hljs-number">1</span>);</span>
+            countDown();
+        &#125;,1000);
+<span class="actionscript">    &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(remainSeconds == <span class="hljs-number">0</span>)&#123;<span class="hljs-comment">//秒杀进行中</span></span>
+<span class="javascript">        $(<span class="hljs-string">"#buyButton"</span>).attr(<span class="hljs-string">"disabled"</span>, <span class="hljs-literal">false</span>);</span>
+        if(timeout)&#123;
+            clearTimeout(timeout);
+        &#125;
+<span class="javascript">        $(<span class="hljs-string">"#miaoshaTip"</span>).html(<span class="hljs-string">"秒杀进行中"</span>);</span>
+<span class="actionscript">    &#125;<span class="hljs-keyword">else</span>&#123;<span class="hljs-comment">//秒杀已经结束</span></span>
+<span class="javascript">        $(<span class="hljs-string">"#buyButton"</span>).attr(<span class="hljs-string">"disabled"</span>, <span class="hljs-literal">true</span>);</span>
+<span class="javascript">        $(<span class="hljs-string">"#miaoshaTip"</span>).html(<span class="hljs-string">"秒杀已经结束"</span>);</span>
+    &#125;
+&#125;
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+
+<p>为了降低服务器的负载，前端做了一些<strong>优化</strong>：</p>
+<p>秒杀<strong>还没有开始</strong>或者秒杀<strong>已经结束</strong>，那么秒杀按钮就是灰色的。只有在秒杀开始到结束那段时间，按钮才可以点击</p>
+<pre><code class="hljs js">$(<span class="hljs-string">"#buyButton"</span>).attr(<span class="hljs-string">"disabled"</span>, <span class="hljs-literal">true</span>);</code></pre>
+
+<h3 id="3-4-实现秒杀"><a href="#3-4-实现秒杀" class="headerlink" title="3.4 实现秒杀"></a>3.4 实现秒杀</h3><p>秒杀功能的实现其实很简单，就是一个form表单的提交，提交的时候传递一个参数，商品ID</p>
+<p>前端页面</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"miaoshaForm"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"post"</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"/miaosha/do_miaosha"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-primary btn-block"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"buyButton"</span>&gt;</span>立即秒杀<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"hidden"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"goodsId"</span> <span class="hljs-attr">th:value</span>=<span class="hljs-string">"$&#123;goods.id&#125;"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></code></pre>
+
+<p>秒杀Controller：控制层从请求中拿到商品ID后，就可以查询商品</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Controller</span>
+<span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/miaosha"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MiaoshaController</span> </span>&#123;
+ 
+    <span class="hljs-meta">@Autowired</span>
+    MiaoshaUserService userService;
+ 
+    <span class="hljs-meta">@Autowired</span>
+    RedisService redisService;
+ 
+    <span class="hljs-meta">@Autowired</span>
+    GoodsService goodsService;
+ 
+    <span class="hljs-meta">@Autowired</span>
+    OrderService orderService;
+ 
+    <span class="hljs-meta">@Autowired</span>
+    MiaoshaService miaoshaService;
+ 
+    <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/do_miaosha"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">list</span><span class="hljs-params">(Model model,MiaoshaUser user,</span></span>
+<span class="hljs-function"><span class="hljs-params">            @RequestParam(<span class="hljs-string">"goodsId"</span>)</span><span class="hljs-keyword">long</span> goodsId) </span>&#123;
+        model.addAttribute(<span class="hljs-string">"user"</span>, user);
+        <span class="hljs-keyword">if</span>(user == <span class="hljs-keyword">null</span>) &#123;<span class="hljs-comment">//如果用户为空，那么说明此时还没有登录，就需要登录</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"login"</span>;
+        &#125;
+        <span class="hljs-comment">//判断库存</span>
+        GoodsVo goods = goodsService.getGoodsVoByGoodsId(goodsId);
+        <span class="hljs-keyword">int</span> stock = goods.getStockCount();
+        <span class="hljs-keyword">if</span>(stock &lt;= <span class="hljs-number">0</span>) &#123;<span class="hljs-comment">//如果库存小于0</span>
+            model.addAttribute(<span class="hljs-string">"errmsg"</span>, CodeMsg.MIAO_SHA_OVER.getMsg());<span class="hljs-comment">//返回一个错误信息：提示库存不足</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"miaosha_fail"</span>;
+        &#125;
+        <span class="hljs-comment">//如果库存大于0，那么还需要判断这个用户是否已经秒杀过一次了，因为秒杀要求一个人只能秒杀一次一种类型商品。</span>
+        <span class="hljs-comment">//此时需要去订单表中查询，判断订单中是否有该用户的订单</span>
+        <span class="hljs-comment">//判断是否已经秒杀到了</span>
+        MiaoshaOrder order = orderService.getMiaoshaOrderByUserIdGoodsId(user.getId(), goodsId);<span class="hljs-comment">//-----------代码1</span>
+        <span class="hljs-keyword">if</span>(order != <span class="hljs-keyword">null</span>) &#123;<span class="hljs-comment">//如果订单不为空，说明用户已经秒杀过了，所以返回一个提示信息，不可以重复秒杀</span>
+            model.addAttribute(<span class="hljs-string">"errmsg"</span>, CodeMsg.REPEATE_MIAOSHA.getMsg());
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"miaosha_fail"</span>;
+        &#125;
+        <span class="hljs-comment">//减库存 下订单 写入秒杀订单，这三个操作必须要么全成功，要么全失败。所以做成一个事务</span>
+        OrderInfo orderInfo = miaoshaService.miaosha(user, goods);<span class="hljs-comment">//---------------代码2</span>
+        model.addAttribute(<span class="hljs-string">"orderInfo"</span>, orderInfo);<span class="hljs-comment">//把订单的信息写入到页面上</span>
+        model.addAttribute(<span class="hljs-string">"goods"</span>, goods);<span class="hljs-comment">//把订单的商品信息写入到页面上</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"order_detail"</span>;
+    &#125;
+&#125;</code></pre>
+
+<p>相关代码1：</p>
+<pre><code class="hljs java"><span class="hljs-comment">//service层</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> MiaoshaOrder <span class="hljs-title">getMiaoshaOrderByUserIdGoodsId</span><span class="hljs-params">(<span class="hljs-keyword">long</span> userId, <span class="hljs-keyword">long</span> goodsId)</span> </span>&#123;
+    <span class="hljs-keyword">return</span> orderDao.getMiaoshaOrderByUserIdGoodsId(userId, goodsId);
+&#125;
+ 
+<span class="hljs-comment">//dao层</span>
+<span class="hljs-meta">@Select</span>(<span class="hljs-string">"select * from miaosha_order where user_id=#&#123;userId&#125; and goods_id=#&#123;goodsId&#125;"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> MiaoshaOrder <span class="hljs-title">getMiaoshaOrderByUserIdGoodsId</span><span class="hljs-params">(@Param(<span class="hljs-string">"userId"</span>)</span><span class="hljs-keyword">long</span> userId, @<span class="hljs-title">Param</span><span class="hljs-params">(<span class="hljs-string">"goodsId"</span>)</span><span class="hljs-keyword">long</span> goodsId)</span>;</code></pre>
+
+<p>相关代码2：</p>
+<pre><code class="hljs java"><span class="hljs-meta">@Autowired</span>
+GoodsService goodsService;<span class="hljs-comment">//引入其它的service</span>
+ 
+<span class="hljs-meta">@Autowired</span>
+OrderService orderService;<span class="hljs-comment">//引入其它的service</span>
+ 
+<span class="hljs-comment">//@Transactional标注这是一个事务，要么全成功，要么全失败</span>
+<span class="hljs-meta">@Transactional</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> OrderInfo <span class="hljs-title">miaosha</span><span class="hljs-params">(MiaoshaUser user, GoodsVo goods)</span> </span>&#123;
+    <span class="hljs-comment">//减库存 下订单 写入秒杀订单</span>
+    goodsService.reduceStock(goods);
+    <span class="hljs-comment">//写入订单信息，然后返回订单信息</span>
+    <span class="hljs-keyword">return</span> orderService.createOrder(user, goods);
+&#125;
+ 
+<span class="hljs-comment">//service层：调用dao层</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">reduceStock</span><span class="hljs-params">(GoodsVo goods)</span> </span>&#123;
+    MiaoshaGoods g = <span class="hljs-keyword">new</span> MiaoshaGoods();
+    g.setGoodsId(goods.getId());
+    goodsDao.reduceStock(g);
+&#125;
+ 
+<span class="hljs-comment">//dao层：去执行库存减1的操作</span>
+<span class="hljs-meta">@Update</span>(<span class="hljs-string">"update miaosha_goods set stock_count = stock_count - 1 where goods_id = #&#123;goodsId&#125;"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">reduceStock</span><span class="hljs-params">(MiaoshaGoods g)</span></span>;
+ 
+<span class="hljs-comment">//orderService.createOrder(user, goods);</span>
+<span class="hljs-meta">@Transactional</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> OrderInfo <span class="hljs-title">createOrder</span><span class="hljs-params">(MiaoshaUser user, GoodsVo goods)</span> </span>&#123;
+    OrderInfo orderInfo = <span class="hljs-keyword">new</span> OrderInfo();<span class="hljs-comment">//生成订单</span>
+    orderInfo.setCreateDate(<span class="hljs-keyword">new</span> Date());<span class="hljs-comment">//把信息注入到订单中</span>
+    orderInfo.setDeliveryAddrId(<span class="hljs-number">0L</span>);<span class="hljs-comment">//收货地址</span>
+    orderInfo.setGoodsCount(<span class="hljs-number">1</span>);<span class="hljs-comment">//商品数量，秒杀只可以秒杀一个商品</span>
+    orderInfo.setGoodsId(goods.getId());<span class="hljs-comment">//商品ID</span>
+    orderInfo.setGoodsName(goods.getGoodsName());<span class="hljs-comment">//商品名称</span>
+    orderInfo.setGoodsPrice(goods.getMiaoshaPrice());<span class="hljs-comment">//秒杀价格</span>
+    orderInfo.setOrderChannel(<span class="hljs-number">1</span>);<span class="hljs-comment">//渠道</span>
+    orderInfo.setStatus(<span class="hljs-number">0</span>);<span class="hljs-comment">//状态，0表示新建未支付、1表示已支付、2表示已发货、3表示已收货</span>
+    orderInfo.setUserId(user.getId());<span class="hljs-comment">//用户ID</span>
+    <span class="hljs-keyword">long</span> orderId = orderDao.insert(orderInfo);<span class="hljs-comment">//把订单信息注入到dao层，dao层再把订单信息注入到数据库</span>
+    MiaoshaOrder miaoshaOrder = <span class="hljs-keyword">new</span> MiaoshaOrder();<span class="hljs-comment">//秒杀订单</span>
+    miaoshaOrder.setGoodsId(goods.getId());<span class="hljs-comment">//把商品ID注入到秒杀订单中</span>
+    miaoshaOrder.setOrderId(orderId);<span class="hljs-comment">//注入订单ID</span>
+    miaoshaOrder.setUserId(user.getId());<span class="hljs-comment">//注入用户ID</span>
+    orderDao.insertMiaoshaOrder(miaoshaOrder);<span class="hljs-comment">//再把秒杀订单注入到Dao层</span>
+    <span class="hljs-keyword">return</span> orderInfo;<span class="hljs-comment">//返回订单</span>
+&#125;</code></pre>
+
+<p><code>dao</code>层代码</p>
+<pre><code class="hljs java"> 
+<span class="hljs-meta">@Mapper</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">OrderDao</span> </span>&#123;
+ 
+    <span class="hljs-meta">@Select</span>(<span class="hljs-string">"select * from miaosha_order where user_id=#&#123;userId&#125; and goods_id=#&#123;goodsId&#125;"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> MiaoshaOrder <span class="hljs-title">getMiaoshaOrderByUserIdGoodsId</span><span class="hljs-params">(@Param(<span class="hljs-string">"userId"</span>)</span><span class="hljs-keyword">long</span> userId, @<span class="hljs-title">Param</span><span class="hljs-params">(<span class="hljs-string">"goodsId"</span>)</span><span class="hljs-keyword">long</span> goodsId)</span>;
+ 
+    <span class="hljs-meta">@Insert</span>(<span class="hljs-string">"insert into order_info(user_id, goods_id, goods_name, goods_count, goods_price, order_channel, status, create_date)values("</span> + <span class="hljs-string">"#&#123;userId&#125;, #&#123;goodsId&#125;, #&#123;goodsName&#125;, #&#123;goodsCount&#125;, #&#123;goodsPrice&#125;, #&#123;orderChannel&#125;,#&#123;status&#125;,#&#123;createDate&#125; )"</span>)
+    <span class="hljs-meta">@SelectKey</span>(keyColumn=<span class="hljs-string">"id"</span>, keyProperty=<span class="hljs-string">"id"</span>, resultType=<span class="hljs-keyword">long</span><span class="hljs-class">.<span class="hljs-keyword">class</span>, <span class="hljs-title">before</span></span>=<span class="hljs-keyword">false</span>, statement=<span class="hljs-string">"select last_insert_id()"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">long</span> <span class="hljs-title">insert</span><span class="hljs-params">(OrderInfo orderInfo)</span></span>;
+ 
+    <span class="hljs-meta">@Insert</span>(<span class="hljs-string">"insert into miaosha_order (user_id, goods_id, order_id)values(#&#123;userId&#125;, #&#123;goodsId&#125;, #&#123;orderId&#125;)"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">insertMiaoshaOrder</span><span class="hljs-params">(MiaoshaOrder miaoshaOrder)</span></span>;
+ 
+ 
+&#125;</code></pre>
+
+<p>然后写页面，应该有两种情况：一种是秒杀成功、一种是秒杀失败。所以对应两种页面</p>
+<p>秒杀失败：</p>
+<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">HTML</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">xmlns:th</span>=<span class="hljs-string">"http://www.thymeleaf.org"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>秒杀失败<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"Content-Type"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+秒杀失败：<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;errmsg&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+
+<p>秒杀成功，进入订单页</p>
+<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">HTML</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">xmlns:th</span>=<span class="hljs-string">"http://www.thymeleaf.org"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>订单详情<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"Content-Type"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> /&gt;</span>
+    <span class="hljs-comment">&lt;!-- jquery --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/js/jquery.min.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- bootstrap --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;/bootstrap/css/bootstrap.min.css&#125;"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/bootstrap/js/bootstrap.min.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- jquery-validator --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/jquery-validation/jquery.validate.min.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/jquery-validation/localization/messages_zh.min.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- layer --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/layer/layer.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- md5.js --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/js/md5.min.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- common.js --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/js/common.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"panel panel-default"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"panel-heading"</span>&gt;</span>秒杀订单详情<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"table"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"goodslist"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>商品名称<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;goods.goodsName&#125;"</span> <span class="hljs-attr">colspan</span>=<span class="hljs-string">"3"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>商品图片<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">colspan</span>=<span class="hljs-string">"2"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;$&#123;goods.goodsImg&#125;&#125;"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"200"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"200"</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>订单价格<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">colspan</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;orderInfo.goodsPrice&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+             <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>下单时间<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;#dates.format(orderInfo.createDate, 'yyyy-MM-dd HH:mm:ss')&#125;"</span> <span class="hljs-attr">colspan</span>=<span class="hljs-string">"2"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>订单状态<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span> &gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">th:if</span>=<span class="hljs-string">"$&#123;orderInfo.status eq 0&#125;"</span>&gt;</span>未支付<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">th:if</span>=<span class="hljs-string">"$&#123;orderInfo.status eq 1&#125;"</span>&gt;</span>待发货<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">th:if</span>=<span class="hljs-string">"$&#123;orderInfo.status eq 2&#125;"</span>&gt;</span>已发货<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">th:if</span>=<span class="hljs-string">"$&#123;orderInfo.status eq 3&#125;"</span>&gt;</span>已收货<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">th:if</span>=<span class="hljs-string">"$&#123;orderInfo.status eq 4&#125;"</span>&gt;</span>已退款<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">th:if</span>=<span class="hljs-string">"$&#123;orderInfo.status eq 5&#125;"</span>&gt;</span>已完成<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-primary btn-block"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"payButton"</span>&gt;</span>立即支付<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+             <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>收货人<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">colspan</span>=<span class="hljs-string">"2"</span>&gt;</span>XXX  18812341234<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+             <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>收货地址<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">colspan</span>=<span class="hljs-string">"2"</span>&gt;</span>北京市昌平区回龙观龙博一区<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+ 
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+
+<h3 id="3-5-订单详情页"><a href="#3-5-订单详情页" class="headerlink" title="3.5 订单详情页"></a>3.5 订单详情页</h3><p>秒杀成功后，进入了订单详情页</p>
+<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">HTML</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">xmlns:th</span>=<span class="hljs-string">"http://www.thymeleaf.org"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>订单详情<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"Content-Type"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> /&gt;</span>
+    <span class="hljs-comment">&lt;!-- jquery --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/js/jquery.min.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- bootstrap --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;/bootstrap/css/bootstrap.min.css&#125;"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/bootstrap/js/bootstrap.min.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- jquery-validator --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/jquery-validation/jquery.validate.min.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/jquery-validation/localization/messages_zh.min.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- layer --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/layer/layer.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- md5.js --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/js/md5.min.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- common.js --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/js/common.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"panel panel-default"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"panel-heading"</span>&gt;</span>秒杀订单详情<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"table"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"goodslist"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>商品名称<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;goods.goodsName&#125;"</span> <span class="hljs-attr">colspan</span>=<span class="hljs-string">"3"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>商品图片<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">colspan</span>=<span class="hljs-string">"2"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;$&#123;goods.goodsImg&#125;&#125;"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"200"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"200"</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>订单价格<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">colspan</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;orderInfo.goodsPrice&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+             <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>下单时间<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;#dates.format(orderInfo.createDate, 'yyyy-MM-dd HH:mm:ss')&#125;"</span> <span class="hljs-attr">colspan</span>=<span class="hljs-string">"2"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>订单状态<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span> &gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">th:if</span>=<span class="hljs-string">"$&#123;orderInfo.status eq 0&#125;"</span>&gt;</span>未支付<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">th:if</span>=<span class="hljs-string">"$&#123;orderInfo.status eq 1&#125;"</span>&gt;</span>待发货<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">th:if</span>=<span class="hljs-string">"$&#123;orderInfo.status eq 2&#125;"</span>&gt;</span>已发货<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">th:if</span>=<span class="hljs-string">"$&#123;orderInfo.status eq 3&#125;"</span>&gt;</span>已收货<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">th:if</span>=<span class="hljs-string">"$&#123;orderInfo.status eq 4&#125;"</span>&gt;</span>已退款<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">th:if</span>=<span class="hljs-string">"$&#123;orderInfo.status eq 5&#125;"</span>&gt;</span>已完成<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-primary btn-block"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"payButton"</span>&gt;</span>立即支付<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+             <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>收货人<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">colspan</span>=<span class="hljs-string">"2"</span>&gt;</span>XXX  18812341234<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+             <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>收货地址<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">colspan</span>=<span class="hljs-string">"2"</span>&gt;</span>北京市昌平区回龙观龙博一区<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+ 
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+
+<h2 id="4-JMeter压测"><a href="#4-JMeter压测" class="headerlink" title="4 JMeter压测"></a>4 JMeter压测</h2><h3 id="4-1-JMeter入门"><a href="#4-1-JMeter入门" class="headerlink" title="4.1 JMeter入门"></a>4.1 JMeter入门</h3><h4 id="4-1-1-压测一下http-localhost-8080-goods-to-list接口"><a href="#4-1-1-压测一下http-localhost-8080-goods-to-list接口" class="headerlink" title="4.1.1 压测一下http://localhost:8080/goods/to_list接口"></a>4.1.1 压测一下<code>http://localhost:8080/goods/to_list</code>接口</h4><p>这个接口需要查询数据库，所以性能的瓶颈就在数据库</p>
+<p>线程数在1000左右，吞吐量最大，线程数再多时，吞吐量不会在增加，异常率会剧增</p>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200625183943.png" srcset="/img/loading.gif" alt="image-20200625183939791"></p>
+<p>把数据库放到服务器上，吞吐量一下子就下去了，奇怪的是服务器负载几乎为0，没有波动。奇怪了，明明请求数不少，但是为什么服务器的<strong>CPU负载这么低</strong>呢</p>
+<p>解决方案：服务器带宽太低</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/mian_CSDN/article/details/78995304?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase" target="_blank" rel="noopener">https://blog.csdn.net/mian_CSDN/article/details/78995304?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase</a></p>
+</blockquote>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200625195135.png" srcset="/img/loading.gif" alt=""></p>
+<p>可以看出硬件不同情况下的压测，两者吞吐量差距有<strong>几十倍</strong></p>
+<h4 id="4-1-2-压测-http-localhost-8080-user-info"><a href="#4-1-2-压测-http-localhost-8080-user-info" class="headerlink" title="4.1.2 压测 http://localhost:8080/user/info"></a>4.1.2 压测 <code>http://localhost:8080/user/info</code></h4><p>不需要查询数据库，吞吐量一下子就上来了。范围大致在400~800。</p>
+<p>这两个接口的区别就是，第一个接口不仅仅读了缓存，还读了一次数据库，而第二个接口只读了一次缓存。</p>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200625200432.png" srcset="/img/loading.gif" alt=""></p>
+<h3 id="4-2-自定义变量模拟多用户"><a href="#4-2-自定义变量模拟多用户" class="headerlink" title="4.2 自定义变量模拟多用户"></a>4.2 自定义变量模拟多用户</h3><p>压测redis：<code>redis-benchmark -h 127.0.0.1 -p 6379 -c 100 -n 100000</code></p>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200625201818.png" srcset="/img/loading.gif" alt="image-20200625201814849"></p>
+<h3 id="4-3-JMeter命令行使用"><a href="#4-3-JMeter命令行使用" class="headerlink" title="4.3 JMeter命令行使用"></a>4.3 JMeter命令行使用</h3><p>步骤：</p>
+<p>1：在windows上录好jmx</p>
+<p>2：命令行：sh jmeter.sh -n -t XXX.jmx -l result.jtl</p>
+<p>3：从linux中导入result.jtl到windows界面</p>
+<p>测试的是：goods/to_list接口</p>
+<p>5000个线程请求10次</p>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200626095524.png" srcset="/img/loading.gif" alt="image-20200626095520409"></p>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200626094401.png" srcset="/img/loading.gif" alt="image-20200626094358142"></p>
+<p>下面测试秒杀接口<code>http://localhost:8080/miaosha/do_miaosha</code></p>
+<p>CPU负载</p>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200626101659.png" srcset="/img/loading.gif" alt="image-20200626101655804"></p>
+<p>可以看到，CPU没有超负荷，但是网络带宽已经达到上限，所以我们这里主要的限制就是网络带宽</p>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200626102342.png" srcset="/img/loading.gif" alt="image-20200626102338656"></p>
+<h2 id="5-页面优化"><a href="#5-页面优化" class="headerlink" title="5 页面优化"></a>5 页面优化</h2><h2 id="5-1-页面缓存-对象缓存"><a href="#5-1-页面缓存-对象缓存" class="headerlink" title="5.1 页面缓存+对象缓存"></a>5.1 页面缓存+对象缓存</h2><p>并发的瓶颈在数据库，所以加缓存，尽量减少对数据库的访问</p>
+<h4 id="页面缓存"><a href="#页面缓存" class="headerlink" title="页面缓存"></a>页面缓存</h4><p>访问页面时，首先去缓存中取，如果没有手动渲染模板，渲染后把结果输出客户端，同时把结果缓存到redis中</p>
+<p>渲染<code>goods_list</code>模板</p>
+<p>先从缓存中取，如果不为空，直接返回这个页面。如果空，就手动渲染</p>
+<pre><code class="hljs java"><span class="hljs-meta">@RequestMapping</span>(value=<span class="hljs-string">"/to_list"</span>, produces=<span class="hljs-string">"text/html"</span>)
+<span class="hljs-meta">@ResponseBody</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">list</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Model model,MiaoshaUser user)</span> </span>&#123;
+    model.addAttribute(<span class="hljs-string">"user"</span>, user);
+    <span class="hljs-comment">//取缓存，有效期为1分钟。</span>
+    String html = redisService.get(GoodsKey.getGoodsList, <span class="hljs-string">""</span>, String<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+    <span class="hljs-keyword">if</span>(!StringUtils.isEmpty(html)) &#123;
+        <span class="hljs-keyword">return</span> html;
+    &#125;
+    List&lt;GoodsVo&gt; goodsList = goodsService.listGoodsVo();
+    model.addAttribute(<span class="hljs-string">"goodsList"</span>, goodsList);
+    <span class="hljs-comment">//         return "goods_list";</span>
+    SpringWebContext ctx = <span class="hljs-keyword">new</span> SpringWebContext(request,response,
+                                                request.getServletContext(),request.getLocale(), model.asMap(), applicationContext );
+    <span class="hljs-comment">//手动渲染</span>
+    html = thymeleafViewResolver.getTemplateEngine().process(<span class="hljs-string">"goods_list"</span>, ctx);<span class="hljs-comment">//ctx是包含业务数据的的一个上下文</span>
+    <span class="hljs-keyword">if</span>(!StringUtils.isEmpty(html)) &#123;
+        redisService.set(GoodsKey.getGoodsList, <span class="hljs-string">""</span>, html);
+    &#125;
+    <span class="hljs-keyword">return</span> html;
+&#125;</code></pre>
+
+<h4 id="对象缓存"><a href="#对象缓存" class="headerlink" title="对象缓存"></a>对象缓存</h4><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> MiaoshaUser <span class="hljs-title">getById</span><span class="hljs-params">(<span class="hljs-keyword">long</span> id)</span> </span>&#123;
+    <span class="hljs-comment">//取缓存</span>
+    MiaoshaUser user = redisService.get(MiaoshaUserKey.getById, <span class="hljs-string">""</span>+id, MiaoshaUser<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+    <span class="hljs-keyword">if</span>(user != <span class="hljs-keyword">null</span>) &#123;
+        <span class="hljs-keyword">return</span> user;
+    &#125;
+    <span class="hljs-comment">//取数据库</span>
+    user = miaoshaUserDao.getById(id);
+    <span class="hljs-keyword">if</span>(user != <span class="hljs-keyword">null</span>) &#123;
+        redisService.set(MiaoshaUserKey.getById, <span class="hljs-string">""</span>+id, user);
+    &#125;
+    <span class="hljs-keyword">return</span> user;
+&#125;</code></pre>
+
+
+
+<h2 id="6-解决超卖"><a href="#6-解决超卖" class="headerlink" title="6 解决超卖"></a>6 <strong>解决超卖</strong></h2><p>情景1：卖出商品数目大于库存</p>
+<p>解决方案：在数据库操作时加一个判断</p>
+<p><code>stock_count &gt; 0</code>———&gt;只有当库存容量大于0时，才更新库存，其实就是数据库对这一行数据加了一个锁，所以不会一次只会有一个线程进来操作</p>
+<pre><code class="hljs sql">@<span class="hljs-keyword">Update</span>(<span class="hljs-string">"update miaosha_goods set stock_count = stock_count - 1 where goods_id = #&#123;goodsId&#125; and stock_count &gt; 0"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> reduceStock(MiaoshaGoods g);</code></pre>
+
+<p>情景2：一个用户秒杀到了两个商品</p>
+<p>秒杀流程：用户秒杀时，先判断库存、再判断是否曾经秒杀到过、没有的话，就减库存、下订单、并且写入秒杀订单</p>
+<p>解决方案：利用数据库的唯一索引（根据用户id和商品ID），我们限制一个用户只可以秒杀一个商品，我们在写入订单时，以用户ID为唯一索引，两个订单进来后，只有一个可以成功写入到数据库。</p>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><pre><code class="hljs xml">#thymeleaf
+spring.thymeleaf.prefix=classpath:/templates/
+spring.thymeleaf.suffix=.html
+spring.thymeleaf.cache=false
+spring.thymeleaf.content-type=text/html
+spring.thymeleaf.enabled=true
+spring.thymeleaf.encoding=UTF-8
+spring.thymeleaf.mode=HTML5
+#是否开启缓存
+pageCache.enbale=true
+ 
+ 
+ 
+#打印mybatis sql
+log4j.logger.com.ibatis=DEBUG
+log4j.logger.com.ibatis.common.jdbc.SimpleDataSource=DEBUG
+log4j.logger.com.ibatis.common.jdbc.ScriptRunner=DEBUG
+log4j.logger.com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate=DEBUG
+log4j.logger.Java.sql.Connection=DEBUG
+log4j.logger.java.sql.Statement=DEBUG
+log4j.logger.java.sql.PreparedStatement=DEBUG
+ 
+#mybatis
+mybatis.type-aliases-package=com.geekq.miaosha.domain
+#开启驼峰转换 configuration config-location 不能同時存在 如果要走流程 请 放开注释
+mybatis.configuration.map-underscore-to-camel-case=true
+#mybatis.mapperLocations = classpath:com/geekq/miaosha/dao/*.xml
+ 
+mybatis.mapperLocations=classpath:mybatis/mapper/*.xml
+#配置xml方式 因为与 mybatis.configuration.map-underscore-to-camel-case 仅用于测试
+#mybatis.config-location=classpath:mybatis/mybatis-config.xml
+ 
+#add mybatis
+mybatis.
+#datasource
+spring.datasource.url=jdbc:mysql://localhost:3306/miaosha?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true&amp;useSSL=false
+spring.datasource.username=root
+spring.datasource.password=root
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+#druid
+spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
+spring.datasource.filters=stat
+spring.datasource.maxActive=100
+spring.datasource.initialSize=100
+spring.datasource.maxWait=600
+spring.datasource.minIdle=50
+spring.datasource.timeBetweenEvictionRunsMillis=60000
+spring.datasource.minEvictableIdleTimeMillis=300000
+spring.datasource.validationQuery=select 'x'
+spring.datasource.testWhileIdle=true
+spring.datasource.testOnBorrow=false
+spring.datasource.testOnReturn=false
+spring.datasource.poolPreparedStatements=true
+spring.datasource.maxOpenPreparedStatements=20
+#static,spring对静态资源的处理
+spring.resources.add-mappings=true
+spring.resources.cache-period= 3600
+spring.resources.chain.cache=true
+spring.resources.chain.enabled=true
+spring.resources.chain.gzipped=true
+spring.resources.chain.html-application-cache=true
+spring.resources.static-locations=classpath:/static/
+#redis
+#redis.host=127.0.0.1
+redis.host=39.100.103.243
+redis.port=6379
+redis.timeout=100
+redis.password=123456
+redis.poolMaxTotal=1000
+redis.poolMaxIdle=500
+redis.poolMaxWait=500
+#server.port=8003
+ 
+#rabbitm
+spring.rabbitmq.host=127.0.0.1
+spring.rabbitmq.port=5672
+spring.rabbitmq.username=guest
+spring.rabbitmq.password=guest
+spring.rabbitmq.virtual-host=/
+spring.rabbitmq.listener.simple.concurrency= 100
+spring.rabbitmq.listener.simple.max-concurrency= 100
+spring.rabbitmq.listener.simple.prefetch= 1
+spring.rabbitmq.listener.simple.auto-startup=true
+spring.rabbitmq.listener.simple.default-requeue-rejected= true
+spring.rabbitmq.template.retry.enabled=true
+spring.rabbitmq.template.retry.initial-interval=1000
+spring.rabbitmq.template.retry.max-attempts=3
+spring.rabbitmq.template.retry.max-interval=10000
+spring.rabbitmq.template.retry.multiplier=1.0
+spring.rabbitmq.publisher-confirms=true
+spring.rabbitmq.listener.direct.acknowledge-mode=manual
+spring.rabbitmq.listener.simple.acknowledge-mode=manual
+ 
+## maven隔离
+#spring.profiles.active=dev</code></pre>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E9%A1%B9%E7%9B%AE/%E7%A7%92%E6%9D%80/">秒杀</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%A1%B9%E7%9B%AE/">项目</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/27/%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-2/">
+                        <span class="hidden-mobile">秒杀项目-2</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "秒杀项目-1&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

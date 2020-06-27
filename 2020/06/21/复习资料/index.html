@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>LeetCode215-TopK - 郭寰宇</title>
+  <title>复习资料 - 郭寰宇</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-06-12 09:01">
-      2020年6月12日 上午
+    <time datetime="2020-06-21 16:42">
+      2020年6月21日 下午
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      419 字
+      318 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      4
        分钟
     </span>
   
@@ -204,63 +204,31 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="LeetCode215-TopK"><a href="#LeetCode215-TopK" class="headerlink" title="LeetCode215 TopK"></a>LeetCode215 TopK</h1><p>给定数组，求数组中第K大的元素，最简单的方法是暴力求解，升序排好序后求第K个元素即可，这种解法代码如下：</p>
-<pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">findKthLargest</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> k)</span> </span>&#123;
-            <span class="hljs-keyword">int</span> len=nums.length;
-            Arrays.sort(nums);
-            <span class="hljs-keyword">return</span> nums[len-k];
-    &#125;
-&#125;</code></pre>
-
-<p>但是面试官肯定不想你给出这种解法，如果数据量很大，无法一次存到内存中，暴力解法就用不上了</p>
-<p>这种情况需要用堆来排序，建立一个大根堆，堆顶元素是最大值，这样只需要维护K次大根堆，那么就得到了第K大的元素，代码如下</p>
-<pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">findKthLargest</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> k)</span> </span>&#123;
-        <span class="hljs-keyword">int</span> len=nums.length;
-        heapSort(nums,len,k);
-        <span class="hljs-keyword">return</span> nums[len-k];
-    &#125;
-
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">heapSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> size, <span class="hljs-keyword">int</span> k)</span></span>
-<span class="hljs-function">    </span>&#123;
-        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=size/<span class="hljs-number">2</span>-<span class="hljs-number">1</span>;i&gt;=<span class="hljs-number">0</span>;i--) heapify(nums,size,i);<span class="hljs-comment">//先从最后一个非叶子节点开始调整</span>
-        <span class="hljs-comment">//上面那个for循环结束就代表着此时堆顶元素就是最大值了</span>
-        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=size-<span class="hljs-number">1</span>;i&gt;=<span class="hljs-number">0</span>;i--)
-        &#123;
-            swap(nums,<span class="hljs-number">0</span>,i);<span class="hljs-comment">//交换堆顶元素</span>
-            k--;<span class="hljs-comment">//k--，代表着交换了一次，求的是第K大元素，所以交换K次</span>
-            <span class="hljs-keyword">if</span>(k==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span>;<span class="hljs-comment">//如果k==0，说明交换了k次</span>
-            heapify(nums,i,<span class="hljs-number">0</span>);
-        &#125;
-
-    &#125;
-
-
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">heapify</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> size, <span class="hljs-keyword">int</span> i)</span><span class="hljs-comment">//维护结点i，使得结点i为合法位置</span></span>
-<span class="hljs-function">    </span>&#123;
-        <span class="hljs-keyword">int</span> largest=i;
-        <span class="hljs-keyword">int</span> left=i*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>;
-        <span class="hljs-keyword">int</span> right=i*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>;
-        <span class="hljs-keyword">if</span>(left&lt;size &amp;&amp; nums[left]&gt;nums[largest] )largest=left;
-        <span class="hljs-keyword">if</span>(right &lt;size &amp;&amp; nums[right] &gt;nums[largest]) largest=right;
-        <span class="hljs-keyword">if</span>(i!=largest)
-        &#123;
-            swap(nums, i, largest);
-            heapify(nums,size,largest);
-        &#125;
-    &#125;
-
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> i, <span class="hljs-keyword">int</span> j)</span></span>
-<span class="hljs-function">    </span>&#123;
-        <span class="hljs-keyword">int</span> temp=nums[i];
-        nums[i]=nums[j];
-        nums[j]=temp;
-    &#125;
-
-
-&#125;</code></pre>
-
+              <h1 id="复习资料"><a href="#复习资料" class="headerlink" title="复习资料"></a>复习资料</h1><h2 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h2><p><a href="https://mp.weixin.qq.com/s/v1RBxtoevdAjXb4NyBxcsQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/v1RBxtoevdAjXb4NyBxcsQ</a></p>
+<p><a href="https://www.nowcoder.com/discuss/442414" target="_blank" rel="noopener">https://www.nowcoder.com/discuss/442414</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/90936222" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/90936222</a></p>
+<h2 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h2><h3 id="Java基础知识"><a href="#Java基础知识" class="headerlink" title="Java基础知识"></a>Java基础知识</h3><p>Java基础概念：<a href="https://blog.csdn.net/cheidou123/article/details/95041367" target="_blank" rel="noopener">https://blog.csdn.net/cheidou123/article/details/95041367</a></p>
+<p>Object类有哪些方法？各有什么作用：<a href="https://www.cnblogs.com/u013533289/p/11754461.html" target="_blank" rel="noopener">https://www.cnblogs.com/u013533289/p/11754461.html</a></p>
+<p>String a=new String(“a”)创建几个对象：<a href="https://blog.csdn.net/yishao_20140413/article/details/23598113" target="_blank" rel="noopener">https://blog.csdn.net/yishao_20140413/article/details/23598113</a></p>
+<h3 id="Java并发"><a href="#Java并发" class="headerlink" title="Java并发"></a>Java并发</h3><p>Volatile：<a href="https://mp.weixin.qq.com/s/Oa3tcfAFO9IgsbE22C5TEg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Oa3tcfAFO9IgsbE22C5TEg</a></p>
+<p>守护线程和本地线程的区别：<a href="https://www.cnblogs.com/guoyu1/p/12161692.html" target="_blank" rel="noopener">https://www.cnblogs.com/guoyu1/p/12161692.html</a></p>
+<h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h3><p><a href="https://zhuanlan.zhihu.com/p/34426768" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/34426768</a></p>
+<p>类加载：</p>
+<p>内存结构：</p>
+<p>GC算法 垃圾回收：</p>
+<p>JVM调优 命令调优：</p>
+<p>垃圾收集器：G1、CMS</p>
+<h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><p>91道MySQL面试题和答案：<a href="https://zhuanlan.zhihu.com/p/114993399" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/114993399</a></p>
+<p>索引：<a href="https://zhuanlan.zhihu.com/p/73204847" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/73204847</a></p>
+<p>查询语句不同元素（select–from–where–group by–having–order by）执行先后顺序：<a href="https://www.cnblogs.com/mark5/p/11078361.html" target="_blank" rel="noopener">https://www.cnblogs.com/mark5/p/11078361.html</a></p>
+<p>非关系型数据库和关系型数据库区别：<a href="https://www.zhihu.com/question/24225007/answer/257969925" target="_blank" rel="noopener">https://www.zhihu.com/question/24225007/answer/257969925</a></p>
+<h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h2><p>Redis 基础篇笔记：<a href="https://www.nowcoder.com/discuss/442561?type=5&amp;channel=2000&amp;source_id=discuss_terminal_discuss_hot" target="_blank" rel="noopener">https://www.nowcoder.com/discuss/442561?type=5&amp;channel=2000&amp;source_id=discuss_terminal_discuss_hot</a></p>
+<h2 id="SSM"><a href="#SSM" class="headerlink" title="SSM"></a>SSM</h2><h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><p>linux命令：<a href="https://mp.weixin.qq.com/s/7bSwKiPmtJbs7FtRWZZqpA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/7bSwKiPmtJbs7FtRWZZqpA</a></p>
+<h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><p>如何实现UDP的可靠传输：<a href="https://www.jianshu.com/p/6c73a4585eba" target="_blank" rel="noopener">https://www.jianshu.com/p/6c73a4585eba</a></p>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p>排序算法</p>
+<p>给定rand5（），实现一个方法rand7（）：<a href="https://zhuanlan.zhihu.com/p/59591972" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/59591972</a></p>
+<p>布隆过滤器：<a href="https://zhuanlan.zhihu.com/p/72378274" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/72378274</a></p>
+<p>跳表：<a href="https://zhuanlan.zhihu.com/p/53975333" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/53975333</a></p>
 
             </article>
             <hr>
@@ -270,11 +238,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-                    
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/LeetCode/">LeetCode</a>
-                    
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/LeetCode/%E9%AB%98%E9%A2%91%E9%9D%A2%E8%AF%95%E9%A2%98/">高频面试题</a>
+                      <a class="hover-with-bg" href="/categories/%E5%A4%8D%E4%B9%A0%E5%A4%A7%E7%BA%B2/">复习大纲</a>
                     
                   </div>
                 
@@ -282,7 +246,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+                      <a class="hover-with-bg" href="/tags/%E5%A4%8D%E4%B9%A0/">复习</a>
                     
                   </div>
                 
@@ -295,9 +259,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/06/12/LeetCode76-%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/">
+                      <a href="/2020/06/27/%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-2/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">LeetCode76-最小覆盖子串</span>
+                        <span class="hidden-mobile">秒杀项目-2</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -305,8 +269,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/06/11/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">
-                        <span class="hidden-mobile">工厂模式</span>
+                      <a href="/2020/06/21/%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/">
+                        <span class="hidden-mobile">问题总结</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -445,7 +409,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "LeetCode215-TopK&nbsp;",
+        "复习资料&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
