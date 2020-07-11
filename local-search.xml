@@ -4,6 +4,164 @@
   
   
   <entry>
+    <title>LeetCode43-字符串相乘</title>
+    <link href="/2020/07/06/LeetCode43-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%B9%98/"/>
+    <url>/2020/07/06/LeetCode43-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%B9%98/</url>
+    
+    <content type="html"><![CDATA[<h2 id="LeetCode-43-字符串相乘"><a href="#LeetCode-43-字符串相乘" class="headerlink" title="LeetCode 43 字符串相乘"></a>LeetCode 43 字符串相乘</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><blockquote><p>给定两个以字符串形式表示的非负整数 num1 和 num2，返回 num1 和 num2 的乘积，它们的乘积也表示为字符串形式</p><pre><code class="hljs java">&gt;示例 <span class="hljs-number">2</span>:&gt;输入: num1 = <span class="hljs-string">"123"</span>, num2 = <span class="hljs-string">"456"</span>&gt;输出: <span class="hljs-string">"56088"</span></code></pre></blockquote><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>根据我们日常乘法运算的规则，列竖式，一个个乘，然后把这些结果相加，就得到了最终结果</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">multiply</span><span class="hljs-params">(String num1, String num2)</span> </span>&#123;        <span class="hljs-keyword">int</span> len1=num1.length();        <span class="hljs-keyword">int</span> len2=num2.length();        StringBuilder res=<span class="hljs-keyword">new</span> StringBuilder();        <span class="hljs-keyword">if</span>(len1==<span class="hljs-number">0</span> || len2==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> res.toString();        <span class="hljs-keyword">if</span>(num1.equals(<span class="hljs-string">"0"</span>)||num2.equals(<span class="hljs-string">"0"</span>)) <span class="hljs-keyword">return</span> <span class="hljs-string">"0"</span>;<span class="hljs-comment">//如果两个字符串有一个为零，那么就返回0</span>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len1;i++)        &#123;            StringBuilder tmp=<span class="hljs-keyword">new</span> StringBuilder();<span class="hljs-comment">//记录每一次运算后的结果</span>            <span class="hljs-keyword">int</span> m=num1.charAt(len1-<span class="hljs-number">1</span>-i)-<span class="hljs-string">'0'</span>;<span class="hljs-comment">//从num1中取一个数字，取乘num2的每一数字</span>            <span class="hljs-keyword">int</span> carry=<span class="hljs-number">0</span>;<span class="hljs-comment">//进位</span>            <span class="hljs-keyword">int</span> count=<span class="hljs-number">0</span>;            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;len2;j++)            &#123;                <span class="hljs-keyword">int</span> n=num2.charAt(len2-<span class="hljs-number">1</span>-j)-<span class="hljs-string">'0'</span>;<span class="hljs-comment">//从个位</span>                count=n*m+carry;<span class="hljs-comment">//num1中某一位和num2中某一位计算出的结果，再加上进位</span>                carry=count/<span class="hljs-number">10</span>;<span class="hljs-comment">//进位</span>                tmp.append(count%<span class="hljs-number">10</span>);<span class="hljs-comment">//把每一次运算的结果保存到tmp中</span>            &#125;            <span class="hljs-keyword">if</span>(carry&gt;<span class="hljs-number">0</span>) tmp.append(carry);<span class="hljs-comment">//如果进位不为0，就添加进去</span>            tmp.reverse();<span class="hljs-comment">//tmp中保存的结果是逆序的，所以需要翻转一下</span>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>;k&lt;i;k++) tmp.append(<span class="hljs-number">0</span>);<span class="hljs-comment">//添加0，个位乘一个数字，和十位乘数字，十位的结果要加0，不明白的话列一个竖式乘法就懂了</span>            res=<span class="hljs-keyword">new</span> StringBuilder(addStr(res.toString(),tmp.toString()));   <span class="hljs-comment">//把这一次的结果和之前结果进行相加</span>        &#125;        <span class="hljs-keyword">return</span> res.toString();    &#125;    <span class="hljs-comment">//把两个字符串进行相加</span>    <span class="hljs-function">String <span class="hljs-title">addStr</span><span class="hljs-params">(String num1, String num2)</span></span><span class="hljs-function">    </span>&#123;         <span class="hljs-keyword">int</span> len1=num1.length(),len2=num2.length();        <span class="hljs-keyword">if</span>(len1==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> num2;        <span class="hljs-keyword">if</span>(len2==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> num1;        <span class="hljs-keyword">int</span> len3=Math.max(len1,len2);        StringBuilder sb=<span class="hljs-keyword">new</span> StringBuilder();        <span class="hljs-keyword">int</span> carry=<span class="hljs-number">0</span>;        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len3;i++)        &#123;            <span class="hljs-keyword">int</span> n1=i&gt;len1-<span class="hljs-number">1</span>?<span class="hljs-number">0</span>:num1.charAt(len1-<span class="hljs-number">1</span>-i)-<span class="hljs-string">'0'</span>;            <span class="hljs-keyword">int</span> n2=i&gt;len2-<span class="hljs-number">1</span>?<span class="hljs-number">0</span>:num2.charAt(len2-<span class="hljs-number">1</span>-i)-<span class="hljs-string">'0'</span>;            <span class="hljs-keyword">int</span> n3=n1+n2+carry;            carry=n3/<span class="hljs-number">10</span>;            sb.append(n3%<span class="hljs-number">10</span>);        &#125;        <span class="hljs-keyword">if</span>(carry&gt;=<span class="hljs-number">1</span>) sb.append(<span class="hljs-string">"1"</span>);        <span class="hljs-keyword">return</span> sb.reverse().toString();    &#125;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+      <category>LeetCode</category>
+      
+      <category>字符串</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>字符串</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>LeetCode415-字符串相加</title>
+    <link href="/2020/07/06/LeetCode415-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%8A%A0/"/>
+    <url>/2020/07/06/LeetCode415-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%8A%A0/</url>
+    
+    <content type="html"><![CDATA[<h2 id="LeetCode-415-字符串相加"><a href="#LeetCode-415-字符串相加" class="headerlink" title="LeetCode 415 字符串相加"></a>LeetCode 415 字符串相加</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><blockquote><p>给定两个字符串形式的非负整数 num1 和num2 ，计算它们的和。</p><p>注意：</p><p>num1 和num2 的长度都小于 5100.<br>num1 和num2 都只包含数字 0-9.<br>num1 和num2 都不包含任何前导零。<br>你不能使用任何內建 BigInteger 库， 也不能直接将输入的字符串转换为整数形式。</p></blockquote><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>比较两个字符串的长度，选一个最长的，短的那个前面补0即可。然后从个位开始对应位相加即可。</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="hljs java"><span class="hljs-function">String <span class="hljs-title">addStr</span><span class="hljs-params">(String num1, String num2)</span></span><span class="hljs-function">    </span>&#123;         <span class="hljs-keyword">int</span> len1=num1.length(),len2=num2.length();        <span class="hljs-keyword">if</span>(len1==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> num2;        <span class="hljs-keyword">if</span>(len2==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> num1;        <span class="hljs-keyword">int</span> len3=Math.max(len1,len2);<span class="hljs-comment">//选两个字符串中长度最长的</span>        StringBuilder sb=<span class="hljs-keyword">new</span> StringBuilder();        <span class="hljs-keyword">int</span> carry=<span class="hljs-number">0</span>;        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len3;i++)        &#123;            <span class="hljs-keyword">int</span> n1=i&gt;len1-<span class="hljs-number">1</span>?<span class="hljs-number">0</span>:num1.charAt(len1-<span class="hljs-number">1</span>-i)-<span class="hljs-string">'0'</span>;<span class="hljs-comment">//从个位开始，如果下标i超过了num1的下标，那么就补0</span>            <span class="hljs-keyword">int</span> n2=i&gt;len2-<span class="hljs-number">1</span>?<span class="hljs-number">0</span>:num2.charAt(len2-<span class="hljs-number">1</span>-i)-<span class="hljs-string">'0'</span>;<span class="hljs-comment">//</span>            <span class="hljs-keyword">int</span> n3=n1+n2+carry;<span class="hljs-comment">//计算对应位相加的结果</span>            carry=n3/<span class="hljs-number">10</span>;<span class="hljs-comment">//计算进位</span>            sb.append(n3%<span class="hljs-number">10</span>);<span class="hljs-comment">//保存结果</span>        &#125;        <span class="hljs-keyword">if</span>(carry&gt;=<span class="hljs-number">1</span>) sb.append(<span class="hljs-string">"1"</span>);<span class="hljs-comment">//如果还存在进位，就添加1</span>        <span class="hljs-keyword">return</span> sb.reverse().toString();<span class="hljs-comment">//上面保留的结果是反序的，需要翻转一下</span>    &#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+      <category>LeetCode</category>
+      
+      <category>字符串</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>字符串</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>LeetCode227-基本运算器2</title>
+    <link href="/2020/07/06/LeetCode227-%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E5%99%A82/"/>
+    <url>/2020/07/06/LeetCode227-%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E5%99%A82/</url>
+    
+    <content type="html"><![CDATA[<h2 id="LeetCode-227-基本计算器-II"><a href="#LeetCode-227-基本计算器-II" class="headerlink" title="LeetCode 227. 基本计算器 II"></a>LeetCode 227. 基本计算器 II</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><blockquote><p>字符串表达式仅包含非负整数，<code>+</code>， <code>-</code> ，<code>*</code>，<code>/</code> 四种运算符和空格 <code></code>。 整数除法仅保留整数部分。</p><p>示例:</p><pre><code class="hljs shell"><span class="hljs-meta">&gt;</span><span class="bash">输入: <span class="hljs-string">" 3+5 / 2 "</span></span><span class="hljs-meta">&gt;</span><span class="bash">输出: 5</span></code></pre></blockquote><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>中缀转后缀，没有括号，但是有乘除，所以要比较运算符的优先级</p><p>使用栈+链表：栈用来维护运算符，链表用来记录后缀表达式</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">calculate</span><span class="hljs-params">(String s)</span> </span>&#123;        <span class="hljs-keyword">return</span> calBackExp(transferToBackExp(s));    &#125;    <span class="hljs-comment">//计算后缀表达式</span>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">calBackExp</span><span class="hljs-params">(LinkedList&lt;String&gt; list)</span></span><span class="hljs-function">    </span>&#123;        Stack&lt;Integer&gt; stack=<span class="hljs-keyword">new</span> Stack&lt;&gt;();        <span class="hljs-keyword">for</span>(String s:list)        &#123;            <span class="hljs-keyword">if</span>(isNumerical(s))            &#123;                stack.push(Integer.parseInt(s));            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(s.equals(<span class="hljs-string">"+"</span>) || s.equals(<span class="hljs-string">"-"</span>) || s.equals(<span class="hljs-string">"*"</span>) || s.equals(<span class="hljs-string">"/"</span>))&#123;                <span class="hljs-keyword">int</span> n1=stack.pop();                <span class="hljs-keyword">int</span> n2=stack.pop();                <span class="hljs-keyword">int</span> n3=<span class="hljs-number">0</span>;                <span class="hljs-keyword">if</span>(s.equals(<span class="hljs-string">"+"</span>))&#123;                    n3=n1+n2;                &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(s.equals(<span class="hljs-string">"-"</span>))&#123;                    n3=n2-n1;                &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(s.equals(<span class="hljs-string">"*"</span>))&#123;                    n3=n1*n2;                &#125;<span class="hljs-keyword">else</span>&#123;                    n3=n2/n1;                &#125;                stack.push(n3);            &#125;        &#125;    <span class="hljs-keyword">return</span> stack.pop();    &#125;<span class="hljs-comment">//中缀转后缀</span>    <span class="hljs-function"><span class="hljs-keyword">private</span> LinkedList&lt;String&gt; <span class="hljs-title">transferToBackExp</span><span class="hljs-params">(String exp)</span></span><span class="hljs-function">    </span>&#123;        Stack&lt;String&gt; stack=<span class="hljs-keyword">new</span> Stack&lt;&gt;();        LinkedList&lt;String&gt; list=<span class="hljs-keyword">new</span> LinkedList&lt;&gt;();        <span class="hljs-keyword">int</span> len=exp.length();        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len;i++)        &#123;            <span class="hljs-keyword">char</span> c=exp.charAt(i);            <span class="hljs-keyword">if</span>(isDigit(c))            &#123;                <span class="hljs-keyword">int</span> k=i+<span class="hljs-number">1</span>;                <span class="hljs-keyword">for</span>(;k&lt;len &amp;&amp; isDigit(exp.charAt(k));k++)&#123;&#125;<span class="hljs-comment">//出现连续数字时，比如6555+4564，直接计算数字的起始位置和终止位置</span>                list.add(exp.substring(i,k));                i=k-<span class="hljs-number">1</span>;            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c==<span class="hljs-string">'*'</span> || c==<span class="hljs-string">'/'</span>)            &#123;                <span class="hljs-comment">//如果当前运算符是乘除，那么栈顶运算符只要不是加减，就必须出栈，直到是加减或者为空为止</span>                <span class="hljs-keyword">while</span>(!stack.empty() &amp;&amp; (stack.peek().equals(<span class="hljs-string">"*"</span>) || stack.peek().equals(<span class="hljs-string">"/"</span>)))<span class="hljs-comment">//比较优先级</span>                &#123;                    list.add(stack.pop());                &#125;                stack.push(c+<span class="hljs-string">""</span>);            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c==<span class="hljs-string">'+'</span> || c==<span class="hljs-string">'-'</span>)&#123;<span class="hljs-comment">//如果当前运算符是加减，因为加减运算符是最低的，没有比它低的，所以就必须出栈，直到栈为空。</span>                <span class="hljs-keyword">while</span>(!stack.empty())&#123;                    list.add(stack.pop());                &#125;                stack.push(c+<span class="hljs-string">""</span>);            &#125;        &#125;        <span class="hljs-keyword">while</span>(stack.size()&gt;<span class="hljs-number">0</span>) list.add(stack.pop());<span class="hljs-comment">//如果栈里面还有元素，就依次添加到链表中</span>        <span class="hljs-keyword">return</span> list;    &#125;    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">isDigit</span><span class="hljs-params">(<span class="hljs-keyword">char</span> c)</span></span><span class="hljs-function">    </span>&#123;        <span class="hljs-keyword">if</span>(c-<span class="hljs-string">'0'</span>&gt;=<span class="hljs-number">0</span> &amp;&amp; c-<span class="hljs-string">'0'</span>&lt;=<span class="hljs-number">9</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;    &#125;    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">isNumerical</span><span class="hljs-params">(String s)</span></span><span class="hljs-function">    </span>&#123;        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;s.length();i++)        &#123;            <span class="hljs-keyword">char</span> c=s.charAt(i);            <span class="hljs-keyword">if</span>(isDigit(c)==<span class="hljs-keyword">false</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;        &#125;        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;    &#125;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+      <category>LeetCode</category>
+      
+      <category>字符串</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>字符串</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>LeetCode224-基本运算器</title>
+    <link href="/2020/07/06/LeetCode224-%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E5%99%A8/"/>
+    <url>/2020/07/06/LeetCode224-%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E5%99%A8/</url>
+    
+    <content type="html"><![CDATA[<h2 id="LeetCode-224-基本运算器"><a href="#LeetCode-224-基本运算器" class="headerlink" title="LeetCode 224 基本运算器"></a>LeetCode 224 基本运算器</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><blockquote><p>实现一个基本的计算器来计算一个简单的字符串表达式的值。</p><p>字符串表达式可以包含左括号 <code>(</code> ，右括号 <code>)</code>，加号 <code>+</code> ，减号 <code>-</code>，<strong>非负</strong>整数和空格。</p><p>示例</p><pre><code class="hljs subunit">&gt;输入: "(1+(4<span class="hljs-string">+5</span><span class="hljs-string">+2</span>)<span class="hljs-string">-3</span>)+(6<span class="hljs-string">+8</span>)"&gt;输出: 23</code></pre></blockquote><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>把中缀表达式转成后缀表达式，这道题只要求加减，没有乘除，所以只要栈不为空，那么运算符进来时，栈里的运算符就要出栈。还要注意括号，如果是左括号，就直接进栈，如果是右括号，栈里元素要出栈到栈顶元素为左括号为止。</p><p>中缀表达式转后缀表达式的核心思路就是<strong>栈+链表</strong>。栈用来存运算符和括号，链表用来存后缀表达式</p><p>后缀表达式用<strong>栈</strong>计算。碰到运算符，比较优先级（栈顶元素优先级<strong>小于</strong>当前运算符，当前运算符就进栈，否则栈顶元素就出栈）</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">calculate</span><span class="hljs-params">(String s)</span> </span>&#123;        <span class="hljs-keyword">return</span> calBackExp(transfetToBackExp(s));    &#125;    <span class="hljs-comment">//根据后缀表达式计算最终结果</span>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">calBackExp</span><span class="hljs-params">(LinkedList&lt;String&gt; list)</span></span><span class="hljs-function">    </span>&#123;        Stack&lt;Integer&gt; stack=<span class="hljs-keyword">new</span> Stack&lt;&gt;();        <span class="hljs-keyword">for</span>(String s:list)        &#123;            <span class="hljs-keyword">if</span>(isNumerical(s))&#123;                stack.push(Integer.parseInt(s));            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(s.equals(<span class="hljs-string">"+"</span>) || s.equals(<span class="hljs-string">"-"</span>))&#123;                <span class="hljs-keyword">int</span> n1=stack.pop();                <span class="hljs-keyword">int</span> n2=stack.pop();                <span class="hljs-keyword">if</span>(s.equals(<span class="hljs-string">"+"</span>)) stack.push(n1+n2);                <span class="hljs-keyword">else</span> stack.push(n2-n1);            &#125;        &#125;        <span class="hljs-keyword">return</span> stack.pop();    &#125;<span class="hljs-comment">//把前缀表达式转成后缀表达式</span>    <span class="hljs-function"><span class="hljs-keyword">private</span> LinkedList&lt;String&gt; <span class="hljs-title">transfetToBackExp</span><span class="hljs-params">(String exp)</span></span>&#123;        LinkedList&lt;String&gt; list=<span class="hljs-keyword">new</span> LinkedList&lt;&gt;();        Stack&lt;String&gt; stack=<span class="hljs-keyword">new</span> Stack&lt;&gt;();        <span class="hljs-keyword">int</span> len=exp.length();        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len;i++)        &#123;            <span class="hljs-keyword">char</span> c=exp.charAt(i);            <span class="hljs-keyword">if</span>(c==<span class="hljs-string">' '</span>) <span class="hljs-keyword">continue</span>;<span class="hljs-comment">//空格就继续循环</span>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(isDigit(c))<span class="hljs-comment">//数字就进入链表</span>            &#123;                <span class="hljs-keyword">int</span> k=i+<span class="hljs-number">1</span>;                <span class="hljs-keyword">for</span>(;k&lt;len &amp;&amp; isDigit(exp.charAt(k));k++)&#123;&#125;                list.add(exp.substring(i,k));                i=k-<span class="hljs-number">1</span>;            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c==<span class="hljs-string">'('</span>)&#123;                stack.push(<span class="hljs-string">"("</span>);            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c==<span class="hljs-string">')'</span>)&#123;                <span class="hljs-keyword">while</span>(!stack.empty() &amp;&amp; stack.peek()!=<span class="hljs-string">"("</span>)                &#123;                    list.add(stack.pop());                &#125;                stack.pop();            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c==<span class="hljs-string">'+'</span> || c==<span class="hljs-string">'-'</span>)&#123;                <span class="hljs-keyword">while</span>(!stack.empty() &amp;&amp; !stack.peek().equals(<span class="hljs-string">"("</span>))&#123;                    list.add(stack.pop());                &#125;                                stack.push(c+<span class="hljs-string">""</span>);            &#125;        &#125;                <span class="hljs-keyword">while</span>(stack.size()&gt;<span class="hljs-number">0</span>) list.add(stack.pop());        <span class="hljs-keyword">return</span> list;    &#125;    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isDigit</span><span class="hljs-params">(<span class="hljs-keyword">char</span> c)</span></span><span class="hljs-function">    </span>&#123;        <span class="hljs-keyword">if</span>(c-<span class="hljs-string">'0'</span>&gt;=<span class="hljs-number">0</span> &amp;&amp; c-<span class="hljs-string">'0'</span>&lt;=<span class="hljs-number">9</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;    &#125;    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isNumerical</span><span class="hljs-params">(String str)</span></span><span class="hljs-function">    </span>&#123;        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;str.length();i++)        &#123;            <span class="hljs-keyword">if</span>(isDigit(str.charAt(i))==<span class="hljs-keyword">false</span>)  <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;        &#125;        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;    &#125;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+      <category>LeetCode</category>
+      
+      <category>字符串</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>字符串</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>LeetCode150-逆波兰表达式</title>
+    <link href="/2020/07/06/LeetCode150-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    <url>/2020/07/06/LeetCode150-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    
+    <content type="html"><![CDATA[<h1 id="LeetCode150-逆波兰表达式"><a href="#LeetCode150-逆波兰表达式" class="headerlink" title="LeetCode150 逆波兰表达式"></a>LeetCode150 逆波兰表达式</h1><p>表达式分成前缀表达式（波兰表达式）、中缀表达式、后缀表达式。以3+4*5为例</p><pre><code class="hljs java">前缀表达式：*+<span class="hljs-number">345</span>中缀表达式：<span class="hljs-number">3</span>+<span class="hljs-number">4</span>*<span class="hljs-number">5</span>------&gt;我们日常的运算式子后缀表达式：<span class="hljs-number">345</span>+*------&gt;计算机可以接受的运算式子</code></pre><p>逆波兰表达式也就是后缀表达式，这道题要求我们计算后缀表达式，比较简单，用栈即可。如果是数字就进栈，如果是运算符，栈顶元素连续出栈两次，进行运算。</p><h3 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">evalRPN</span><span class="hljs-params">(String[] tokens)</span> </span>&#123;        Stack&lt;Integer&gt; stack=<span class="hljs-keyword">new</span> Stack&lt;&gt;();        <span class="hljs-keyword">for</span>(String s:tokens)        &#123;            <span class="hljs-keyword">int</span> n1=<span class="hljs-number">0</span>;            <span class="hljs-keyword">int</span> n2=<span class="hljs-number">0</span>;            <span class="hljs-keyword">if</span>(s.equals(<span class="hljs-string">"+"</span>) || s.equals(<span class="hljs-string">"-"</span>) || s.equals(<span class="hljs-string">"*"</span>) ||s.equals(<span class="hljs-string">"/"</span>) )<span class="hljs-comment">//如果是运算符，进行相应运算</span>            &#123;                n1=stack.pop();<span class="hljs-comment">//栈顶元素出栈</span>                n2=stack.pop();<span class="hljs-comment">//继续出栈</span>                <span class="hljs-keyword">if</span>(s.equals(<span class="hljs-string">"+"</span>)) stack.push(n1+n2);<span class="hljs-comment">//匹配运算符，进行相应运算</span>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(s.equals(<span class="hljs-string">"-"</span>)) stack.push(n2-n1);                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(s.equals(<span class="hljs-string">"*"</span>)) stack.push(n1*n2);                <span class="hljs-keyword">else</span> stack.push(n2/n1);            &#125;<span class="hljs-keyword">else</span>&#123;                stack.push(Integer.parseInt(s));<span class="hljs-comment">//如果是数字，就直接进栈</span>            &#125;        &#125;        <span class="hljs-keyword">return</span> stack.peek();<span class="hljs-comment">//最后栈顶元素就是最终结果</span>    &#125;&#125;</code></pre><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://blog.csdn.net/lcl497049972/article/details/83061274" target="_blank" rel="noopener">https://blog.csdn.net/lcl497049972/article/details/83061274</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+      <category>LeetCode</category>
+      
+      <category>字符串</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>字符串</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>自我介绍</title>
+    <link href="/2020/06/30/%E7%AE%80%E5%8E%86/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/"/>
+    <url>/2020/06/30/%E7%AE%80%E5%8E%86/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/</url>
+    
+    <content type="html"><![CDATA[<h1 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h1><p>面试官好，我是郭寰宇，本科和硕士均就读于云南大学，我在校期间主要做了两个项目，一个是Java秒杀设计与实践，一个是导师分配的科研项目，用神经网络实现天线近场计算。在Java秒杀项目中，我主要实现了以下几个功能：登录、参数校验、分布式session、商品缓存、接口限流防刷和其他一些优化功能。</p><p>项目介绍：这个项目设计的核心思路是通过缓存、限流来保证系统的高并发，将请求尽量的拦截在上游，降低下游压力。前端上优化使用了验证码、限流和隐藏秒杀地址，后端使用Redis缓存、消息队列异步下单。</p><p>项目设计思路</p><p>核心思路：核心思路是通过缓存，异步，限流来保证系统的高并发和高可用</p><p>设计思路：<br>将请求拦截在系统上游，降低下游压力<br>充分利用缓存：利用缓存可极大提高系统读写速度<br>消息队列：消息队列可以削峰，将拦截大量并发请求，这也是一个异步处理过程，后台业务根据自己的处理能力，从消息队列中主动拉取请求信息进行业务处理</p><p>前端方案：<br>页面静态化：将活动页面上所有可以静态的元素静态化，减少动态元素<br>将秒杀活动的静态页面提前刷到CDN节点<br>禁止重复提交：用户提交之后按钮置灰<br>使用验证码：防止机器人，爬虫以及分散用户请求<br>用户限流：在某一时间段只允许用户提交一次请求，比如采取IP限流</p><p>后端方案：</p><p>利用缓存应对读写请求</p><p>采用消息队列缓存请求</p><p>数据库加判断条件防止超卖</p><p>安全方案：</p><p>秒杀接口地址隐藏：<a href="https://blog.csdn.net/qq_41620020/article/details/105942443" target="_blank" rel="noopener">https://blog.csdn.net/qq_41620020/article/details/105942443</a></p><p><a href="https://blog.csdn.net/wannuoge4766/article/details/92585429" target="_blank" rel="noopener">https://blog.csdn.net/wannuoge4766/article/details/92585429</a></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>秒杀项目-1</title>
     <link href="/2020/06/27/%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-1/"/>
     <url>/2020/06/27/%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE-1/</url>

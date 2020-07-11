@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      14.4k 字
+      14.5k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      157
+      158
        分钟
     </span>
   
@@ -204,7 +204,8 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="Java面试问题"><a href="#Java面试问题" class="headerlink" title="Java面试问题"></a>Java面试问题</h1><h2 id="为什么String定义为final"><a href="#为什么String定义为final" class="headerlink" title="为什么String定义为final"></a>为什么String定义为final</h2><blockquote>
+              <h1 id="Java面试问题"><a href="#Java面试问题" class="headerlink" title="Java面试问题"></a>Java面试问题</h1><h2 id="解释一下多态"><a href="#解释一下多态" class="headerlink" title="解释一下多态"></a>解释一下多态</h2><p>用一句话概括就是：<strong>事物在运行过程中存在不同的状态。先以教科书般举例说明,下文再举一个花木兰替父从军的例子帮助大家理解.</strong> 多态的存在有<strong>三个前提</strong>:<br><strong>1.要有继承关系</strong><br><strong>2.子类要重写父类的方法</strong><br><strong>3.父类引用指向子类对,</strong></p>
+<h2 id="为什么String定义为final"><a href="#为什么String定义为final" class="headerlink" title="为什么String定义为final"></a>为什么String定义为final</h2><blockquote>
 <p>为了安全性和效率</p>
 <p>用final就是<strong>拒绝继承</strong>,防止其内部的方法被重写，乱改。为了线程安全(字符串自己便是线程安全的)。比如我们使用string作为hash的键，如果string是可变的，那么键也是可变的。</p>
 <p><strong>字符串常量池</strong>,  在大量使用字符串的情况下，可以节省内存空间，提高效率。但之所以能实现这个特性，String的不可变性是最基本的一个必要条件</p>

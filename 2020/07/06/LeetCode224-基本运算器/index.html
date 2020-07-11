@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>LeetCode224-基本运算器 - 郭寰宇</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>郭寰宇的个人博客</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-07-06 19:25">
+      2020年7月6日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      579 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      8
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="LeetCode-224-基本运算器"><a href="#LeetCode-224-基本运算器" class="headerlink" title="LeetCode 224 基本运算器"></a>LeetCode 224 基本运算器</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>实现一个基本的计算器来计算一个简单的字符串表达式的值。</p>
+<p>字符串表达式可以包含左括号 <code>(</code> ，右括号 <code>)</code>，加号 <code>+</code> ，减号 <code>-</code>，<strong>非负</strong>整数和空格。</p>
+<p>示例</p>
+<pre><code class="hljs subunit">&gt;输入: "(1+(4<span class="hljs-string">+5</span><span class="hljs-string">+2</span>)<span class="hljs-string">-3</span>)+(6<span class="hljs-string">+8</span>)"
+&gt;输出: 23</code></pre>
+</blockquote>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>把中缀表达式转成后缀表达式，这道题只要求加减，没有乘除，所以只要栈不为空，那么运算符进来时，栈里的运算符就要出栈。还要注意括号，如果是左括号，就直接进栈，如果是右括号，栈里元素要出栈到栈顶元素为左括号为止。</p>
+<p>中缀表达式转后缀表达式的核心思路就是<strong>栈+链表</strong>。栈用来存运算符和括号，链表用来存后缀表达式</p>
+<p>后缀表达式用<strong>栈</strong>计算。碰到运算符，比较优先级（栈顶元素优先级<strong>小于</strong>当前运算符，当前运算符就进栈，否则栈顶元素就出栈）</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">calculate</span><span class="hljs-params">(String s)</span> </span>&#123;
+        <span class="hljs-keyword">return</span> calBackExp(transfetToBackExp(s));
+    &#125;
+    <span class="hljs-comment">//根据后缀表达式计算最终结果</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">calBackExp</span><span class="hljs-params">(LinkedList&lt;String&gt; list)</span></span>
+<span class="hljs-function">    </span>&#123;
+        Stack&lt;Integer&gt; stack=<span class="hljs-keyword">new</span> Stack&lt;&gt;();
+        <span class="hljs-keyword">for</span>(String s:list)
+        &#123;
+            <span class="hljs-keyword">if</span>(isNumerical(s))&#123;
+                stack.push(Integer.parseInt(s));
+            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(s.equals(<span class="hljs-string">"+"</span>) || s.equals(<span class="hljs-string">"-"</span>))&#123;
+                <span class="hljs-keyword">int</span> n1=stack.pop();
+                <span class="hljs-keyword">int</span> n2=stack.pop();
+                <span class="hljs-keyword">if</span>(s.equals(<span class="hljs-string">"+"</span>)) stack.push(n1+n2);
+                <span class="hljs-keyword">else</span> stack.push(n2-n1);
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> stack.pop();
+    &#125;
+
+	<span class="hljs-comment">//把前缀表达式转成后缀表达式</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> LinkedList&lt;String&gt; <span class="hljs-title">transfetToBackExp</span><span class="hljs-params">(String exp)</span></span>&#123;
+        LinkedList&lt;String&gt; list=<span class="hljs-keyword">new</span> LinkedList&lt;&gt;();
+        Stack&lt;String&gt; stack=<span class="hljs-keyword">new</span> Stack&lt;&gt;();
+        <span class="hljs-keyword">int</span> len=exp.length();
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len;i++)
+        &#123;
+            <span class="hljs-keyword">char</span> c=exp.charAt(i);
+            <span class="hljs-keyword">if</span>(c==<span class="hljs-string">' '</span>) <span class="hljs-keyword">continue</span>;<span class="hljs-comment">//空格就继续循环</span>
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(isDigit(c))<span class="hljs-comment">//数字就进入链表</span>
+            &#123;
+                <span class="hljs-keyword">int</span> k=i+<span class="hljs-number">1</span>;
+                <span class="hljs-keyword">for</span>(;k&lt;len &amp;&amp; isDigit(exp.charAt(k));k++)&#123;&#125;
+                list.add(exp.substring(i,k));
+                i=k-<span class="hljs-number">1</span>;
+            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c==<span class="hljs-string">'('</span>)&#123;
+                stack.push(<span class="hljs-string">"("</span>);
+            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c==<span class="hljs-string">')'</span>)&#123;
+                <span class="hljs-keyword">while</span>(!stack.empty() &amp;&amp; stack.peek()!=<span class="hljs-string">"("</span>)
+                &#123;
+                    list.add(stack.pop());
+                &#125;
+                stack.pop();
+            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c==<span class="hljs-string">'+'</span> || c==<span class="hljs-string">'-'</span>)&#123;
+                <span class="hljs-keyword">while</span>(!stack.empty() &amp;&amp; !stack.peek().equals(<span class="hljs-string">"("</span>))&#123;
+                    list.add(stack.pop());
+                &#125;
+                
+                stack.push(c+<span class="hljs-string">""</span>);
+            &#125;
+        &#125;
+        
+        <span class="hljs-keyword">while</span>(stack.size()&gt;<span class="hljs-number">0</span>) list.add(stack.pop());
+        <span class="hljs-keyword">return</span> list;
+
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isDigit</span><span class="hljs-params">(<span class="hljs-keyword">char</span> c)</span></span>
+<span class="hljs-function">    </span>&#123;
+        <span class="hljs-keyword">if</span>(c-<span class="hljs-string">'0'</span>&gt;=<span class="hljs-number">0</span> &amp;&amp; c-<span class="hljs-string">'0'</span>&lt;=<span class="hljs-number">9</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isNumerical</span><span class="hljs-params">(String str)</span></span>
+<span class="hljs-function">    </span>&#123;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;str.length();i++)
+        &#123;
+            <span class="hljs-keyword">if</span>(isDigit(str.charAt(i))==<span class="hljs-keyword">false</span>)  <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    &#125;
+&#125;</code></pre>
+
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/LeetCode/">LeetCode</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/LeetCode/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/07/06/LeetCode227-%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E5%99%A82/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">LeetCode227-基本运算器2</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/06/LeetCode150-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+                        <span class="hidden-mobile">LeetCode150-逆波兰表达式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "LeetCode224-基本运算器&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

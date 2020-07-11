@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      13.3k 字
+      13.5k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      141
+      143
        分钟
     </span>
   
@@ -205,16 +205,30 @@
             
             <article class="markdown-body">
               <h1 id="MySQL面试问题"><a href="#MySQL面试问题" class="headerlink" title="MySQL面试问题"></a>MySQL面试问题</h1><ol>
-<li>事务描述，ACID讲解。</li>
-<li>事务隔离级别描述，脏读、不可重复读、幻读区别，MVCC机制讲解。</li>
-<li>Innodb如何解决幻读，间隙锁实现详细描述。</li>
-<li>left join和inner join的区别，嵌套子查询如何优化。</li>
-<li>如果线上出现慢sql，如何定位和解决，有实际动手优化过慢sql吗。</li>
-<li>binlog机制描述，binlog日志格式有哪些。</li>
-<li>MySQL主从架构(读写分离)，主从数据复制过程，数据复制过程丢失如何处理。</li>
-<li>分库分表如何实现，用过哪些分库分表插件，底层原理是怎样的。</li>
-<li>索引有哪些种类，建立索引的原则，聚簇索引和非聚簇索引实现区别，联合索引如何使用。</li>
-<li>mysql写入数据的时候，是先把数据写到缓冲区，然后再flush到磁盘的，如何在flush过程中发生了宕机，数据如何恢复。</li>
+<li><p>事务描述，ACID讲解。</p>
+</li>
+<li></li>
+<li><p>事务隔离级别描述，脏读、不可重复读、幻读区别，MVCC机制讲解。</p>
+<blockquote>
+<p>MVCC：<a href="https://blog.csdn.net/DILIGENT203/article/details/100751755" target="_blank" rel="noopener">https://blog.csdn.net/DILIGENT203/article/details/100751755</a></p>
+</blockquote>
+</li>
+<li><p>Innodb如何解决幻读，间隙锁实现详细描述。</p>
+</li>
+<li><p>left join和inner join的区别，嵌套子查询如何优化。</p>
+</li>
+<li><p>如果线上出现慢sql，如何定位和解决，有实际动手优化过慢sql吗。</p>
+</li>
+<li><p>binlog机制描述，binlog日志格式有哪些。</p>
+</li>
+<li><p>MySQL主从架构(读写分离)，主从数据复制过程，数据复制过程丢失如何处理。</p>
+</li>
+<li><p>分库分表如何实现，用过哪些分库分表插件，底层原理是怎样的。</p>
+</li>
+<li><p>索引有哪些种类，建立索引的原则，聚簇索引和非聚簇索引实现区别，联合索引如何使用。</p>
+</li>
+<li><p>mysql写入数据的时候，是先把数据写到缓冲区，然后再flush到磁盘的，如何在flush过程中发生了宕机，数据如何恢复。</p>
+</li>
 </ol>
 <p>事务四大特性（ACID）原子性、一致性、隔离性、持久性？</p>
 <p>事务的并发？事务隔离级别，每个级别会引发什么问题，MySQL默认是哪个级别？</p>
@@ -236,7 +250,36 @@
 &gt;求和：select sum  (field1)   as sumvalue   from table1
 &gt;平均：select avg  (field1)   as avgvalue   from table1
 &gt;最大：select max  (field1)   as maxvalue   from table1
-&gt;最小：select min  (field1)   as minvalue   from table1</code></pre>
+&gt;最小：select min  (field1)   as minvalue   from table1
+</code></pre>
+
+<p>执行顺序</p>
+<pre><code class="hljs sql">&gt;from →join →on →where →group by→having→select→order by→limit
+
+&gt;编写顺序：
+&gt;select[distinct]  
+&gt;from  
+&gt;join（如left join）  
+&gt;on  
+&gt;where  
+&gt;group by  
+&gt;having  
+&gt;union  
+&gt;order by  
+&gt;limit  
+
+&gt;执行顺序
+&gt;from:需要从哪个数据表检索数据
+&gt;join：联合多表查询返回记录时，并生成一张临时表
+&gt;on：在生成临时表时使用的条件
+&gt;where:过滤表中数据的条件
+&gt;group by:如何将上面过滤出的数据分组
+&gt;having:对上面已经分组的数据进行过滤的条件
+&gt;select:查看结果集中的哪个列，或列的计算结果
+&gt;order by :按照什么样的顺序来查看返回的数据
+&gt;limit：限制查询结果返回的数量
+
+</code></pre>
 
 
 </blockquote>

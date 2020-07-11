@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7.9k 字
+      11.8k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      97
+      142
        分钟
     </span>
   
@@ -204,7 +204,96 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="简历"><a href="#简历" class="headerlink" title="简历"></a>简历</h1><h2 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h2><h3 id="Java语法"><a href="#Java语法" class="headerlink" title="Java语法"></a>Java语法</h3><h3 id="设计模式（15-23）"><a href="#设计模式（15-23）" class="headerlink" title="设计模式（15/23）"></a>设计模式（15/23）</h3><h4 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h4><blockquote>
+              <h1 id="简历"><a href="#简历" class="headerlink" title="简历"></a>简历</h1><h2 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h2><h3 id="Java语法"><a href="#Java语法" class="headerlink" title="Java语法"></a>Java语法</h3><p>泛型擦除：<a href="https://www.cnblogs.com/wuqinglong/p/9456193.html" target="_blank" rel="noopener">https://www.cnblogs.com/wuqinglong/p/9456193.html</a></p>
+<p>Java中的四种引用：<a href="https://www.cnblogs.com/coder306/p/13087581.html" target="_blank" rel="noopener">https://www.cnblogs.com/coder306/p/13087581.html</a></p>
+<p>new的过程发生了什么？：<a href="https://blog.csdn.net/moHedong/article/details/79618048" target="_blank" rel="noopener">https://blog.csdn.net/moHedong/article/details/79618048</a></p>
+<p>Volatile：周志明深入理解JVM第三版 P448。总线风暴：<a href="https://blog.csdn.net/oschina_41790905/article/details/105951643" target="_blank" rel="noopener">https://blog.csdn.net/oschina_41790905/article/details/105951643</a></p>
+<blockquote>
+<p>基于 CPU 缓存一致性协议，JVM 实现了 volatile 的可见性，但由于总线嗅探机制，会不断的监听总线，如果大量使用 volatile 会引起总线风暴。所以，volatile 的使用要适合具体场景。</p>
+<p>locak addl：<a href="https://www.jianshu.com/p/6ab7c3db13c3" target="_blank" rel="noopener">https://www.jianshu.com/p/6ab7c3db13c3</a></p>
+<p>volatile：<a href="https://zhuanlan.zhihu.com/p/73126227" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/73126227</a>      <a href="https://blog.csdn.net/oschina_41790905/article/details/105951643#comments_12751169" target="_blank" rel="noopener">https://blog.csdn.net/oschina_41790905/article/details/105951643#comments_12751169</a></p>
+<p>为什么volatile不保证原子性：<a href="https://blog.csdn.net/xdzhouxin/article/details/81236356" target="_blank" rel="noopener">https://blog.csdn.net/xdzhouxin/article/details/81236356</a></p>
+<p>我的理解是：对于多线程下res++，线程A读了值res为100，res值加1后，变成了101，但是还没有写会工作内存，此时阻塞，线程B进来，线程B操作后res值变成101，然后线程A把res写回工作内存，再刷新主存</p>
+<p><a href="https://mp.weixin.qq.com/s/Oa3tcfAFO9IgsbE22C5TEg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Oa3tcfAFO9IgsbE22C5TEg</a></p>
+<p>happens-before：<a href="https://baijiahao.baidu.com/s?id=1654963077694559106&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">https://baijiahao.baidu.com/s?id=1654963077694559106&amp;wfr=spider&amp;for=pc</a>      <a href="https://www.cnblogs.com/tiancai/p/9636199.html" target="_blank" rel="noopener">https://www.cnblogs.com/tiancai/p/9636199.html</a></p>
+</blockquote>
+<p>HashMap扩容的时候读会有什么问题？：<a href="https://blog.csdn.net/bjwfm2011/article/details/81076736" target="_blank" rel="noopener">https://blog.csdn.net/bjwfm2011/article/details/81076736</a></p>
+<blockquote>
+<p>JDK7：如果读取的值的key和环形链表上的key相同，那么就会死循环</p>
+<p>JDK8：尾插法可能会覆盖值，导致读不到</p>
+</blockquote>
+<p>HashMap：<a href="https://www.cnblogs.com/zhuifeng523/p/11390884.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhuifeng523/p/11390884.html</a></p>
+<p>HashMap链表转红黑树：<a href="https://www.jianshu.com/p/309ea054cbc9" target="_blank" rel="noopener">https://www.jianshu.com/p/309ea054cbc9</a></p>
+<blockquote>
+<p>如果链表长度大于8，但是数组长度&lt;64，只进行扩容</p>
+<p>如果链表长度大于8，且数组长度&gt;=64，链表转成红黑树</p>
+</blockquote>
+<p>Hashtable+ConcurrentHashMap：</p>
+<blockquote>
+<p>JDK7—&gt;<a href="https://zhuanlan.zhihu.com/p/31614308" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/31614308</a>      </p>
+<p>JDK8—–&gt;<a href="https://zhuanlan.zhihu.com/p/97902016" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/97902016</a> </p>
+<p>​                <a href="https://www.jianshu.com/p/865c813f2726" target="_blank" rel="noopener">https://www.jianshu.com/p/865c813f2726</a></p>
+</blockquote>
+<p>Comparable和Comparator接口的区别：<a href="https://zhuanlan.zhihu.com/p/94359581" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/94359581</a></p>
+<p>锁升级过程：<a href="https://blog.csdn.net/lengxiao1993/article/details/81568130" target="_blank" rel="noopener">https://blog.csdn.net/lengxiao1993/article/details/81568130</a>  <a href="https://www.cnblogs.com/paddix/p/5405678.html" target="_blank" rel="noopener">https://www.cnblogs.com/paddix/p/5405678.html</a></p>
+<blockquote>
+<p>引入偏向锁是为了在无多线程竞争的情况下尽量减少不必要的轻量级锁执行路径，因为轻量级锁的获取及释放依赖多次CAS原子指令，而偏向锁只需要在置换ThreadID的时候依赖一次CAS原子指令</p>
+<p>轻量级锁所适应的场景是线程交替执行同步块的情况，如果存在同一时间访问同一锁的情况，就会导致轻量级锁膨胀为重量级锁</p>
+</blockquote>
+<p>static关键字：<a href="https://www.cnblogs.com/swisszhang/p/9892992.html" target="_blank" rel="noopener">https://www.cnblogs.com/swisszhang/p/9892992.html</a></p>
+<p>内部类和静态内部类的区别：<a href="https://www.zhihu.com/question/285579995" target="_blank" rel="noopener">https://www.zhihu.com/question/285579995</a>  <a href="https://www.cnblogs.com/ConstXiong/p/11871149.html" target="_blank" rel="noopener">https://www.cnblogs.com/ConstXiong/p/11871149.html</a>  <a href="https://blog.csdn.net/fgakjfd/article/details/5282646" target="_blank" rel="noopener">https://blog.csdn.net/fgakjfd/article/details/5282646</a></p>
+<p>为什么wait，notify，notifyAll定义在Object中？：<a href="https://blog.csdn.net/pulusite/article/details/82287462" target="_blank" rel="noopener">https://blog.csdn.net/pulusite/article/details/82287462</a></p>
+<p>一个class文件有几个类：<a href="https://blog.csdn.net/TTTiaotiao/article/details/95007780" target="_blank" rel="noopener">https://blog.csdn.net/TTTiaotiao/article/details/95007780</a></p>
+<p>IO：<a href="https://github.com/stumon/JavaGuide/blob/master/docs/java/BIO-NIO-AIO.md">https://github.com/stumon/JavaGuide/blob/master/docs/java/BIO-NIO-AIO.md</a></p>
+<p>异常：</p>
+<p>ArrayList：<a href="https://mp.weixin.qq.com/s/3PNWmtS-bEZgZjd9wyMiDA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3PNWmtS-bEZgZjd9wyMiDA</a></p>
+<h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><p>两个线程轮流打印字母和数字：</p>
+<p>线程池使用无界队列的坑：<a href="https://blog.csdn.net/firefile/article/details/80745627" target="_blank" rel="noopener">https://blog.csdn.net/firefile/article/details/80745627</a></p>
+<p>cglib：对指定的类生成一个子类，覆盖其中所有的方法并环绕增强，<strong>不可以代理</strong>被final修饰的类或方法</p>
+<p>AQS：</p>
+<h3 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h3><p>select、poll和epoll：</p>
+<blockquote>
+</blockquote>
+<p>协程：编程语言级别的线程，用户态的线程，不需要切换到内核态</p>
+<h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h3><p>GC ROOT：<strong>一组必须活跃的引用</strong>。虚拟机栈里面的引用的对象（局部变量、临时遍历）、方法区中类静态属性引用的对象，方法区中常量引用的对象、JNI引用的对象、JVM内部引用如Class对象、被锁持有的对象</p>
+<p>如何打破双亲</p>
+<p>CPU100%如何排查：<a href="https://mp.weixin.qq.com/s/roEMz-5tzBZvGxbjq8NhOQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/roEMz-5tzBZvGxbjq8NhOQ</a></p>
+<p>OOM如何排查：<a href="https://blog.csdn.net/fishinhouse/article/details/80781673" target="_blank" rel="noopener">https://blog.csdn.net/fishinhouse/article/details/80781673</a></p>
+<blockquote>
+<p>常见参数：<a href="https://www.cnblogs.com/anyehome/p/9071619.html" target="_blank" rel="noopener">https://www.cnblogs.com/anyehome/p/9071619.html</a></p>
+</blockquote>
+<p>JVM调优工具：</p>
+<blockquote>
+<p>教程：<a href="https://www.bilibili.com/video/BV1N741127Wt?t=51&amp;p=16" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1N741127Wt?t=51&amp;p=16</a></p>
+<p>jps：列出 Java 上的所有进程</p>
+<p>jstack：查看或导出Java应用程序中线程堆栈信息</p>
+<p>jvisualvm：查看监控内存泄露，跟踪垃圾回收，执行时内存、cpu分析，线程分析</p>
+</blockquote>
+<p>JVM调优：</p>
+<blockquote>
+<p>内存溢出</p>
+<p>​    原因：JVM内存过小、死循环或循环产生过多重复的对象实体、加载的数据量过于庞大、<strong>内存泄漏</strong></p>
+<p>​    分析：使用jvisualvm分析dump，分析到底是内存泄漏还是内存溢出。如果是<strong>内存泄漏</strong>，可进一步通过工具查看泄漏对象到GC Roots的引用链，修复应用程序中的内存泄漏。如果是<strong>内存溢出</strong>，先检查是否有死循环。</p>
+<p>​    解决方法：增加JVM的内存大小、避免死循环，防止一次载入太多的数据、及时地释放没用的对象，释放内存空间</p>
+<p>内存泄漏</p>
+<p>​    原因：程序在申请内存后，无法释放已申请的内存空间</p>
+<p>​    特点：对象是可达的、对象是无用的。在程序中体现在，频繁GC，但是释放不了多少内存。比如静态static修饰对象。</p>
+<p>​    解决方法：jvisualvm分析，定位代码（找出内存占用超出预期的嫌疑对象、分析程序的源代码，找出嫌疑对象数量过多的原因）</p>
+<p>栈溢出：</p>
+<p>​    栈里面放：局部变量表（重点）、操作数栈（重点）、动态链接，也称为指向运行时常量池的方法引用、方法返回地址，也称为方法退出的定义</p>
+<p>​    描述：</p>
+<p>​        如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError 异常</p>
+<p>​        如果虚拟机栈可以动态扩展，当扩展时无法申请到足够的内存时会抛出 OutOfMemoryError 异常</p>
+<p>​    原因：</p>
+<p>​        单个线程下，栈帧太大，或者虚拟机栈容量太小，当内存无法分配的时候，虚拟机抛出StackOverflowError 异常</p>
+<p>​        不断地建立线程的方式会导致内存溢出。</p>
+<p>​    解决方法：看看是否有方法递归，避免递归在代码中无限循环</p>
+<p>方法区溢出</p>
+<p>​    原因：方法区用于存放Class的相关信息，如类名、访问修饰符、返回值、常量池、变量名、方法名等。<strong>静态变量也存储在方法区</strong>，生成了大量的类，导致方法区被撑爆</p>
+<p>​    解决方法：检查是否永久代空间设置得过小、检查是否使用CGLib生成了大量的代理类</p>
+</blockquote>
+<p>TLAB：<a href="https://mp.weixin.qq.com/s/Wws24Fhg1nH4dHvtcFYi2g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Wws24Fhg1nH4dHvtcFYi2g</a></p>
+<h3 id="设计模式（15-23）"><a href="#设计模式（15-23）" class="headerlink" title="设计模式（15/23）"></a>设计模式（15/23）</h3><h4 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h4><blockquote>
 <p>开闭原则、单一职责原则、里氏替换原则、依赖倒置原则、迪米特原则、接口隔离原则、组合原则</p>
 </blockquote>
 <p>设计模式分类：创建型、结构型、行为型</p>
@@ -212,25 +301,7 @@
 <blockquote>
 <p>单例、原型、工厂方法、抽象工厂、建造者</p>
 </blockquote>
-<h5 id="DCL单例"><a href="#DCL单例" class="headerlink" title="DCL单例"></a>DCL单例</h5><pre><code class="hljs java"><span class="hljs-comment">//单例四大原则：构造私有、静态方法或者枚举返回实例、确保实例只有一个、反序列时不会重构对象</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton</span> </span>&#123;
-    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">Singleton</span><span class="hljs-params">()</span></span>&#123;&#125;
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">static</span> Singleton singleton=<span class="hljs-keyword">null</span>;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Singleton <span class="hljs-title">getSingleton</span><span class="hljs-params">()</span></span>
-<span class="hljs-function">    </span>&#123;
-        <span class="hljs-keyword">if</span>(singleton==<span class="hljs-keyword">null</span>)
-        &#123;
-            <span class="hljs-keyword">synchronized</span> (Singleton<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>
-<span class="hljs-class">            </span>&#123;
-                <span class="hljs-keyword">if</span>(singleton==<span class="hljs-keyword">null</span>)
-                &#123;
-                    singleton=<span class="hljs-keyword">new</span> Singleton();
-                &#125;
-            &#125;
-        &#125;
-        <span class="hljs-keyword">return</span> singleton;
-    &#125;
-&#125;</code></pre>
+<h5 id="DCL单例"><a href="#DCL单例" class="headerlink" title="DCL单例"></a>DCL单例</h5><pre><code class="hljs java"><span class="hljs-comment">//单例四大原则：构造私有、静态方法或者枚举返回实例、确保实例只有一个、反序列时不会重构对象</span></code></pre>
 
 <h5 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h5><p>根据一个已经创建好的实例，不断的克隆出其他对象，省去了复杂的new过程。</p>
 <p>但是原型的克隆分为浅克隆和深克隆，Object类的Clone方法为浅克隆，要想实现深克隆必须我们自己动手实现</p>
@@ -335,37 +406,6 @@
 </li>
 </ul>
 <p>缺点是：每增加一个<strong>产品</strong>就要增加一个具体<strong>产品类</strong>和一个对应的<strong>具体工厂类</strong>，这增加了系统的复杂度。</p>
-<pre><code class="hljs java"><span class="hljs-comment">//抽象工厂接口</span>
-<span class="hljs-keyword">package</span> com.guo.factory;
-
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">FactoryMethod</span> </span>&#123;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> Product <span class="hljs-title">createProduct</span><span class="hljs-params">()</span></span>;
-&#125;
-
-<span class="hljs-comment">//工厂A，生产产品A</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FactoryA</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">FactoryMethod</span></span>&#123;
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> Product <span class="hljs-title">createProduct</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Buick();
-    &#125;
-&#125;
-<span class="hljs-comment">//工厂B，生产产品B</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FactoryB</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">FactoryMethod</span></span>&#123;
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> Product <span class="hljs-title">createProduct</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> WuLing();
-    &#125;
-&#125;
-<span class="hljs-comment">//测试</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> CloneNotSupportedException </span>&#123;
-        FactoryA factoryA=<span class="hljs-keyword">new</span> FactoryA();
-        FactoryB factoryB=<span class="hljs-keyword">new</span> FactoryB();
-        factoryA.createProduct().introduce();
-        factoryB.createProduct().introduce();
-    &#125;
-&#125;</code></pre>
-
 <h5 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h5><p>抽象工厂模式是工厂方法模式的升级版本，工厂方法模式只生产一个等级的产品，而抽象工厂模式可生产多个等级的产品。</p>
 <p>结构为：抽象产品、抽象工厂、具体产品、具体工厂</p>
 <p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200628095822.png" srcset="/img/loading.gif" alt="image-20200628095817985"></p>
@@ -378,82 +418,6 @@
 <p>当增加一个新的产品族时不需要修改原代码，满足开闭原则。</p>
 <p>其缺点是：当产品族中需要增加一个新的产品时，所有的工厂类都需要进行修改。</p>
 <p>按照上面的图片来写一个抽象工厂设计模式代码</p>
-<pre><code class="hljs java"><span class="hljs-comment">//手机接口</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Phone</span> </span>&#123;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">call</span><span class="hljs-params">()</span></span>;
-&#125;
-<span class="hljs-comment">//电脑接口</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Computer</span> </span>&#123;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">network</span><span class="hljs-params">()</span></span>;
-&#125;
-
-<span class="hljs-comment">//手机实现类</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MiPhone</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Phone</span></span>&#123;
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">call</span><span class="hljs-params">()</span> </span>&#123;
-        System.out.println(<span class="hljs-string">"this is Mi Phone"</span>);
-    &#125;
-&#125;
-
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HuaWeiPhone</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Phone</span></span>&#123;
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">call</span><span class="hljs-params">()</span> </span>&#123;
-        System.out.println(<span class="hljs-string">"this is Hua Wei phone"</span>);
-    &#125;
-&#125;
-
-
-<span class="hljs-comment">//电脑实现类</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MiComputer</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Computer</span></span>&#123;
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">network</span><span class="hljs-params">()</span> </span>&#123;
-        System.out.println(<span class="hljs-string">"this is Mi Computer"</span>);
-    &#125;
-&#125;
-
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HuaWeiComputer</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Computer</span></span>&#123;
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">network</span><span class="hljs-params">()</span> </span>&#123;
-        System.out.println(<span class="hljs-string">"this is HuaWei Computer"</span>);
-    &#125;
-&#125;
-<span class="hljs-comment">//小米工厂</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MiFactory</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Factory</span></span>&#123;
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> Phone <span class="hljs-title">createPhone</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> MiPhone();
-    &#125;
-
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> Computer <span class="hljs-title">createComputer</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> MiComputer();
-    &#125;
-&#125;
-<span class="hljs-comment">//华为工厂</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HuaWeiFactory</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Factory</span></span>&#123;
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> Phone <span class="hljs-title">createPhone</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> HuaWeiPhone();
-    &#125;
-
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> Computer <span class="hljs-title">createComputer</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> HuaWeiComputer();
-    &#125;
-&#125;
-
-<span class="hljs-comment">//测试</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> CloneNotSupportedException </span>&#123;
-        MiFactory miFactory=<span class="hljs-keyword">new</span> MiFactory();
-        HuaWeiFactory huaWeiFactory=<span class="hljs-keyword">new</span> HuaWeiFactory();
-        miFactory.createComputer().network();
-        miFactory.createPhone().call();
-        huaWeiFactory.createComputer().network();
-        huaWeiFactory.createPhone().call();
-    &#125;
-&#125;</code></pre>
-
 <h5 id="建造者"><a href="#建造者" class="headerlink" title="建造者"></a>建造者</h5><p>买汽车，不需要管汽车零件的生产步骤，只需要去4S店提车就可以，每一个车由很多部件构成，部件可以灵活选择，组织部件的顺序也可以灵活选择，这类产品的创建无法用工厂模式描述，建造者模式就是用来描述这类产品的创建</p>
 <p>定义：它是将<strong>一个复杂的对象分解为多个简单的对象</strong>，然后一步一步构建而成。它将<strong>变与不变相分离</strong>，即产品的<strong>组成部分是不变的</strong>，但<strong>每一部分是可以灵活选择的</strong>。</p>
 <p>组成：</p>
@@ -461,72 +425,6 @@
 <p>抽象建造者：包含创建产品各个组件的抽象方法的接口</p>
 <p>具体建造者：实现接口，完成创建各个组件的方法</p>
 <p>指挥者：按照一定顺序调用建造者的方法</p>
-<pre><code class="hljs java"><span class="hljs-comment">//产品</span>
-<span class="hljs-meta">@Data</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Product</span> </span>&#123;
-    <span class="hljs-keyword">public</span> String productA;
-    <span class="hljs-keyword">public</span> String productB;
-    <span class="hljs-keyword">public</span> String productC;
-
-&#125;
-<span class="hljs-comment">//抽象建造者</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">AbstractBuild</span> </span>&#123;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">createProductA</span><span class="hljs-params">()</span></span>;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">createProductB</span><span class="hljs-params">()</span></span>;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">createProductC</span><span class="hljs-params">()</span></span>;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> Product <span class="hljs-title">getProduct</span><span class="hljs-params">()</span></span>;
-&#125;
-
-
-
-<span class="hljs-comment">//具体建造者</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ActualBuild</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">AbstractBuild</span></span>&#123;
-    Product product;
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> Product <span class="hljs-title">getProduct</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">return</span> product=<span class="hljs-keyword">new</span> Product();
-    &#125;
-
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">createProductA</span><span class="hljs-params">()</span> </span>&#123;
-        System.out.println(<span class="hljs-string">"创建产品A"</span>);
-    &#125;
-
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">createProductB</span><span class="hljs-params">()</span> </span>&#123;
-        System.out.println(<span class="hljs-string">"创建产品B"</span>);
-    &#125;
-
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">createProductC</span><span class="hljs-params">()</span> </span>&#123;
-        System.out.println(<span class="hljs-string">"创建产品C"</span>);
-    &#125;
-&#125;
-<span class="hljs-comment">//指挥者</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Director</span> </span>&#123;
-    ActualBuild actualBuild;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Director</span><span class="hljs-params">(ActualBuild actualBuild)</span> </span>&#123;
-        <span class="hljs-keyword">this</span>.actualBuild=actualBuild;
-    &#125;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> Product <span class="hljs-title">createProduct</span><span class="hljs-params">()</span></span>
-<span class="hljs-function">    </span>&#123;
-        actualBuild.createProductA();
-        actualBuild.createProductB();
-        actualBuild.createProductC();
-        <span class="hljs-keyword">return</span> actualBuild.product;
-    &#125;
-&#125;
-
-<span class="hljs-comment">//测试</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> </span>&#123;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> CloneNotSupportedException </span>&#123;
-        ActualBuild actualBuild=<span class="hljs-keyword">new</span> ActualBuild();
-        Director director=<span class="hljs-keyword">new</span> Director(actualBuild);
-        director.createProduct();
-    &#125;
-&#125;</code></pre>
-
 <h4 id="结构型"><a href="#结构型" class="headerlink" title="结构型"></a>结构型</h4><p>解释：将<strong>类和对象</strong>结合在一起成为一个更大的结构。分为类结构型和对象结构型模式。</p>
 <p>​    类结构模型关心<strong>类的组合</strong>，由多个类可以组成一个更大的系统，在类结构型模式中一般只存在继承关系和实现关系；</p>
 <p>​    对象结构型模式<strong>关心类与对象的组合</strong>，通过<strong>组合关系</strong>使得在一个类中定义另一个类的实例对象，然后通过该对象调用其方法。根据“<strong>组合复用原则</strong>”，在系统中尽量使用组合关系来替代继承关系，因此大部分结构型模式都是对象结构型模式</p>
@@ -935,7 +833,7 @@
 </blockquote>
 <h4 id="行为型模式"><a href="#行为型模式" class="headerlink" title="行为型模式"></a>行为型模式</h4><p>解释描述程序在运行时复杂的流程控制，即描述<strong>多个类或对象之间怎样相互协作</strong>共同完成单个对象都无法单独完成的任务，它涉及算法与对象间职责的分配。</p>
 <blockquote>
-<p>模板方法、策略、命令、职责链、状态、观察者、中介者、迭代器、访问者、备忘录、解释器</p>
+<p><strong>模板方法</strong>、<strong>策略</strong>、命令、职责链、状态、<strong>观察者</strong>、中介者、迭代器、访问者、备忘录、解释器</p>
 </blockquote>
 <h5 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h5><p>定义</p>
 <blockquote>
@@ -1254,10 +1152,164 @@
 <p>可以判断一个元素是否存在，但是有误判率</p>
 <p>假设输入对象个数为n，bitarray大小（也就是布隆过滤器大小）为m，所容忍的误判率p和哈希函数的个数k。计算公式如下：（<strong>小数向上取整</strong>）</p>
 <p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200628184001.png" srcset="/img/loading.gif" alt="image-20200628183958868"></p>
-<h3 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h3><p>见其他文章</p>
-<h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><p>见其他文章</p>
-<h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h3><p>见其他文章</p>
-<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><h3 id="网络协议"><a href="#网络协议" class="headerlink" title="网络协议"></a>网络协议</h3><h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><h3 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h3><h3 id="Https"><a href="#Https" class="headerlink" title="Https"></a>Https</h3><h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><h2 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h2><h3 id="Java秒杀"><a href="#Java秒杀" class="headerlink" title="Java秒杀"></a>Java秒杀</h3><h3 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h3>
+<h3 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h3><p>一致性哈希：<a href="https://zhuanlan.zhihu.com/p/34985026" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/34985026</a> （一个圆环、缺点是查询慢、优点是只影响局部数据或服务器）</p>
+<h3 id="多线程-1"><a href="#多线程-1" class="headerlink" title="多线程"></a>多线程</h3><p>线程池：<a href="https://zhuanlan.zhihu.com/p/73990200" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/73990200</a></p>
+<h3 id="JVM-1"><a href="#JVM-1" class="headerlink" title="JVM"></a>JVM</h3><p>如何打破双亲委派机制：想打破双亲委派模型，那么就重写整个loadClass方法。如果不想打破双亲委派模型，那么只需要重写findClass方法即可</p>
+<p>.class和getClass()的区别：.class用于类名，getClass()是一个final native的方法，因此用于类实例。。.class在编译期间就确定了一个类的java.lang.Class对象，但是getClass()方法在运行期间确定一个类实例的java.lang.Class对象</p>
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><h3 id="网络协议"><a href="#网络协议" class="headerlink" title="网络协议"></a>网络协议</h3><h3 id="TCP-UDP"><a href="#TCP-UDP" class="headerlink" title="TCP/UDP"></a>TCP/UDP</h3><p>TCP如何保证可靠传输：<a href="https://blog.csdn.net/QEcode/article/details/90339162" target="_blank" rel="noopener">https://blog.csdn.net/QEcode/article/details/90339162</a></p>
+<p>如何设计一个可靠的UDP：<a href="https://blog.csdn.net/weixin_42388901/article/details/102477507" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42388901/article/details/102477507</a></p>
+<h3 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h3><h3 id="Https"><a href="#Https" class="headerlink" title="Https"></a>Https</h3><blockquote>
+<p>传统的HTTP协议通信：传统的HTTP报文是直接将报文信息传输到TCP然后TCP再通过TCP套接字发送给目的主机上。</p>
+<p>HTTPS协议通信：HTTPS是HTTP报文直接将报文信息传输给SSL套接字进行加密，SSL加密后将加密后的报文发送给TCP套接字，然后TCP套接字再将加密后的报文发送给目的主机，目的主机将通过TCP套接字获取加密后的报文给SSL套接字，SSL解密后交给对应进程</p>
+</blockquote>
+<p>CA：</p>
+<p>SSL握手：</p>
+<blockquote>
+<p>第一步：客户端发送给服务端自己所支持的<strong>秘钥算法和一个随机数R1</strong></p>
+<p>第二步：服务端从秘钥算法中选择三种加密算法（对称加密算法、MCA算法、公钥加密算法），<strong>生成一个随机数R2</strong>，把这<strong>三种加密算法和证书+随机数R2</strong>发送给客户端</p>
+<p>第三步：客户端验证证书是否合法，然后从证书中取出<strong>公钥</strong>，自己再生成一个<strong>随机数R3</strong>，利用公钥对这个随机数加密，生成<strong>PreMasterKey</strong>，把它发送给服务端</p>
+<p>第四步：客户端收到<strong>PreMasterKey</strong>后，利用自己的私钥解密后得到随机数R3，至此双方都知道了加密算法和三个随机数。</p>
+<p>第五步：两边根据加密算法和三个随机数，生成秘钥<strong>Key</strong>，握手结束。以后的应用层数据都使用这个秘钥进行对称加密。</p>
+</blockquote>
+<p><a href="https://www.jianshu.com/p/e30a8c4fa329" target="_blank" rel="noopener">https://www.jianshu.com/p/e30a8c4fa329</a></p>
+<p><a href="https://www.bilibili.com/video/BV1EK4y1b7Mu/?spm_id_from=333.788.videocard.0" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1EK4y1b7Mu/?spm_id_from=333.788.videocard.0</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/32513816" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/32513816</a></p>
+<p><a href="https://juejin.im/post/584b76d3a22b9d0058d5036f" target="_blank" rel="noopener">https://juejin.im/post/584b76d3a22b9d0058d5036f</a></p>
+<p>TCP如何保证可靠传输：<a href="https://www.jianshu.com/p/6aac4b2a9fd7" target="_blank" rel="noopener">https://www.jianshu.com/p/6aac4b2a9fd7</a></p>
+<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><p>常用命令：<a href="https://blog.csdn.net/xulong_08/article/details/81463054" target="_blank" rel="noopener">https://blog.csdn.net/xulong_08/article/details/81463054</a></p>
+<blockquote>
+<p>创建文件夹 nkdir  创建文件 touch  </p>
+<p>查询CPU占用最多的十个进程：ps（报告当前系统的进程状态） top（类似于windows的任务管理器）  free（显示当前系统未使用的和已使用的内存数目）</p>
+<p>top命令下，按M是把结果安装内存大小排序，按P是按照CPU占用率排序</p>
+<p>查询日期：Date</p>
+<p>删除文件 rm -f</p>
+<p>搜索文件 find / -name file1</p>
+<p>创建用户和群组 groupadd group_name   usedadd user_name</p>
+<p>查看文件 cat   tail</p>
+<p>显示当前java进程pid</p>
+<p>查看硬盘情况：df -lh</p>
+</blockquote>
+<h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><p>大纲：<a href="https://www.bilibili.com/video/BV1YE411D7nH?p=29" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1YE411D7nH?p=29</a></p>
+<p>进程和线程的区别：<a href="https://www.zhihu.com/question/25532384/answer/81152571" target="_blank" rel="noopener">https://www.zhihu.com/question/25532384/answer/81152571</a> </p>
+<p>进程间通信（IPC）的方式：<a href="https://www.bilibili.com/video/BV1YE411D7nH?p=10" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1YE411D7nH?p=10</a>  (管道、套接字、信号交互、共享内存、消息队列)</p>
+<p>线程间通信的方式：wait和notify、volatile、ReentLock <a href="https://blog.csdn.net/jisuanji12306/article/details/86363390" target="_blank" rel="noopener">https://blog.csdn.net/jisuanji12306/article/details/86363390</a></p>
+<p>进程互斥：<a href="https://www.bilibili.com/video/BV1YE411D7nH?p=18" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1YE411D7nH?p=18</a></p>
+<blockquote>
+<p>单标志法：只检查，不上锁。缺点：违背空闲让进原则</p>
+<p>双标志先检查法：先检查后上锁吗，缺点：同时访问临界资源，<strong>因为检查和上锁不是一气呵成的</strong></p>
+<p>双标志后检查法：上锁在前，检查在后。缺点：两个进程都进不去</p>
+<p>Peterson算法：双标志后检查法+礼让。如果两个线程都想进入，就礼让。缺点：CPU忙等—&gt;不遵守让权等待</p>
+<p>信号量：PV原语</p>
+</blockquote>
+<p>避免死锁：银行家算法：<a href="https://www.bilibili.com/video/BV1YE411D7nH?p=30" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1YE411D7nH?p=30</a></p>
+<p>局部性原理：<a href="https://www.zhihu.com/question/25142664" target="_blank" rel="noopener">https://www.zhihu.com/question/25142664</a></p>
+<p>虚拟内存：<a href="https://juejin.im/post/59f8691b51882534af254317" target="_blank" rel="noopener">https://juejin.im/post/59f8691b51882534af254317</a>      <a href="https://zhuanlan.zhihu.com/p/82746153" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/82746153</a></p>
+<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><p>一条SQL执行流程：<a href="https://zhuanlan.zhihu.com/p/95082274" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/95082274</a> （缓存、解析器、预处理器、查询优化器、执行、查询执行引擎）</p>
+<p>char和varchar的区别：<a href="https://www.cnblogs.com/canger/p/9845969.html" target="_blank" rel="noopener">https://www.cnblogs.com/canger/p/9845969.html</a></p>
+<p>左连接、右连接、内连接：<a href="https://www.cnblogs.com/wanglijun/p/8916790.html" target="_blank" rel="noopener">https://www.cnblogs.com/wanglijun/p/8916790.html</a></p>
+<p>Delete、Drop、Ttuncate区别：<a href="https://blog.csdn.net/fzy198926/article/details/78190633" target="_blank" rel="noopener">https://blog.csdn.net/fzy198926/article/details/78190633</a></p>
+<h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><p>联合索引失效问题：<a href="https://mp.weixin.qq.com/s/COpOB4JJa0Tj4aFn2EawRQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/COpOB4JJa0Tj4aFn2EawRQ</a></p>
+<blockquote>
+<ol>
+<li>联合索引的最左前缀匹配指的是where条件一定要有联合索引的第一个字段</li>
+<li>是否走联合索引与where条件的顺序无关，只与字段有关</li>
+</ol>
+</blockquote>
+<p>聚簇索引和非聚簇索引：<a href="https://blog.csdn.net/u013132035/article/details/82193763" target="_blank" rel="noopener">https://blog.csdn.net/u013132035/article/details/82193763</a></p>
+<p>explain：<a href="https://blog.csdn.net/wuseyukui/article/details/71512793" target="_blank" rel="noopener">https://blog.csdn.net/wuseyukui/article/details/71512793</a></p>
+<blockquote>
+<p>type：<a href="https://www.cnblogs.com/chancy/p/10684452.html" target="_blank" rel="noopener">https://www.cnblogs.com/chancy/p/10684452.html</a>        一种数据库引擎查找表的一种方式</p>
+</blockquote>
+<p>SQL调优：</p>
+<p>唯一索引和普通索引选择问题：<a href="https://www.cnblogs.com/lamp01/p/10752100.html" target="_blank" rel="noopener">https://www.cnblogs.com/lamp01/p/10752100.html</a></p>
+<h3 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h3><p>死锁：<a href="https://www.cnblogs.com/xinruyi/p/11109058.html" target="_blank" rel="noopener">https://www.cnblogs.com/xinruyi/p/11109058.html</a></p>
+<p>悲观锁：通过加锁实现，比如 for update</p>
+<p>乐观锁：CAS+版本号</p>
+<p>读锁：加读锁：Lock Table XX read 。解锁 unlock tables</p>
+<p>写锁：加写锁：Lock Table XX write。解锁：unlock tables</p>
+<p>共享锁（读锁）：Lock in share mode（<strong>当前读</strong>）。只允许其他人读，不允许其他人写</p>
+<p>排它锁（写锁）：for update。其他事务既不能读，也不能写</p>
+<p>表锁：锁住整个表</p>
+<p>行锁：锁住一行，就是给索引上的索引项加锁。如果没有就是表锁</p>
+<p>临建锁（Next-Key）和 间隙锁：<a href="https://blog.csdn.net/WSYW126/article/details/105324239/" target="_blank" rel="noopener">https://blog.csdn.net/WSYW126/article/details/105324239/</a></p>
+<p>测试了一个下午，发现也和他的结果不一样，草：<a href="https://blog.csdn.net/WSYW126/article/details/105324239/" target="_blank" rel="noopener">https://blog.csdn.net/WSYW126/article/details/105324239/</a></p>
+<p>区间问题：</p>
+<blockquote>
+<p>根据检索条件向下寻找最靠近检索条件的记录值X作为左区间，向上寻找最靠近检索条件的记录值Y作为右区间，即锁定的间隙为（X，Y）。</p>
+</blockquote>
+<h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><p>事务：<a href="https://zhuanlan.zhihu.com/p/148035779" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/148035779</a></p>
+<p>不可重复读和幻读的区别：<a href="https://blog.csdn.net/jdnicky/article/details/91493719" target="_blank" rel="noopener">https://blog.csdn.net/jdnicky/article/details/91493719</a></p>
+<p>MVCC：<a href="https://blog.csdn.net/DILIGENT203/article/details/100751755" target="_blank" rel="noopener">https://blog.csdn.net/DILIGENT203/article/details/100751755</a></p>
+<p>MVCC和RR、RC的关系：<a href="https://www.zhihu.com/question/279538775/answer/1298076200" target="_blank" rel="noopener">https://www.zhihu.com/question/279538775/answer/1298076200</a></p>
+<p>Redolog：<a href="https://blog.csdn.net/wanbin6470398/article/details/81941586" target="_blank" rel="noopener">https://blog.csdn.net/wanbin6470398/article/details/81941586</a></p>
+<p>乐观锁和MVCC的区别：<a href="https://www.zhihu.com/question/27876575" target="_blank" rel="noopener">https://www.zhihu.com/question/27876575</a></p>
+<p>隔离级别：<a href="https://www.bilibili.com/video/BV1yt411A7hp?p=2" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1yt411A7hp?p=2</a></p>
+<pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> @@tx_isolation
+<span class="hljs-keyword">SET</span> tx_isolation=<span class="hljs-string">'read-committed'</span>;
+<span class="hljs-keyword">SET</span> tx_isolation=<span class="hljs-string">'repeatable-read'</span>;<span class="hljs-comment">----处于RR级别下的事务，不会受其他事务影响</span></code></pre>
+
+<p>可重复读</p>
+<blockquote>
+<p>实现可重复读的隔离级别，只需要在事务开始的时候创建一致性视图，也叫做快照，之后的查询里都共用这个一致性视图，后续的事务对数据的更改是对当前事务是不可见的，这样就实现了可重复读</p>
+</blockquote>
+<p>读已经提交</p>
+<blockquote>
+<p>而读提交，每一个语句执行前都会重新计算出一个新的视图，这个也是可重复读和读提交在MVCC实现层面上的区别。</p>
+</blockquote>
+<p>感觉RP可以解决幻读：<a href="https://www.zhihu.com/question/372905832/answer/1106544250" target="_blank" rel="noopener">https://www.zhihu.com/question/372905832/answer/1106544250</a> 下@yangsoon的回答，RP下读的是快照</p>
+<p>脏读： 加排它锁</p>
+<p>不可重复读：加排它锁</p>
+<p>幻读：临建锁。锁住了间隙，所以解决了幻读的插入</p>
+<p>三大范式：<a href="https://zhuanlan.zhihu.com/p/63146817" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/63146817</a></p>
+<h3 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h3><p>binlog、redolog、undolog：<a href="https://blog.csdn.net/lzhcoder/article/details/88814364" target="_blank" rel="noopener">https://blog.csdn.net/lzhcoder/article/details/88814364</a></p>
+<h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><p>Spring的原型和 GOF 的原型的区别： GoF通过用原型实例指定创建对象的种类，而Spring容器用Bean定义指定创建对象的种类；GoF通过拷贝这些原型创建新的对象，而Spring容器根据Bean定义创建新对象。</p>
+<p>SpringBoot的自动配置原理：<a href="https://juejin.im/post/5ea2593f6fb9a03c73799bf4" target="_blank" rel="noopener">https://juejin.im/post/5ea2593f6fb9a03c73799bf4</a></p>
+<p>Spring的事务：</p>
+<h3 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h3><p>SpringMVC的请求过程：<a href="http://www.tianxiaobo.com/2018/06/29/Spring-MVC-%E5%8E%9F%E7%90%86%E6%8E%A2%E7%A7%98-%E4%B8%80%E4%B8%AA%E8%AF%B7%E6%B1%82%E7%9A%84%E6%97%85%E8%A1%8C%E8%BF%87%E7%A8%8B/" target="_blank" rel="noopener">http://www.tianxiaobo.com/2018/06/29/Spring-MVC-%E5%8E%9F%E7%90%86%E6%8E%A2%E7%A7%98-%E4%B8%80%E4%B8%AA%E8%AF%B7%E6%B1%82%E7%9A%84%E6%97%85%E8%A1%8C%E8%BF%87%E7%A8%8B/</a></p>
+<h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h2><p>大纲：</p>
+<blockquote>
+<p>redis为什么单线程、IO多路复用、redis和memcached的缺点、redis五种数据类型的底层数据结构、布隆过滤器、redis持久化、redis的过期删除机制、淘汰机制、redis主从、哨兵、集群、分布式锁、大key拆分</p>
+<p><a href="https://juejin.im/post/5dccf260f265da0bf66b626d" target="_blank" rel="noopener">https://juejin.im/post/5dccf260f265da0bf66b626d</a></p>
+</blockquote>
+<p>Redis为什么是单线程：<a href="https://blog.csdn.net/AAA821/article/details/82930679" target="_blank" rel="noopener">https://blog.csdn.net/AAA821/article/details/82930679</a></p>
+<blockquote>
+<p>每个事情都是非常简单的（能在极短时间内完成）</p>
+</blockquote>
+<p>Redis和Memcached的对比：<a href="https://zhuanlan.zhihu.com/p/65013389" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/65013389</a></p>
+<p>基本数据类型的应用场景：<a href="https://zhuanlan.zhihu.com/p/81455096" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/81455096</a></p>
+<p>基本数据类型的底层原理：<a href="https://mp.weixin.qq.com/s/MT1tB2_7f5RuOxKhuEm1vQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/MT1tB2_7f5RuOxKhuEm1vQ</a></p>
+<p>set类型实现交集、并集、差集：<a href="https://blog.csdn.net/oGuiGui12345/article/details/89634131" target="_blank" rel="noopener">https://blog.csdn.net/oGuiGui12345/article/details/89634131</a></p>
+<p>Redis分布式锁：</p>
+<p>渐进式rehash：<a href="https://blog.csdn.net/belalds/article/details/93713491" target="_blank" rel="noopener">https://blog.csdn.net/belalds/article/details/93713491</a></p>
+<p>使用Redis实现消息队列：<a href="https://segmentfault.com/q/1010000010777585" target="_blank" rel="noopener">https://segmentfault.com/q/1010000010777585</a></p>
+<p>redis和mysql数据不一致如何解决：<a href="https://www.bbsmax.com/A/gVdnqXWQ5W/" target="_blank" rel="noopener">https://www.bbsmax.com/A/gVdnqXWQ5W/</a></p>
+<blockquote>
+<ol>
+<li>一般缓存是这样的：</li>
+<li>#读的顺序是先读缓存，后读数据库</li>
+<li>#写的顺序是先写数据库，然后写缓存</li>
+<li>#每次更新了相关的数据，都要把该缓存清理掉</li>
+<li>#为了避免极端条件下造成的缓存与数据库之间的数据不一致，缓存需要设置一个失效时间。时间到了，缓存自动被清理，达到缓存和数据库数据的“最终一致性”</li>
+</ol>
+<p>这个问题是：数据库有100台MAC，有人买了一台，那我去数据库修改数据，如果我数据库修改了数据变成了99，但是Redis里面还是100台，那这就是不一致</p>
+<p>解决方法：请求进来时，先删除缓存，再去修改数据库，但是这样也有一个问题，高并发下，假如说缓存删了，进来一个请求查询数据，但是数据库还没有及时更新，此时还是100，那么这个请求读的数据还是100，读了以后把100再写回Redis中，这又会产生不一致。</p>
+<p>解决方法：消息队列，如果我要修改一个MAC库存，那么我就把这个商品ID放入消息队列，修改结束再从队列中移出。请求进来时，先去缓存查，缓存没有再去消息队列看看，有就进入消息队列等待，直到商品从消息队列移出，再进去数据库查。</p>
+<p>最终解决方法：先删除缓存、再把要修改的商品ID放入消息队列、请求先查缓存、再查消息队列、再查数据库。</p>
+<p>问题：队列可能积累了大量更新操作，</p>
+<p>最终极解决方法：不用Redis，只用数据库（比如银行）</p>
+</blockquote>
+<h2 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h2><p>消息队列的优缺点：<a href="https://zhuanlan.zhihu.com/p/84007327" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/84007327</a></p>
+<p>如何保证消息队列的可靠传输：<a href="https://zhuanlan.zhihu.com/p/59759422" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/59759422</a></p>
+<p>RabbitMQ和其他队列相比较的优缺点：</p>
+<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><p>正向代理和反向代理：<a href="https://www.zhihu.com/question/24723688" target="_blank" rel="noopener">https://www.zhihu.com/question/24723688</a>   <strong>正向代理</strong>代理的对象是客户端，<strong>反向代理</strong>代理的对象是服务端</p>
+<p>负载均衡算法：<a href="https://zhuanlan.zhihu.com/p/68733507（轮询、IP_Hash" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/68733507（轮询、IP_Hash</a>, url_Hash，fair（响应时间最短）、weight（指定轮询记录））</p>
+<h2 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h2><h3 id="Java秒杀"><a href="#Java秒杀" class="headerlink" title="Java秒杀"></a>Java秒杀</h3><p>秒杀问题总结：<a href="https://blog.csdn.net/NIUBILISI/article/details/89890716" target="_blank" rel="noopener">https://blog.csdn.net/NIUBILISI/article/details/89890716</a></p>
+<p>秒杀流程：<a href="https://blog.csdn.net/niubilisi/article/details/89786480。" target="_blank" rel="noopener">https://blog.csdn.net/niubilisi/article/details/89786480。</a></p>
+<h3 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h3><h2 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h2><p>Spring、Redis原理</p>
+<p>nginx</p>
+<p>dubbo</p>
+<h2 id="面经"><a href="#面经" class="headerlink" title="面经"></a>面经</h2><p><a href="https://mp.weixin.qq.com/s/nzvg3e-RgM59zs9WSeUpLg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/nzvg3e-RgM59zs9WSeUpLg</a></p>
+
             </article>
             <hr>
             <div>

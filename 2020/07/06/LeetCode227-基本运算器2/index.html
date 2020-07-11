@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>Redis - 郭寰宇</title>
+  <title>LeetCode227-基本运算器2 - 郭寰宇</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-06-19 18:36">
-      2020年6月19日 晚上
+    <time datetime="2020-07-06 19:35">
+      2020年7月6日 晚上
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      435 字
+      543 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      8
        分钟
     </span>
   
@@ -204,39 +204,96 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="Redis面试问题"><a href="#Redis面试问题" class="headerlink" title="Redis面试问题"></a>Redis面试问题</h1><ol>
-<li>redis数据类型，说下跳跃表是如何实现的，可以用什么数据结构替换。</li>
-<li>删除过期key策略有哪些，内存淘汰策略有哪些，分别什么时候触发。</li>
-<li>redis线程模型和内存模型。</li>
-<li>redis持久化机制。</li>
-<li>redis集群方案。</li>
-<li>让你设计一个redis，你会怎么做，有看过redis源码吗。</li>
-<li>了解一致性hash算法吗，描述下。</li>
-<li>用redis实现一个分布式锁。</li>
-<li>缓存穿透、缓存击穿、缓存雪崩区别和解决方案。</li>
-<li>布隆过滤器知道吗，说下原理。</li>
-</ol>
-<p>Redis用过哪些数据数据，以及Redis底层怎么实现</p>
-<p>Redis缓存穿透，缓存雪崩</p>
-<p>如何使用Redis来实现分布式锁</p>
-<p>Redis的并发竞争问题如何解决</p>
-<p>Redis持久化的几种方式，优缺点是什么，怎么实现的</p>
-<p>Redis的缓存失效策略</p>
-<p>Redis集群，高可用，原理</p>
-<p>Redis缓存分片，Redis的数据淘汰策略</p>
-<p>为什么选择redis，有什么好处，基于内存，抗压</p>
-<p>redis集群怎么进行数据分配，hash槽</p>
-<p>redis的主从复制是怎么实现的</p>
-<p>redis的数据结构 最常问 hash是什么， sorted set怎么实现的</p>
-<p>因为项目的原因，问我redis是怎么保证高可用的，主从和集群怎么加在一起</p>
-<p>redis 和memcache的区别</p>
-<p>redis 分布式锁的实现原理 setNX 啥的</p>
-<p>redis模拟session，除了redis你还考虑过别的吗</p>
-<p>redis的缓存击穿，怎么处理这个问题</p>
-<p>redis是基于内存的，那么它有持久化吗，aof rdb</p>
-<p>aof和rdb的优缺点，你在项目中使用的哪一个</p>
-<p>问题来源：</p>
-<p><a href="https://zhuanlan.zhihu.com/p/86536581" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/86536581</a></p>
+              <h2 id="LeetCode-227-基本计算器-II"><a href="#LeetCode-227-基本计算器-II" class="headerlink" title="LeetCode 227. 基本计算器 II"></a>LeetCode 227. 基本计算器 II</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>字符串表达式仅包含非负整数，<code>+</code>， <code>-</code> ，<code>*</code>，<code>/</code> 四种运算符和空格 <code></code>。 整数除法仅保留整数部分。</p>
+<p>示例:</p>
+<pre><code class="hljs shell"><span class="hljs-meta">&gt;</span><span class="bash">输入: <span class="hljs-string">" 3+5 / 2 "</span></span>
+<span class="hljs-meta">&gt;</span><span class="bash">输出: 5</span></code></pre>
+</blockquote>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>中缀转后缀，没有括号，但是有乘除，所以要比较运算符的优先级</p>
+<p>使用栈+链表：栈用来维护运算符，链表用来记录后缀表达式</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">calculate</span><span class="hljs-params">(String s)</span> </span>&#123;
+        <span class="hljs-keyword">return</span> calBackExp(transferToBackExp(s));
+    &#125;
+    <span class="hljs-comment">//计算后缀表达式</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">calBackExp</span><span class="hljs-params">(LinkedList&lt;String&gt; list)</span></span>
+<span class="hljs-function">    </span>&#123;
+        Stack&lt;Integer&gt; stack=<span class="hljs-keyword">new</span> Stack&lt;&gt;();
+        <span class="hljs-keyword">for</span>(String s:list)
+        &#123;
+            <span class="hljs-keyword">if</span>(isNumerical(s))
+            &#123;
+                stack.push(Integer.parseInt(s));
+            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(s.equals(<span class="hljs-string">"+"</span>) || s.equals(<span class="hljs-string">"-"</span>) || s.equals(<span class="hljs-string">"*"</span>) || s.equals(<span class="hljs-string">"/"</span>))&#123;
+                <span class="hljs-keyword">int</span> n1=stack.pop();
+                <span class="hljs-keyword">int</span> n2=stack.pop();
+                <span class="hljs-keyword">int</span> n3=<span class="hljs-number">0</span>;
+                <span class="hljs-keyword">if</span>(s.equals(<span class="hljs-string">"+"</span>))&#123;
+                    n3=n1+n2;
+                &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(s.equals(<span class="hljs-string">"-"</span>))&#123;
+                    n3=n2-n1;
+                &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(s.equals(<span class="hljs-string">"*"</span>))&#123;
+                    n3=n1*n2;
+                &#125;<span class="hljs-keyword">else</span>&#123;
+                    n3=n2/n1;
+                &#125;
+                stack.push(n3);
+            &#125;
+        &#125;
+    <span class="hljs-keyword">return</span> stack.pop();
+    &#125;
+
+	<span class="hljs-comment">//中缀转后缀</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> LinkedList&lt;String&gt; <span class="hljs-title">transferToBackExp</span><span class="hljs-params">(String exp)</span></span>
+<span class="hljs-function">    </span>&#123;
+        Stack&lt;String&gt; stack=<span class="hljs-keyword">new</span> Stack&lt;&gt;();
+        LinkedList&lt;String&gt; list=<span class="hljs-keyword">new</span> LinkedList&lt;&gt;();
+        <span class="hljs-keyword">int</span> len=exp.length();
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len;i++)
+        &#123;
+            <span class="hljs-keyword">char</span> c=exp.charAt(i);
+            <span class="hljs-keyword">if</span>(isDigit(c))
+            &#123;
+                <span class="hljs-keyword">int</span> k=i+<span class="hljs-number">1</span>;
+                <span class="hljs-keyword">for</span>(;k&lt;len &amp;&amp; isDigit(exp.charAt(k));k++)&#123;&#125;<span class="hljs-comment">//出现连续数字时，比如6555+4564，直接计算数字的起始位置和终止位置</span>
+                list.add(exp.substring(i,k));
+                i=k-<span class="hljs-number">1</span>;
+            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c==<span class="hljs-string">'*'</span> || c==<span class="hljs-string">'/'</span>)
+            &#123;
+                <span class="hljs-comment">//如果当前运算符是乘除，那么栈顶运算符只要不是加减，就必须出栈，直到是加减或者为空为止</span>
+                <span class="hljs-keyword">while</span>(!stack.empty() &amp;&amp; (stack.peek().equals(<span class="hljs-string">"*"</span>) || stack.peek().equals(<span class="hljs-string">"/"</span>)))<span class="hljs-comment">//比较优先级</span>
+                &#123;
+                    list.add(stack.pop());
+                &#125;
+                stack.push(c+<span class="hljs-string">""</span>);
+            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c==<span class="hljs-string">'+'</span> || c==<span class="hljs-string">'-'</span>)&#123;<span class="hljs-comment">//如果当前运算符是加减，因为加减运算符是最低的，没有比它低的，所以就必须出栈，直到栈为空。</span>
+                <span class="hljs-keyword">while</span>(!stack.empty())&#123;
+                    list.add(stack.pop());
+                &#125;
+                stack.push(c+<span class="hljs-string">""</span>);
+            &#125;
+        &#125;
+        <span class="hljs-keyword">while</span>(stack.size()&gt;<span class="hljs-number">0</span>) list.add(stack.pop());<span class="hljs-comment">//如果栈里面还有元素，就依次添加到链表中</span>
+        <span class="hljs-keyword">return</span> list;
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">isDigit</span><span class="hljs-params">(<span class="hljs-keyword">char</span> c)</span></span>
+<span class="hljs-function">    </span>&#123;
+        <span class="hljs-keyword">if</span>(c-<span class="hljs-string">'0'</span>&gt;=<span class="hljs-number">0</span> &amp;&amp; c-<span class="hljs-string">'0'</span>&lt;=<span class="hljs-number">9</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+    &#125;
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">isNumerical</span><span class="hljs-params">(String s)</span></span>
+<span class="hljs-function">    </span>&#123;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;s.length();i++)
+        &#123;
+            <span class="hljs-keyword">char</span> c=s.charAt(i);
+            <span class="hljs-keyword">if</span>(isDigit(c)==<span class="hljs-keyword">false</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    &#125;
+
+&#125;</code></pre>
+
 
             </article>
             <hr>
@@ -246,7 +303,11 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E5%A4%8D%E4%B9%A0%E5%A4%A7%E7%BA%B2/">复习大纲</a>
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/LeetCode/">LeetCode</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/LeetCode/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a>
                     
                   </div>
                 
@@ -254,7 +315,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%A4%8D%E4%B9%A0/">复习</a>
+                      <a class="hover-with-bg" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a>
                     
                   </div>
                 
@@ -262,6 +323,29 @@
               
                 <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/07/06/LeetCode415-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%8A%A0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">LeetCode415-字符串相加</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/06/LeetCode224-%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E5%99%A8/">
+                        <span class="hidden-mobile">LeetCode224-基本运算器</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
               
             </div>
 
@@ -394,7 +478,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Redis&nbsp;",
+        "LeetCode227-基本运算器2&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>面试题 - 郭寰宇</title>
+  <title>LeetCode43-字符串相乘 - 郭寰宇</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-06-28 22:16">
-      2020年6月28日 晚上
+    <time datetime="2020-07-06 19:44">
+      2020年7月6日 晚上
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      91 字
+      517 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      7
        分钟
     </span>
   
@@ -204,12 +204,62 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h1><h2 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h2><p>ConcurrentHashMap的扩容机制</p>
-<p>HashMap的扩容机制</p>
-<h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h2><p>redis 的 zset 的底层数据结构 ：<a href="https://www.cnblogs.com/yuanfang0903/p/12165394.html" target="_blank" rel="noopener">https://www.cnblogs.com/yuanfang0903/p/12165394.html</a></p>
-<p>score：<a href="https://blog.csdn.net/qq_27215113/article/details/100663914?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase" target="_blank" rel="noopener">https://blog.csdn.net/qq_27215113/article/details/100663914?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase</a></p>
-<p>redis 实现分布式锁</p>
-<h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><p>不可重复读和幻读的区别：<a href="https://www.cnblogs.com/itcomputer/articles/5133254.html" target="_blank" rel="noopener">https://www.cnblogs.com/itcomputer/articles/5133254.html</a></p>
+              <h2 id="LeetCode-43-字符串相乘"><a href="#LeetCode-43-字符串相乘" class="headerlink" title="LeetCode 43 字符串相乘"></a>LeetCode 43 字符串相乘</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>给定两个以字符串形式表示的非负整数 num1 和 num2，返回 num1 和 num2 的乘积，它们的乘积也表示为字符串形式</p>
+<pre><code class="hljs java">&gt;示例 <span class="hljs-number">2</span>:
+&gt;输入: num1 = <span class="hljs-string">"123"</span>, num2 = <span class="hljs-string">"456"</span>
+&gt;输出: <span class="hljs-string">"56088"</span></code></pre>
+</blockquote>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>根据我们日常乘法运算的规则，列竖式，一个个乘，然后把这些结果相加，就得到了最终结果</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">multiply</span><span class="hljs-params">(String num1, String num2)</span> </span>&#123;
+        <span class="hljs-keyword">int</span> len1=num1.length();
+        <span class="hljs-keyword">int</span> len2=num2.length();
+        StringBuilder res=<span class="hljs-keyword">new</span> StringBuilder();
+        <span class="hljs-keyword">if</span>(len1==<span class="hljs-number">0</span> || len2==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> res.toString();
+        <span class="hljs-keyword">if</span>(num1.equals(<span class="hljs-string">"0"</span>)||num2.equals(<span class="hljs-string">"0"</span>)) <span class="hljs-keyword">return</span> <span class="hljs-string">"0"</span>;<span class="hljs-comment">//如果两个字符串有一个为零，那么就返回0</span>
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len1;i++)
+        &#123;
+            StringBuilder tmp=<span class="hljs-keyword">new</span> StringBuilder();<span class="hljs-comment">//记录每一次运算后的结果</span>
+            <span class="hljs-keyword">int</span> m=num1.charAt(len1-<span class="hljs-number">1</span>-i)-<span class="hljs-string">'0'</span>;<span class="hljs-comment">//从num1中取一个数字，取乘num2的每一数字</span>
+            <span class="hljs-keyword">int</span> carry=<span class="hljs-number">0</span>;<span class="hljs-comment">//进位</span>
+            <span class="hljs-keyword">int</span> count=<span class="hljs-number">0</span>;
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;len2;j++)
+            &#123;
+                <span class="hljs-keyword">int</span> n=num2.charAt(len2-<span class="hljs-number">1</span>-j)-<span class="hljs-string">'0'</span>;<span class="hljs-comment">//从个位</span>
+                count=n*m+carry;<span class="hljs-comment">//num1中某一位和num2中某一位计算出的结果，再加上进位</span>
+                carry=count/<span class="hljs-number">10</span>;<span class="hljs-comment">//进位</span>
+                tmp.append(count%<span class="hljs-number">10</span>);<span class="hljs-comment">//把每一次运算的结果保存到tmp中</span>
+            &#125;
+            <span class="hljs-keyword">if</span>(carry&gt;<span class="hljs-number">0</span>) tmp.append(carry);<span class="hljs-comment">//如果进位不为0，就添加进去</span>
+            tmp.reverse();<span class="hljs-comment">//tmp中保存的结果是逆序的，所以需要翻转一下</span>
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>;k&lt;i;k++) tmp.append(<span class="hljs-number">0</span>);<span class="hljs-comment">//添加0，个位乘一个数字，和十位乘数字，十位的结果要加0，不明白的话列一个竖式乘法就懂了</span>
+            res=<span class="hljs-keyword">new</span> StringBuilder(addStr(res.toString(),tmp.toString()));   <span class="hljs-comment">//把这一次的结果和之前结果进行相加</span>
+        &#125;
+        <span class="hljs-keyword">return</span> res.toString();
+    &#125;
+    <span class="hljs-comment">//把两个字符串进行相加</span>
+    <span class="hljs-function">String <span class="hljs-title">addStr</span><span class="hljs-params">(String num1, String num2)</span></span>
+<span class="hljs-function">    </span>&#123;
+         <span class="hljs-keyword">int</span> len1=num1.length(),len2=num2.length();
+        <span class="hljs-keyword">if</span>(len1==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> num2;
+        <span class="hljs-keyword">if</span>(len2==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> num1;
+        <span class="hljs-keyword">int</span> len3=Math.max(len1,len2);
+        StringBuilder sb=<span class="hljs-keyword">new</span> StringBuilder();
+        <span class="hljs-keyword">int</span> carry=<span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len3;i++)
+        &#123;
+            <span class="hljs-keyword">int</span> n1=i&gt;len1-<span class="hljs-number">1</span>?<span class="hljs-number">0</span>:num1.charAt(len1-<span class="hljs-number">1</span>-i)-<span class="hljs-string">'0'</span>;
+            <span class="hljs-keyword">int</span> n2=i&gt;len2-<span class="hljs-number">1</span>?<span class="hljs-number">0</span>:num2.charAt(len2-<span class="hljs-number">1</span>-i)-<span class="hljs-string">'0'</span>;
+            <span class="hljs-keyword">int</span> n3=n1+n2+carry;
+            carry=n3/<span class="hljs-number">10</span>;
+            sb.append(n3%<span class="hljs-number">10</span>);
+        &#125;
+        <span class="hljs-keyword">if</span>(carry&gt;=<span class="hljs-number">1</span>) sb.append(<span class="hljs-string">"1"</span>);
+        <span class="hljs-keyword">return</span> sb.reverse().toString();
+    &#125;
+&#125;</code></pre>
+
 
             </article>
             <hr>
@@ -219,7 +269,11 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/LeetCode/">LeetCode</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/LeetCode/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a>
                     
                   </div>
                 
@@ -227,7 +281,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+                      <a class="hover-with-bg" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a>
                     
                   </div>
                 
@@ -235,6 +289,23 @@
               
                 <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/06/LeetCode415-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%8A%A0/">
+                        <span class="hidden-mobile">LeetCode415-字符串相加</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
               
             </div>
 
@@ -367,7 +438,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "面试题&nbsp;",
+        "LeetCode43-字符串相乘&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
