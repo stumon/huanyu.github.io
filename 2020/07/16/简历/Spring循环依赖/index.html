@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>设计模式面试题 - 郭寰宇</title>
+  <title>Spring - 郭寰宇</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-06-19 19:00">
-      2020年6月19日 晚上
+    <time datetime="2020-07-16 10:43">
+      2020年7月16日 上午
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      161 字
+      392 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      6
        分钟
     </span>
   
@@ -204,41 +204,133 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="设计模式面试题"><a href="#设计模式面试题" class="headerlink" title="设计模式面试题"></a>设计模式面试题</h1><p>Java 中什么叫单例设计模式？请用 Java 写出线程安全的单例模式</p>
-<p>在 Java 中，什么叫观察者设计模式（observer design pattern）</p>
-<p>使用工厂模式最主要的好处是什么？在哪里使用</p>
-<p>举一个用 Java 实现的装饰模式(decorator design pattern) ？它是作用于对象层次还是类层次？ </p>
-<p>在 Java 中，什么时候用重载，什么时候用重写？</p>
-<p>举例说明什么情况下会更倾向于使用抽象类而不是接口</p>
-<p>观察者模式</p>
-<p>适配模式</p>
-<p>工厂模式</p>
-<p>问题来源：<a href="https://zhuanlan.zhihu.com/p/86536581" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/86536581</a></p>
+              <h1 id="Spring循环依赖"><a href="#Spring循环依赖" class="headerlink" title="Spring循环依赖"></a>Spring循环依赖</h1><p>源码点点点</p>
+<h2 id="第一条点击路线，发现AOP代理"><a href="#第一条点击路线，发现AOP代理" class="headerlink" title="第一条点击路线，发现AOP代理"></a>第一条点击路线，发现AOP代理</h2><p>第1次点击 AnnotationConfigApplicationContext</p>
+<pre><code class="hljs java">AnnotationConfigApplicationContext ac=<span class="hljs-keyword">new</span> AnnotationConfigApplicationContext();
+<span class="hljs-comment">//点击AnnotationConfigApplicationContext</span></code></pre>
+
+<p>第2次点击  refresh()</p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">AnnotationConfigApplicationContext</span><span class="hljs-params">(Class&lt;?&gt;... annotatedClasses)</span> </span>&#123;
+    <span class="hljs-keyword">this</span>();
+    <span class="hljs-keyword">this</span>.register(annotatedClasses);
+    <span class="hljs-keyword">this</span>.refresh();<span class="hljs-comment">//点击这个</span>
+&#125;</code></pre>
+
+<p>第3次点击 finishBeanFactoryInitialization</p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">refresh</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> BeansException, IllegalStateException </span>&#123;
+           <span class="hljs-keyword">try</span> &#123;
+               <span class="hljs-keyword">this</span>.postProcessBeanFactory(beanFactory);
+               <span class="hljs-keyword">this</span>.invokeBeanFactoryPostProcessors(beanFactory);
+               <span class="hljs-keyword">this</span>.registerBeanPostProcessors(beanFactory);
+               <span class="hljs-keyword">this</span>.initMessageSource();
+               <span class="hljs-keyword">this</span>.initApplicationEventMulticaster();
+               <span class="hljs-keyword">this</span>.onRefresh();
+               <span class="hljs-keyword">this</span>.registerListeners();
+               <span class="hljs-keyword">this</span>.finishBeanFactoryInitialization(beanFactory);<span class="hljs-comment">//点击这个</span>
+               <span class="hljs-keyword">this</span>.finishRefresh();
+           &#125;
+&#125;</code></pre>
+
+<p>第4次点击</p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">finishBeanFactoryInitialization</span><span class="hljs-params">(ConfigurableListableBeanFactory beanFactory)</span> </span>&#123;
+
+    beanFactory.setTempClassLoader((ClassLoader)<span class="hljs-keyword">null</span>);
+    beanFactory.freezeConfiguration();
+    beanFactory.preInstantiateSingletons();<span class="hljs-comment">//点击这个</span>
+&#125;</code></pre>
+
+<p>第5次点击</p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">preInstantiateSingletons</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> BeansException </span>&#123;
+                <span class="hljs-keyword">this</span>.getBean(beanName);<span class="hljs-comment">//点击这个</span>
+            
+&#125;</code></pre>
+
+<p>第6次点击</p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">getBean</span><span class="hljs-params">(String name)</span> <span class="hljs-keyword">throws</span> BeansException </span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.doGetBean(name, (Class)<span class="hljs-keyword">null</span>, (Object[])<span class="hljs-keyword">null</span>, <span class="hljs-keyword">false</span>);<span class="hljs-comment">//点击这个</span>
+&#125;</code></pre>
+<p>第7次点击</p>
+<pre><code class="hljs java"><span class="hljs-keyword">protected</span> &lt;T&gt; <span class="hljs-function">T <span class="hljs-title">doGetBean</span><span class="hljs-params">(String name, Class&lt;T&gt; requiredType, <span class="hljs-keyword">final</span> Object[] args, <span class="hljs-keyword">boolean</span> typeCheckOnly)</span> <span class="hljs-keyword">throws</span> BeansException </span>&#123;
+
+                <span class="hljs-keyword">if</span> (mbd.isSingleton()) &#123;
+                    sharedInstance = <span class="hljs-keyword">this</span>.getSingleton(beanName, <span class="hljs-keyword">new</span> ObjectFactory&lt;Object&gt;() &#123;
+                        <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">getObject</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> BeansException </span>&#123;
+                            <span class="hljs-keyword">try</span> &#123;
+                                <span class="hljs-keyword">return</span> AbstractBeanFactory.<span class="hljs-keyword">this</span>.createBean(beanName, mbd, args);<span class="hljs-comment">//点击这个</span>
+                            &#125; <span class="hljs-keyword">catch</span> (BeansException var2) &#123;
+                                AbstractBeanFactory.<span class="hljs-keyword">this</span>.destroySingleton(beanName);
+                                <span class="hljs-keyword">throw</span> var2;
+                            &#125;
+                        &#125;
+                    &#125;);
+                   
+    &#125;</code></pre>
+
+<p>第8次点击</p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> Object <span class="hljs-title">createBean</span><span class="hljs-params">(String beanName, RootBeanDefinition mbd, Object[] args)</span> <span class="hljs-keyword">throws</span> BeanCreationException </span>&#123;
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.logger.isDebugEnabled()) &#123;
+            <span class="hljs-keyword">this</span>.logger.debug(<span class="hljs-string">"Creating instance of bean '"</span> + beanName + <span class="hljs-string">"'"</span>);
+        &#125;
+        beanInstance = <span class="hljs-keyword">this</span>.doCreateBean(beanName, mbdToUse, args);<span class="hljs-comment">//点击这个</span>
+
+        <span class="hljs-keyword">return</span> beanInstance;
+    &#125;</code></pre>
+
+<p>第9次点击</p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> Object <span class="hljs-title">doCreateBean</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String beanName, <span class="hljs-keyword">final</span> RootBeanDefinition mbd, Object[] args)</span> <span class="hljs-keyword">throws</span> BeanCreationException </span>&#123;
+    
+AbstractAutowireCapableBeanFactory.<span class="hljs-keyword">this</span>.getEarlyBeanReference(beanName, mbd, bean);<span class="hljs-comment">//点击这</span>
+        Object exposedObject = bean;
+    &#125;</code></pre>
+
+<p>第10次点击</p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> Object <span class="hljs-title">getEarlyBeanReference</span><span class="hljs-params">(String beanName, RootBeanDefinition mbd, Object bean)</span> </span>&#123;
+        Object exposedObject = bean;
+        <span class="hljs-keyword">if</span> (bean != <span class="hljs-keyword">null</span> &amp;&amp; !mbd.isSynthetic() &amp;&amp; <span class="hljs-keyword">this</span>.hasInstantiationAwareBeanPostProcessors()) &#123;
+            Iterator var5 = <span class="hljs-keyword">this</span>.getBeanPostProcessors().iterator();
+
+            <span class="hljs-keyword">while</span>(var5.hasNext()) &#123;
+                BeanPostProcessor bp = (BeanPostProcessor)var5.next();
+                <span class="hljs-keyword">if</span> (bp <span class="hljs-keyword">instanceof</span> SmartInstantiationAwareBeanPostProcessor) &#123;
+                    SmartInstantiationAwareBeanPostProcessor ibp = (SmartInstantiationAwareBeanPostProcessor)bp;
+                    exposedObject = ibp.getEarlyBeanReference(exposedObject, beanName);
+                    <span class="hljs-keyword">if</span> (exposedObject == <span class="hljs-keyword">null</span>) &#123;
+                        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+                    &#125;
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> exposedObject;
+    &#125;</code></pre>
+
 
             </article>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E5%A4%8D%E4%B9%A0%E5%A4%A7%E7%BA%B2/">复习大纲</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E5%A4%8D%E4%B9%A0/">复习</a>
-                    
-                  </div>
                 
               </div>
               
                 <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/15/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/">
+                        <span class="hidden-mobile">SpringBoot自动装配</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
               
             </div>
 
@@ -371,7 +463,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "设计模式面试题&nbsp;",
+        "Spring&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

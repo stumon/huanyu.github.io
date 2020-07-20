@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7.4k 字
+      7.5k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      110
+      112
        分钟
     </span>
   
@@ -679,7 +679,11 @@ AmqpTemplate amqpTemplate ;
 <p>秒杀收到请求，先验证PathVaribale</p>
 </blockquote>
 <p>代码：</p>
-<pre><code class="hljs js"><span class="hljs-comment">//前端，用户在点击立即秒杀时，做一个用户验证，判断这个用户是否合法</span>
+<pre><code class="hljs js"><span class="hljs-comment">//前端，用户在点击立即秒杀时，做一个用户验证，判断这个用户是否合法.</span>
+<span class="hljs-comment">//用户点击立即秒杀，先去生成一个路径（根据用户token和商品id+UUID随机生成的），生成的路径作为参数，传入到后台，后台再去验证这个路径是否合法</span>
+<span class="hljs-comment">//注意这个路径是把key和value拼接起来的，key是用户的token+商品id，value是一个随机的UUID字符串</span>
+<span class="hljs-comment">//我们验证路径是否合法，也是根据key判断redis中是否存在这个key来验证的，如果根据这个key取出来的value值，和传进来的不一样，那么就不是合法路径</span>
+<span class="hljs-comment">//注意，这个key和value的有效时间为60s，设置了有效时间</span>
 <span class="hljs-comment">//省略其他代码。用户在点击立即秒杀后，执行程序：getMiaoshaPath()，获取秒杀路径，然后获取完秒杀路径后，去执行秒杀，执行完后，返回秒杀结果</span>
     &lt;button <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"btn btn-primary"</span> type=<span class="hljs-string">"button"</span> id=<span class="hljs-string">"buyButton"</span>onclick=<span class="hljs-string">"getMiaoshaPath()"</span>&gt;立即秒杀&lt;<span class="hljs-regexp">/button&gt;</span>
 <span class="hljs-regexp"> </span>
@@ -1139,10 +1143,9 @@ AmqpTemplate amqpTemplate ;
 
 <h4 id="7-5-前端优化"><a href="#7-5-前端优化" class="headerlink" title="7.5 前端优化"></a>7.5 前端优化</h4><p>不到时间，秒杀按钮不可以点击，都是灰色的。但是HTTP是以明文传输的，这种只能防普通人，真有人想看地址，还是可以看到的。这种只防君子，不防小人，真正的<strong>安全性判断</strong>，还是应该放在服务端</p>
 <h2 id="8-压测对比"><a href="#8-压测对比" class="headerlink" title="8 压测对比"></a>8 压测对比</h2><h3 id="8-1-优化前压测"><a href="#8-1-优化前压测" class="headerlink" title="8.1 优化前压测"></a>8.1 优化前压测</h3><p>项目一有压测结果，吞吐量在1000左右</p>
-<h3 id="8-2-优化后压测"><a href="#8-2-优化后压测" class="headerlink" title="8.2 优化后压测"></a>8.2 优化后压测</h3><p>压测参数：</p>
-<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200626170346.png" srcset="/img/loading.gif" alt="image-20200626170343575"></p>
-<p>压测结果以及硬件配置：</p>
-<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200626170927.png" srcset="/img/loading.gif" alt="image-20200626170923470"></p>
+<h3 id="8-2-优化后压测"><a href="#8-2-优化后压测" class="headerlink" title="8.2 优化后压测"></a>8.2 优化后压测</h3><p>压测结果：稳定在6000，最高到达7000+</p>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200718163016.png" srcset="/img/loading.gif" alt="image-20200718163014038"></p>
+<p> <img src="https://gitee.com/monkey_stu/image/raw/master/img/20200718163207.png" srcset="/img/loading.gif" alt="image-20200718163204726"></p>
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>1：服务器QPS一直上不去：本地QPS可以达到1500+，服务器只有几十。怀疑是服务器带宽太小。看了一下，的确如此</p>
 <blockquote>
 <p><a href="https://blog.csdn.net/mian_CSDN/article/details/78995304?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase" target="_blank" rel="noopener">https://blog.csdn.net/mian_CSDN/article/details/78995304?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase</a></p>
@@ -1159,7 +1162,7 @@ AmqpTemplate amqpTemplate ;
 <p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200626162931.png" srcset="/img/loading.gif" alt="image-20200626162928457"></p>
 <p>火狐：</p>
 <p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200626162704.png" srcset="/img/loading.gif" alt="image-20200626162701665"></p>
-<p>解决方案：请了一下谷歌浏览器的缓存就OK了</p>
+<p>解决方案：清除谷歌浏览器的缓存就OK了</p>
 <p>3：为啥我的压测，数据库里面的数据没有变过？</p>
 <p>第一次怀疑可能是因为我的token没有放到redis中</p>
 <p><a href="https://blog.csdn.net/Serena0814/article/details/89648174" target="_blank" rel="noopener">https://blog.csdn.net/Serena0814/article/details/89648174</a></p>
@@ -1195,7 +1198,7 @@ AmqpTemplate amqpTemplate ;
 <p>火狐：</p>
 <p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200627130042.png" srcset="/img/loading.gif" alt="image-20200627130038404"></p>
 <p>9：总结经验：</p>
-<p>清空一下redis缓存、浏览器缓存、消息队列、重新运行，这四步可以解决80%的问题</p>
+<p>清空redis缓存、浏览器缓存、消息队列、重新运行，这四步可以解决80%的问题</p>
 <h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><pre><code class="hljs xml">#thymeleaf
 spring.thymeleaf.prefix=classpath:/templates/
 spring.thymeleaf.suffix=.html

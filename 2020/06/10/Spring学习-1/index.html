@@ -566,9 +566,9 @@
 <p>基于接口的动态代理：如果要代理的对象，继承了某个接口，那么Spring AOP就会使用JDK Proxy创建代理对象</p>
 <p>基于类的动态代理：如果要代理的对象没有继承接口，那么Spring AOP就会使用Cglib，生成一个被代理对象的子类，作为代理</p>
 <h4 id="AOP术语"><a href="#AOP术语" class="headerlink" title="AOP术语"></a>AOP术语</h4><p>Advice（通知/增强）：就是你想要新增加的功能，比如打印日志。<strong>“干什么”</strong></p>
-<p>Aspect（切面）：切面是通知和切点的结合。<strong>”在哪干和干什么集合“</strong></p>
-<p>Joint point（连接点）：Spring允许使用Advice的地方，比如方法的前后，抛出异常，都可以是连接点。<strong>”在哪干“</strong></p>
-<p>Pointcut（切点）：不是类中所有的方法都需要新增加一些功能，把需要新增加功能的方法集合起来就是切点，可以理解为连接点的集合。<strong>“在哪干的集合”</strong></p>
+<p>Aspect（切面）：切面是通知和切点所在的类。<strong>”在哪干和干什么集合“</strong></p>
+<p>Joint point（连接点）：Spring允许使用Advice的地方，比如方法的前后，抛出异常，都可以是连接点。<strong>”在哪干“</strong>。<strong>需要增强的方法就叫做连接点</strong></p>
+<p>Pointcut（切点）：不是类中所有的方法都需要新增加一些功能，把需要新增加功能的方法集合起来就是切点，可以理解为连接点的集合。<strong>“在哪干的集合”</strong>。<strong>需要增强的方法的集合就叫做切点</strong></p>
 <p>introduction（引入）：允许我们向现有的类添加新方法属性，就是把切面用到了目标类中。“<strong>干什么</strong>”</p>
 <p>Target（目标对象）：引入中所提到的目标类，也就是要被通知的对象，也就是真正的业务逻辑，他可以在毫不知情的情况下，被咱们织入切面。而自己专注于业务本身的逻辑。“<strong>对谁干</strong>”</p>
 <p>Weaving（织入）：把切面应用到目标对象来创建新的代理对象的过程。有3种方式，spring采用的是运行时进行织入</p>

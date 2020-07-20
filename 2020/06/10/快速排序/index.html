@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      275 字
+      361 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      5
        分钟
     </span>
   
@@ -230,6 +230,23 @@
     <span class="hljs-comment">//遍历完区间[left,right]后可以得到，privot在数组中排序为j,所以交换锚点的位置，从left到j</span>
     swap(nums,left,j);<span class="hljs-comment">//遍历完毕后，把锚点和j位置交换一下，j位置表示锚点privot在这个数组中的排序</span>
     quickSort(nums,left,j-<span class="hljs-number">1</span>);
+    quickSort(nums,j+<span class="hljs-number">1</span>,right);
+&#125;</code></pre>
+
+<p>上面那种写法，最差情况下是n方，所以需要修改基准位置</p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">quickSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums,<span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span></span>
+<span class="hljs-function"></span>&#123;
+    <span class="hljs-keyword">if</span> (left&gt;=right) <span class="hljs-keyword">return</span>;
+    <span class="hljs-keyword">int</span> priot=nums[left+right&gt;&gt;<span class="hljs-number">1</span>];
+    <span class="hljs-keyword">int</span> i=left,j=right;
+    <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>)
+    &#123;
+        <span class="hljs-keyword">while</span> (nums[i]&lt;priot) i++;
+        <span class="hljs-keyword">while</span> (nums[j]&gt;priot) j--;
+        <span class="hljs-keyword">if</span> (i&gt;=j) <span class="hljs-keyword">break</span>;
+        swap(nums,i,j);
+    &#125;
+    quickSort(nums,left,j);
     quickSort(nums,j+<span class="hljs-number">1</span>,right);
 &#125;</code></pre>
 

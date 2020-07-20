@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>面试题 - 郭寰宇</title>
+  <title>SpringBoot自动装配 - 郭寰宇</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-06-28 22:16">
-      2020年6月28日 晚上
+    <time datetime="2020-07-15 10:27">
+      2020年7月15日 上午
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      96 字
+      657 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      7
        分钟
     </span>
   
@@ -204,38 +204,76 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h1><h2 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h2><p>ConcurrentHashMap的扩容机制</p>
-<p>HashMap的扩容机制</p>
-<h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h2><p>redis 的 zset 的底层数据结构 ：<a href="https://www.cnblogs.com/yuanfang0903/p/12165394.html" target="_blank" rel="noopener">https://www.cnblogs.com/yuanfang0903/p/12165394.html</a></p>
-<p>score：<a href="https://blog.csdn.net/qq_27215113/article/details/100663914?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase" target="_blank" rel="noopener">https://blog.csdn.net/qq_27215113/article/details/100663914?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase</a></p>
-<p>redis 实现分布式锁</p>
-<h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><p>不可重复读和幻读的区别：<a href="https://www.cnblogs.com/itcomputer/articles/5133254.html" target="_blank" rel="noopener">https://www.cnblogs.com/itcomputer/articles/5133254.html</a></p>
-<p>MySQL如何加锁：</p>
+              <h1 id="SpringBoot自动装配"><a href="#SpringBoot自动装配" class="headerlink" title="SpringBoot自动装配"></a>SpringBoot自动装配</h1><p>核心是·<code>AutoConfigurationImportSelector</code>方法</p>
+<blockquote>
+<pre><code class="hljs haml">&gt;@SpringBootApplication   ---启动类下的所有资源导入
+-<span class="ruby"> @SpringBootConfiguration ---SpringBoot的配置</span>
+<span class="ruby">  - @Configuration   ---说明是一个spring配置类（Full配置类）</span>
+<span class="ruby">    - @Component     ---说明是一个spring组件 （Lite配置类）</span>
+<span class="ruby">- @ComponentScan ----扫描包</span>
+<span class="ruby">- @EnableAutoConfiguration  ---自动配置类</span>
+<span class="ruby">  - @AutoConfigurationPackage  ---自动配置包</span>
+<span class="ruby">    - @Import(&#123;Registrar<span class="hljs-class">.<span class="hljs-keyword">class</span>&#125;)  ---注册包</span></span>
+<span class="ruby">      - Registrar核心方法：registerBeanDefinitions</span>
+<span class="ruby">  - @Import(&#123;EnableAutoConfigurationImportSelector<span class="hljs-class">.<span class="hljs-keyword">class</span>&#125;)  ---自动配置导入选择器</span></span>
+<span class="ruby">    - EnableAutoConfigurationImportSelector继承了AutoConfigurationImportSelector</span>
+<span class="ruby">     -AutoConfigurationImportSelector的核心方法：getCandidateConfigurations，获取所有配置</span>
+<span class="ruby">	- getCandidateConfigurations的核心方法：loadFactoryNames   --加载所有的配置</span>
+<span class="ruby">		- loadFactoryNames把 META-INF/spring.factories中的所有的资源都加载到一个配置类中，封装成一个properties文件</span></code></pre>
+</blockquote>
+<blockquote>
+<p>getCandidateConfigurations方法获取标注了EnableAutoConfiguration的所有类，这里是SpringBoot的主启动类使用了这个注解@EnableAutoConfiguration。所以就是获取了主启动类加载的所有组件</p>
+<p>自动配置的核心文件<code>META-INF/spring.factories</code></p>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200715121008.png" srcset="/img/loading.gif" alt="image-20200715121005321"></p>
+<p>这个配置文件包括了<strong>所有的自动配置</strong>，没有的就要手动配置。</p>
+<p>但是这些自动配置生效需要导入对应的starter才可以生效，具体注解@ConditionalOnXX。如果这个条件都满足，才会生效</p>
+<p>结论：Spring Boot启动的时候会通过@SpringBootApplication找到@EnableAutoConfiguration，再从@EnableAutoConfiguration中的@Import({EnableAutoConfigurationImportSelector.class})，找到AutoConfigurationImportSelector类，这个类里面有一个方法getCandidateConfigurations，这个方法会获取标注了@EnableAutoConfiguration注解的类，也就是获取主启动类加载的所有组件</p>
+<p>找到META-INF/spring.factories配置文件中的key为EnableAutoConfiguration的所有自动配置类，把这些配置类封装成一个个的properties，最后返回给我们使用</p>
+<p>每一个XXAutoConfiguration都是自动配置类，是容器中的一个组件，最后添加到容器中，用来做自动配置，一旦这个配置类生效，就会给容器添加各种组件，这些组件的属性是从对应的XXproperties类中获取的，这些类里面的每一个属性又是和配置文件一一绑定的</p>
+<p>XXproperties文件：封装配置文件中相关属性，也就是默认值，如果要修改，只需要按照对应的规则在我们的yml配置文件中修改</p>
+<p>@EnableConfigurationProperties({XX.class})：自动配置属性。</p>
+<blockquote>
+<pre><code class="hljs ruby"><span class="hljs-meta">&gt;&gt;</span>@EnableConfigurationPropertie  点进来是：
+<span class="hljs-meta">&gt;&gt;</span>@ConfigurationProperties(prefix = <span class="hljs-string">"spring.rabbitmq"</span>)
+<span class="hljs-meta">&gt;&gt;</span>@ConfigurationProperties绑定了配置文件下前缀是spring.rabbitmq的所有东西</code></pre>
+</blockquote>
+<p>它能通过以Properties结尾命名的类中取得在全局配置文件中配置的属性如：server.port，而XxxxProperties类是通过@ConfigurationProperties注解与全局配置文件中对应的属性进行绑定的。</p>
+</blockquote>
+<p>参考资料：<a href="https://blog.csdn.net/u014745069/article/details/83820511" target="_blank" rel="noopener">https://blog.csdn.net/u014745069/article/details/83820511</a></p>
 
             </article>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
-                    
-                  </div>
                 
               </div>
               
                 <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
               
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/07/15/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SpringBoot自动装配</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/14/%E7%AE%80%E5%8E%86/SpringBean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
+                        <span class="hidden-mobile">SpringBean生命周期</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
               
             </div>
 
@@ -368,7 +406,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "面试题&nbsp;",
+        "SpringBoot自动装配&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

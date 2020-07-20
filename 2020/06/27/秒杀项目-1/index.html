@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      148
+      149
        分钟
     </span>
   
@@ -461,6 +461,11 @@
 <p>小结一下：登录时，如果出现异常就往外抛出，异常拦截器拦截异常，然后返回给用户提示信息</p>
 <h3 id="2-4-分布式session"><a href="#2-4-分布式session" class="headerlink" title="2.4 分布式session"></a>2.4 分布式session</h3><p>用redis管理session</p>
 <p>登录成功后，给用户生成一个token，用来标识用户，将这个token写到cookie中，传到客户端，客户端在随后的访问中，都在cookie中上传这个token，服务端拿到cookie中，从cookie中去到token，根据这个token取用户对应的session信息。</p>
+<pre><code class="hljs java">redisService.set(MiaoshaUserKey.token, token, user);
+<span class="hljs-comment">//key是</span></code></pre>
+
+
+
 <p>使用UUID来生成一个token</p>
 <pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UUIDUtil</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">uuid</span><span class="hljs-params">()</span> </span>&#123;
@@ -501,7 +506,7 @@ RedisService redisService;
 <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addCookie</span><span class="hljs-params">(HttpServletResponse response, String token, MiaoshaUser user)</span> </span>&#123;
     redisService.set(MiaoshaUserKey.token, token, user);
     Cookie cookie = <span class="hljs-keyword">new</span> Cookie(COOKI_NAME_TOKEN, token);<span class="hljs-comment">//cookie传两个值，一个name，一个value</span>
-    cookie.setMaxAge(MiaoshaUserKey.token.expireSeconds());<span class="hljs-comment">//设置cookie的有效期为session的有效期</span>
+    cookie.setMaxAge(MiaoshaUserKey.token.expireSeconds());<span class="hljs-comment">//设置cookie的有效期为session的有效期。</span>
     cookie.setPath(<span class="hljs-string">"/"</span>);
     response.addCookie(cookie);<span class="hljs-comment">//把cookie写入到响应中</span>
 &#125;
@@ -1299,7 +1304,8 @@ OrderService orderService;<span class="hljs-comment">//引入其它的service</s
 <blockquote>
 <p><a href="https://blog.csdn.net/mian_CSDN/article/details/78995304?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase" target="_blank" rel="noopener">https://blog.csdn.net/mian_CSDN/article/details/78995304?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase</a></p>
 </blockquote>
-<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200625195135.png" srcset="/img/loading.gif" alt=""></p>
+<p>本机测试：</p>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200718090003.png" srcset="/img/loading.gif" alt="image-20200718085958798"></p>
 <p>可以看出硬件不同情况下的压测，两者吞吐量差距有<strong>几十倍</strong></p>
 <h4 id="4-1-2-压测-http-localhost-8080-user-info"><a href="#4-1-2-压测-http-localhost-8080-user-info" class="headerlink" title="4.1.2 压测 http://localhost:8080/user/info"></a>4.1.2 压测 <code>http://localhost:8080/user/info</code></h4><p>不需要查询数据库，吞吐量一下子就上来了。范围大致在400~800。</p>
 <p>这两个接口的区别就是，第一个接口不仅仅读了缓存，还读了一次数据库，而第二个接口只读了一次缓存。</p>
@@ -1319,6 +1325,10 @@ OrderService orderService;<span class="hljs-comment">//引入其它的service</s
 <p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200626101659.png" srcset="/img/loading.gif" alt="image-20200626101655804"></p>
 <p>可以看到，CPU没有超负荷，但是网络带宽已经达到上限，所以我们这里主要的限制就是网络带宽</p>
 <p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200626102342.png" srcset="/img/loading.gif" alt="image-20200626102338656"></p>
+<p>压测单个接口 /user/info，单个用户情况下，吞吐量稳定在1万3</p>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200718091447.png" srcset="/img/loading.gif" alt="image-20200718091445437"></p>
+<p>压测秒杀接口，5000个用户下，吞吐量在3300左右</p>
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200718100052.png" srcset="/img/loading.gif" alt=""></p>
 <h2 id="5-页面优化"><a href="#5-页面优化" class="headerlink" title="5 页面优化"></a>5 页面优化</h2><h2 id="5-1-页面缓存-对象缓存"><a href="#5-1-页面缓存-对象缓存" class="headerlink" title="5.1 页面缓存+对象缓存"></a>5.1 页面缓存+对象缓存</h2><p>并发的瓶颈在数据库，所以加缓存，尽量减少对数据库的访问</p>
 <h4 id="页面缓存"><a href="#页面缓存" class="headerlink" title="页面缓存"></a>页面缓存</h4><p>访问页面时，首先去缓存中取，如果没有手动渲染模板，渲染后把结果输出客户端，同时把结果缓存到redis中</p>
 <p>渲染<code>goods_list</code>模板</p>
@@ -1345,6 +1355,7 @@ OrderService orderService;<span class="hljs-comment">//引入其它的service</s
     <span class="hljs-keyword">return</span> html;
 &#125;</code></pre>
 
+<p><img src="https://gitee.com/monkey_stu/image/raw/master/img/20200718104729.png" srcset="/img/loading.gif" alt="image-20200718104727157"></p>
 <h4 id="对象缓存"><a href="#对象缓存" class="headerlink" title="对象缓存"></a>对象缓存</h4><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> MiaoshaUser <span class="hljs-title">getById</span><span class="hljs-params">(<span class="hljs-keyword">long</span> id)</span> </span>&#123;
     <span class="hljs-comment">//取缓存</span>
     MiaoshaUser user = redisService.get(MiaoshaUserKey.getById, <span class="hljs-string">""</span>+id, MiaoshaUser<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
