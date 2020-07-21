@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>LeetCode179-最大数</title>
+    <link href="/2020/07/20/LeetCode179-%E6%9C%80%E5%A4%A7%E6%95%B0/"/>
+    <url>/2020/07/20/LeetCode179-%E6%9C%80%E5%A4%A7%E6%95%B0/</url>
+    
+    <content type="html"><![CDATA[<h1 id="LeetCode-43-字符串相乘"><a href="#LeetCode-43-字符串相乘" class="headerlink" title="LeetCode 43 字符串相乘"></a>LeetCode 43 字符串相乘</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote><p>给定一组非负整数，重新排列它们的顺序使之组成一个最大的整数。</p><p><strong>示例 1:</strong></p><pre><code class="hljs angelscript">&gt;输入: [<span class="hljs-number">3</span>,<span class="hljs-number">30</span>,<span class="hljs-number">34</span>,<span class="hljs-number">5</span>,<span class="hljs-number">9</span>]&gt;输出: <span class="hljs-number">9534330</span></code></pre></blockquote><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>网上最多的做法，就是使用语言自带的排序功能，然后自己写一个排序规则，就比如下面这种</p><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">largestNumber</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span> </span>&#123;        <span class="hljs-keyword">int</span> len=nums.length;        <span class="hljs-keyword">if</span>(len==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">""</span>;        String[] tmp=<span class="hljs-keyword">new</span> String[len];        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len;i++) tmp[i]=nums[i]+<span class="hljs-string">""</span>;        Arrays.sort(tmp,<span class="hljs-keyword">new</span> Comparator&lt;String&gt;()&#123;            <span class="hljs-meta">@Override</span>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compare</span><span class="hljs-params">(String s1,String s2)</span></span><span class="hljs-function">            </span>&#123;                String t1=s1+s2;                String t2=s2+s1;                <span class="hljs-keyword">return</span> -t1.compareTo(t2);            &#125;        &#125;);        <span class="hljs-keyword">if</span>(tmp[<span class="hljs-number">0</span>].charAt(<span class="hljs-number">0</span>)==<span class="hljs-string">'0'</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">"0"</span>;        StringBuilder sb=<span class="hljs-keyword">new</span> StringBuilder();        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len;i++) sb.append(tmp[i]);        <span class="hljs-keyword">return</span> sb.toString();    &#125;&#125;</code></pre><p>2020年7月面试shoppe时，面试官拒绝我使用这种写法，然后我面试就翻车了。。。</p><p>回来后，查了一下，发现可以用冒泡排序，两两比较，这样每一次都可以选出来最大的一个元素放在队首。时间复杂度是O(long(n^2))。详细过程过程在下面</p><p>代码如下</p><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">largestNumber</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span> </span>&#123;        StringBuilder sb=<span class="hljs-keyword">new</span> StringBuilder();        <span class="hljs-keyword">int</span> len=nums.length;        <span class="hljs-keyword">if</span>(len==<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">""</span>;        String[] strs=<span class="hljs-keyword">new</span> String[len];        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len;i++) strs[i]=nums[i]+<span class="hljs-string">""</span>;        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len;i++)        &#123;            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=i+<span class="hljs-number">1</span>;j&lt;len;j++)            &#123;                <span class="hljs-comment">//解释下，输入: [3,30,34,5,9]</span>                <span class="hljs-comment">//正常顺序是 330，反序是303，前者大于后者，不需要改变，继续迭代</span>                <span class="hljs-comment">//正常顺序是334，反序是343，前者小于后者，交换位置[34,30,3,5,9]，继续迭代</span>                <span class="hljs-comment">//正常顺序是345，反序是534，前者小于后者，交换位置[5,30,3,34,9]，继续迭代</span>                <span class="hljs-comment">//正常顺序是59，反序是95，前者小于后者，交换位置[9,30,3,34,5]，继续迭代</span>                <span class="hljs-comment">//这样一轮迭代完，可以确定第一个位置是最大的位置。然后依次迭代。最终把数组转成字符串即可</span>                String s1=strs[i]+strs[j];<span class="hljs-comment">//正常顺序</span>                String s2=strs[j]+strs[i];<span class="hljs-comment">//反序</span>                <span class="hljs-keyword">if</span> (s1.compareTo(s2)&lt;<span class="hljs-number">0</span>)<span class="hljs-comment">//如果正常顺序小于反序，就交换两者</span>                &#123;                    String tmp=strs[i];                    strs[i]=strs[j];                    strs[j]=tmp;                &#125;            &#125;        &#125;        <span class="hljs-keyword">for</span> (String s:strs) sb.append(s);        String res=sb.toString();        <span class="hljs-keyword">if</span>(res.charAt(<span class="hljs-number">0</span>)==<span class="hljs-string">'0'</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">"0"</span>;        <span class="hljs-keyword">return</span> res;    &#125;&#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+      <category>LeetCode</category>
+      
+      <category>字符串</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>高频面试题</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>LeetCode43-字符串相乘</title>
     <link href="/2020/07/06/LeetCode43-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%B9%98/"/>
     <url>/2020/07/06/LeetCode43-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%B9%98/</url>

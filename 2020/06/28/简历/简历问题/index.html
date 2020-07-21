@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      19k 字
+      19.1k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      223
+      225
        分钟
     </span>
   
@@ -1388,6 +1388,11 @@
 <p>不可重复读：加排它锁</p>
 <p>幻读：临建锁。锁住了间隙，所以解决了幻读的插入</p>
 <p>三大范式：<a href="https://zhuanlan.zhihu.com/p/63146817" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/63146817</a></p>
+<blockquote>
+<p>第一范式就是数据库中的每一列都是不可分割的基本数据项，同一列中不能有多个值</p>
+<p>第二范式：每一个属性完全依赖于主键</p>
+<p>第三范式：<strong>第三范式（3NF）要求一个数据库表中不包含已在其它表中已包含的非主关键字信息</strong>。<strong>第三范式就是属性不依赖于其它非主属性</strong></p>
+</blockquote>
 <p>串行化隔离级别的问题：<a href="https://blog.csdn.net/weixin_38553453/article/details/83037979" target="_blank" rel="noopener">https://blog.csdn.net/weixin_38553453/article/details/83037979</a> （读读是允许的，但是读写不允许，所以就会导致死锁。解决方法：直接加写锁）</p>
 <h3 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h3><p>binlog、redolog、undolog：<a href="https://blog.csdn.net/lzhcoder/article/details/88814364" target="_blank" rel="noopener">https://blog.csdn.net/lzhcoder/article/details/88814364</a></p>
 <h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><p>IOC：IOC（Inversion of Control）控制反转，将创建对象和对象之间的依赖关系交给了spring容器。借助于“第三方”实现具有依赖关系的对象之间的解耦</p>
